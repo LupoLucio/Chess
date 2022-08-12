@@ -15,6 +15,8 @@ class Queen : public Piece{
     void printPiece();
 
 
+
+
 };
 
 #endif

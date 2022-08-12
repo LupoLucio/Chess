@@ -38,6 +38,11 @@ void Piece::printAllPos(){
 bool Piece::operator==(Piece *piece){
     return p == piece->p && isWhite == piece->isWhite;
 }
+
 bool Piece::isOpposite(Piece *piece){
     return isWhite != piece->isWhite;
+}
+
+void Piece::setPosition(Position pos){
+    p = pos;
 }

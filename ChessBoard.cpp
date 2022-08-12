@@ -35,78 +35,93 @@ inline bool instanceof(const T *ptr) {
 }
 
 ChessBoard::ChessBoard(){
-
         
 
-        Kpieces.push_back(King("white king",1,1,Position(4,0)));
-        Qpieces.push_back(Queen("white queen",1,1,Position(3,0)));
-        Rpieces.push_back(Rook("white rook 1",1,1,Position(0,0)));
-        Rpieces.push_back(Rook("white rook 2",1,1,Position(7,0)));
-        Bpieces.push_back(Bishop("white bishop 1",1,1,Position(2,0)));
-        Bpieces.push_back(Bishop("white bishop 2",1,1,Position(5,0)));
-        KNpieces.push_back(Knight("white knight 1",1,1,Position(1,0)));
-        KNpieces.push_back(Knight("white knight 2",1,1,Position(6,0)));
-        Ppieces.push_back(Pawn("white pawn 1",1,1,Position(0,1)));
-        Ppieces.push_back(Pawn("white pawn 2",1,1,Position(1,1)));
-        Ppieces.push_back(Pawn("white pawn 3",1,1,Position(2,1)));
-        Ppieces.push_back(Pawn("white pawn 4",1,1,Position(3,1)));
-        Ppieces.push_back(Pawn("white pawn 5",1,1,Position(4,1)));
-        Ppieces.push_back(Pawn("white pawn 6",1,1,Position(5,1)));
-        Ppieces.push_back(Pawn("white pawn 7",1,1,Position(6,1)));
-        Ppieces.push_back(Pawn("white pawn 8",1,1,Position(7,1)));
+    Kpieces.push_back(King("white king",1,1,Position(4,0)));
+    Qpieces.push_back(Queen("white queen",1,1,Position(3,0)));
+    Rpieces.push_back(Rook("white rook 1",1,1,Position(0,0)));
+    Rpieces.push_back(Rook("white rook 2",1,1,Position(7,0)));
+    Bpieces.push_back(Bishop("white bishop 1",1,1,Position(2,0)));
+    Bpieces.push_back(Bishop("white bishop 2",1,1,Position(5,0)));
+    KNpieces.push_back(Knight("white knight 1",1,1,Position(1,0)));
+    KNpieces.push_back(Knight("white knight 2",1,1,Position(6,0)));
+    Ppieces.push_back(Pawn("white pawn 1",1,1,Position(0,1)));
+    Ppieces.push_back(Pawn("white pawn 2",1,1,Position(1,1)));
+    Ppieces.push_back(Pawn("white pawn 3",1,1,Position(2,1)));
+    Ppieces.push_back(Pawn("white pawn 4",1,1,Position(3,1)));
+    Ppieces.push_back(Pawn("white pawn 5",1,1,Position(4,1)));
+    Ppieces.push_back(Pawn("white pawn 6",1,1,Position(5,1)));
+    Ppieces.push_back(Pawn("white pawn 7",1,1,Position(6,1)));
+    Ppieces.push_back(Pawn("white pawn 8",1,1,Position(7,1)));
 
-        Kpieces.push_back(King("black king",0,1,Position(4,7)));
-        Qpieces.push_back(Queen("black queen",0,1,Position(3,7)));
-        Rpieces.push_back(Rook("black rook 1",0,1,Position(0,7)));
-        Rpieces.push_back(Rook("black rook 2",0,1,Position(7,7)));
-        Bpieces.push_back(Bishop("black bishop 1",0,1,Position(2,7)));
-        Bpieces.push_back(Bishop("black bishop 2",0,1,Position(5,7)));
-        KNpieces.push_back(Knight("black knight 1",0,1,Position(1,7)));
-        KNpieces.push_back(Knight("black knight 2",0,1,Position(6,7)));
-        Ppieces.push_back(Pawn("black pawn 1",0,1,Position(0,6)));
-        Ppieces.push_back(Pawn("black pawn 2",0,1,Position(1,6)));
-        Ppieces.push_back(Pawn("black pawn 3",0,1,Position(2,6)));
-        Ppieces.push_back(Pawn("black pawn 4",0,1,Position(3,6)));
-        Ppieces.push_back(Pawn("black pawn 5",0,1,Position(4,6)));
-        Ppieces.push_back(Pawn("black pawn 6",0,1,Position(5,6)));
-        Ppieces.push_back(Pawn("black pawn 7",0,1,Position(6,6)));
-        Ppieces.push_back(Pawn("black pawn 8",0,1,Position(7,6)));
+    Kpieces.push_back(King("black king",0,1,Position(4,7)));
+    Qpieces.push_back(Queen("black queen",0,1,Position(3,7)));
+    Rpieces.push_back(Rook("black rook 1",0,1,Position(0,7)));
+    Rpieces.push_back(Rook("black rook 2",0,1,Position(7,7)));
+    Bpieces.push_back(Bishop("black bishop 1",0,1,Position(2,7)));
+    Bpieces.push_back(Bishop("black bishop 2",0,1,Position(5,7)));
+    KNpieces.push_back(Knight("black knight 1",0,1,Position(1,7)));
+    KNpieces.push_back(Knight("black knight 2",0,1,Position(6,7)));
+    Ppieces.push_back(Pawn("black pawn 1",0,1,Position(0,6)));
+    Ppieces.push_back(Pawn("black pawn 2",0,1,Position(1,6)));
+    Ppieces.push_back(Pawn("black pawn 3",0,1,Position(2,6)));
+    Ppieces.push_back(Pawn("black pawn 4",0,1,Position(3,6)));
+    Ppieces.push_back(Pawn("black pawn 5",0,1,Position(4,6)));
+    Ppieces.push_back(Pawn("black pawn 6",0,1,Position(5,6)));
+    Ppieces.push_back(Pawn("black pawn 7",0,1,Position(6,6)));
+    Ppieces.push_back(Pawn("black pawn 8",0,1,Position(7,6)));
 
-        generateAllPos();
+    // pezzi di riserva
+    ResQpieces.push_back(Queen("white queen 2",1,1,Position(5,5)));
+    ResQpieces.push_back(Queen("black queen 2",0,1,Position(4,5)));
+
+    ResRpieces.push_back(Rook("white rook 3",1,1,Position(3,7)));
+    ResRpieces.push_back(Rook("black rook 3",0,1,Position(3,7)));    
+
+    ResBpieces.push_back(Bishop("white bishop 3",1,1,Position(3,7)));
+    ResBpieces.push_back(Bishop("black bishop 3",0,1,Position(3,7)));
+
+    ResKNpieces.push_back(Knight("white knight 3",1,1,Position(3,7)));
+    ResKNpieces.push_back(Knight("black knight 3",0,1,Position(3,7)));
+
+    for( auto& piece : Kpieces)
+    {
+        Pieces.push_back(&piece);
+    }
+
+    for( auto& piece : Qpieces)
+    {
+        Pieces.push_back(&piece);
+    }
+
+    for( auto& piece : Rpieces)
+    {
+        Pieces.push_back(&piece);
+    }
+
+    for( auto& piece : Bpieces)
+    {
+        Pieces.push_back(&piece);
+    }
+
+    for( auto& piece : KNpieces)
+    {
+        Pieces.push_back(&piece);
+    }
+
+    for( auto& piece : Ppieces)
+    {
+        Pieces.push_back(&piece);
+    }
+
+    generateAllPos();
 
 }
 void ChessBoard::printPieces(){
     cout << "Pieces are :  " << endl;
 
-    cout << "Pawns" << endl;
-    for( auto& piece : Ppieces)
-    {
-        piece.printPiece();
-    }
-    cout << "Knights" << endl;
-    for( auto& piece : KNpieces)
-    {
-        piece.printPiece();
-    }
-    cout << "Bishop" << endl;
-    for( auto& piece : Bpieces)
-    {
-        piece.printPiece();
-    }
-    cout << "Rooks" << endl;
-    for( auto& piece : Rpieces)
-    {
-        piece.printPiece();
-    }
-    cout << "Queens" << endl;
-    for( auto& piece : Qpieces)
-    {
-        piece.printPiece();
-    }
-    cout << "Kings" << endl;
-    for( auto& piece : Kpieces)
-    {
-        piece.printPiece();
+    for(auto& piece : Pieces){
+        piece->printPiece();
     }
 
     cout << "End Pieces" << endl;
@@ -179,128 +194,32 @@ void ChessBoard::printChessBoard(){
 }
 
 bool ChessBoard::isOccpied(Position p){
-    // Searching Kpieces
-    for( auto& piece : Kpieces)
-    {
-        if(piece.isLive){
-            if(piece.p == p){
-                return true;
-            }
-        }
-    }
-    // Searching for Qpieces
-    for( auto& piece : Qpieces)
-    {
-        if(piece.isLive){
-            if(piece.p == p){
-                return true;
-            }
-        }
-    }
-    // Searching for Rpieces
-    for( auto& piece : Rpieces)
-    {
-        if(piece.isLive){
-            if(piece.p == p){
-                return true;
-            }
-        }
-    }
-    // Searching for Bpieces
-    for( auto& piece : Bpieces)
-    {
-        if(piece.isLive){
-            if(piece.p == p){
-                return true;
-            }
-        }
-    }
-    // Searching for KNpieces
-    for( auto& piece : KNpieces)
-    {
-        if(piece.isLive){
-            if(piece.p == p){
-                return true;
-            }
-        }
-    }
-    // Searching for Ppieces
-    for( auto& piece : Ppieces)
-    {
-        if(piece.isLive){
-            if(piece.p == p){
-                return true;
-            }
-        }
-    }
 
-
+    for(auto& piece : Pieces){
+            if(piece->isLive){
+                if(piece->p == p){
+                    return true;
+                }
+            }
+    }
     return false;
 }
 
 Piece *ChessBoard::searchPiece(Position p){
-    // Searching Kpieces
-    for( auto& piece : Kpieces)
-    {
-        if(piece.isLive){
-            if(piece.p == p){
-                return &piece;
+
+    for(auto& piece : Pieces){
+            if(piece->isLive){
+                if(piece->p == p){
+                    return piece;
+                }
             }
-        }
-    }
-    // Searching for Qpieces
-    for( auto& piece : Qpieces)
-    {
-        if(piece.isLive){
-            if(piece.p == p){
-                return &piece;
-            }
-        }
-    }
-    // Searching for Rpieces
-    for( auto& piece : Rpieces)
-    {
-        if(piece.isLive){
-            if(piece.p == p){
-                return &piece;
-            }
-        }
-    }
-    // Searching for Bpieces
-    for( auto& piece : Bpieces)
-    {
-        if(piece.isLive){
-            if(piece.p == p){
-                return &piece;
-            }
-        }
-    } 
-    // Searching for KNpieces
-    for( auto& piece : KNpieces)
-    {
-        if(piece.isLive){
-            if(piece.p == p){
-                return &piece;
-            }
-        }
-    }
-    // Searching for Ppieces
-    for( auto& piece : Ppieces)
-    {
-        if(piece.isLive){
-            if(piece.p == p){
-                return &piece;
-            }
-        }
     }
 
     return NULL;
 
 }
 
-
-
-bool isPositionValid(Position p){
+bool ChessBoard::isPositionValid(Position p){
     return (p.getX()<=7 && p.getX() >= 0 && p.getY()<=7 && p.getY()>=0);
 }
 
@@ -650,6 +569,8 @@ void ChessBoard::generatePos(Piece *piece){
 
 
     }
+
+    mergePos(piece);
 }
 
 void ChessBoard::clearPos(Piece *piece){
@@ -659,54 +580,23 @@ void ChessBoard::clearPos(Piece *piece){
 
 }
 int ChessBoard::indexOfPiece(Piece *piece){
-    if(instanceof<King>(piece)){
-        for(int i=0;i<Kpieces.size();i++){
-            if(Kpieces[i] == piece)
-                return i;
-        }
-    }else if(instanceof<Queen>(piece)){
-        for(int i=0;i<Qpieces.size();i++){
-            if(Qpieces[i] == piece)
-                return i;
-        }
-    }else if(instanceof<Rook>(piece)){
-        for(int i=0;i<Rpieces.size();i++){
-            if(Rpieces[i] == piece)
-                return i;
-        }        
-    }else if(instanceof<Bishop>(piece)){
-        for(int i=0;i<Bpieces.size();i++){
-            if(Bpieces[i] == piece)
-                return i;
-        }          
-    }else if(instanceof<Knight>(piece)){
-        for(int i=0;i<KNpieces.size();i++){
-            if(KNpieces[i] == piece)
-                return i;
-        }        
-    }else if(instanceof<Pawn>(piece)){
-        for(int i=0;i<Ppieces.size();i++){
-            if(Ppieces[i] == piece)
-                return i;
+
+    for(int i=0;i<Pieces.size();i++){
+        if(Pieces[i] == piece){
+            return i;
         }
     }
 
     return -1;
 }
 void ChessBoard::kill(Piece *piece,int index){
-    if(instanceof<King>(piece)){
-        Kpieces[index].isLive = 0;
-    }else if(instanceof<Queen>(piece)){
-        Qpieces[index].isLive = 0;
-    }else if(instanceof<Rook>(piece)){
-        Rpieces[index].isLive = 0;
-    }else if(instanceof<Bishop>(piece)){
-        Bpieces[index].isLive = 0;
-    }else if(instanceof<Knight>(piece)){
-        KNpieces[index].isLive = 0;
-    }else if(instanceof<Pawn>(piece)){
-        Ppieces[index].isLive = 0;
+
+    if(index<0 || index>32){
+        printf("INDICE NON VALIDO");
+        return;
     }
+    Pieces[index]->isLive = 0;
+
 }
 void ChessBoard::killPiece(Piece *piece){
     int index = indexOfPiece(piece);
@@ -714,19 +604,13 @@ void ChessBoard::killPiece(Piece *piece){
     return;
 }
 void ChessBoard::killVerginity(Piece *piece,int index){
-    if(instanceof<King>(piece)){
-        Kpieces[index].isVirgin = 0;
-    }else if(instanceof<Queen>(piece)){
-        KNpieces[index].isVirgin = 0;
-    }else if(instanceof<Rook>(piece)){
-        Rpieces[index].isVirgin = 0;
-    }else if(instanceof<Bishop>(piece)){
-        Bpieces[index].isVirgin = 0;
-    }else if(instanceof<Knight>(piece)){
-        KNpieces[index].isVirgin = 0;
-    }else if(instanceof<Pawn>(piece)){
-        Ppieces[index].isVirgin = 0;
+
+    if(index<0 || index>32){
+        printf("INDICE NON VALIDO");
+        return;
     }
+    Pieces[index]->isVirgin = 0;
+
 }
 void ChessBoard::killPieceVerginity(Piece *piece){
     int index = indexOfPiece(piece);
@@ -734,43 +618,47 @@ void ChessBoard::killPieceVerginity(Piece *piece){
     return;
 }
 bool ChessBoard::isKingInCheck(int color){
-    return color ? Kpieces[0].isInCheck : Kpieces[1].isInCheck;
+    
+    return color ? ((King*)Pieces[0])->isInCheck : ((King*)Pieces[1])->isInCheck;
+    
+    
 }
 void ChessBoard::move(Piece *piece,Position pos){
-    /* controllo se nelle controlled del piece c'è pos
-     se c'è memorizzo in temp in pezzo in pos
-     se il pezzo è di un altro colore (Opposite) uccido lui e muovo piece 
-     */
-    for(int i=0;i<piece->controlledPos.size();i++){
-        if(piece->controlledPos[i] == pos){
-            if(canEat(piece,pos)){
-                eat(piece,pos);
-                return;
-            }
-        }
-    }
 
-    // ora cerco nelle accessibili
-    for(int i=0;i<piece->accessiblePos.size();i++){
-        if(piece->accessiblePos[i] == pos){
-            piece->move(pos);
-            if(piece->isVirgin){
-                killPieceVerginity(piece);
-            }
-            
-            if(canQueen(piece)){
-            queenning(piece);
-            }
-            
-            generateAllPos();
-            setKingCheck(!piece->isWhite);
-            setKingCheck(piece->isWhite);
-            if(isKingInCheck(!piece->isWhite)){
-                cout << "Re colore " << !piece->isWhite << "in Scacco" << endl;
-            }
-            return;
-        }
+
+    // controllo se posso puo' mangiare, se puo' ritorno la mossa è finita
+    if(canEat(piece,pos)){
+        eat(piece,pos);
+        return;
     }
+    // controllo se il pezzo puo' muovere
+    if(canMove(piece,pos)){
+        piece->move(pos);
+        // uccido la sua verginita (setto a 0 il suo isVirgin)
+        if(piece->isVirgin){
+            killPieceVerginity(piece);
+        }
+        // controllo se dopo aver mosso posso Queenare, se puo' Queenno
+        if(canQueen(piece)){
+        queenning(piece);
+        }
+        // genero le posizioni per tutti i pezzi (posizioni accessibili e controllate cambiano per ogni pezzo)
+        generateAllPos();
+        // setto se il re opposto al pezzo mosso è in Scacco
+        setKingCheck(!piece->isWhite);
+        // setto se il re che ha mosso è in Scacco (nel caso in cui va a mangiare (liberandosi dallo scacco), il suo isInCheck da 1 va a 0)
+        setKingCheck(piece->isWhite);
+        // se il re del colore opposto è in scacco faccio una stampa
+        if(isKingInCheck(!piece->isWhite)){
+            cout << "Re colore " << !piece->isWhite << "in Scacco" << endl;
+        }
+        return;            
+
+    }
+            
+
+        
+
     
 }
 void ChessBoard::queenning(Piece *pawn){
@@ -780,14 +668,86 @@ void ChessBoard::queenning(Piece *pawn){
         if(pawn->isWhite){
             if(pawn->p.getY() == 7){
                 int x = pawn->p.getX();
-                killPiece(pawn);
-                Qpieces.push_back(Queen("white queen 2",1,1,Position(x,7)));
+                int choice = -1;
+                Position pos = Position(x,7);
+
+                while(choice < 0 || choice > 4){
+
+                    cout << "0 per Queen" << endl;
+                    cout << "1 per Rook" << endl;
+                    cout << "2 per Bishop" << endl;
+                    cout << "3 per Knight" << endl;
+                    cin >> choice;
+
+                    switch(choice){
+                    case 0:
+                        ResQpieces[0].setPosition(pos);
+                        Pieces[indexOfPiece(pawn)] = &ResQpieces[0];
+                    break;
+
+                    case 1:
+                        ResRpieces[0].setPosition(pos);
+                        Pieces[indexOfPiece(pawn)] = &ResRpieces[0];
+                    break;
+                    
+                    case 2:
+                        ResBpieces[0].setPosition(pos);
+                        Pieces[indexOfPiece(pawn)] = &ResBpieces[0];
+                    break;
+
+                    case 3:
+                        ResKNpieces[0].setPosition(pos);
+                        Pieces[indexOfPiece(pawn)] = &ResKNpieces[0];
+                    break;
+                    
+                    default :
+                        cout << "SCELTA INVALIDA" << endl;
+                    break;
+                                
+                    }
+                }
             }
         }else{
             if(pawn->p.getY() == 0){
                 int x = pawn->p.getX();
-                killPiece(pawn);
-                Qpieces.push_back(Queen("black queen 2",1,1,Position(x,0)));
+                int choice = -1;
+                Position pos = Position(x,0);
+                
+                while(choice < 0 || choice > 4){
+
+                    cout << "0 per Queen" << endl;
+                    cout << "1 per Rook" << endl;
+                    cout << "2 per Bishop" << endl;
+                    cout << "3 per Knight" << endl;
+                    cin >> choice;
+
+                    switch(choice){
+                    case 0:
+                        ResQpieces[1].p = pos;
+                        Pieces[indexOfPiece(pawn)] = &ResQpieces[1];
+                    break;
+
+                    case 1:
+                        ResRpieces[1].p = pos;
+                        Pieces[indexOfPiece(pawn)] = &ResRpieces[1];
+                    break;
+                    
+                    case 2:
+                        ResBpieces[1].p = pos;
+                        Pieces[indexOfPiece(pawn)] = &ResBpieces[1];
+                    break;
+                    
+                    case 3:
+                        ResKNpieces[1].p = pos;
+                        Pieces[indexOfPiece(pawn)] = &ResKNpieces[1];
+                    break;
+
+                    default :
+                        cout << "SCELTA INVALIDA" << endl;
+                    break;
+                                
+                    }
+                }
             }
         }
     }
@@ -803,40 +763,31 @@ bool ChessBoard::canQueen(Piece *p){
     }
 }
 Piece* ChessBoard::searchPieceByName(string name){
-    for( auto& piece : Kpieces)
-    {
-        if(piece.name == name){
-            return &piece;
-        }
-    }
-    for( auto& piece : Qpieces)
-    {
-        if(piece.name == name){
-            return &piece;
-        }
-    }
-    for( auto& piece : Rpieces)
-    {
-        if(piece.name == name){
-            return &piece;
-        }
-    }
-    for( auto& piece : Bpieces)
-    {
-        if(piece.name == name){
-            return &piece;
-        }
-    }
-    for( auto& piece : KNpieces)
-    {
-        if(piece.name == name){
-            return &piece;
-        }
-    }
-    for( auto& piece : Ppieces)
-    {
-        if(piece.name == name){
-            return &piece;
+    for(auto& piece : Pieces){
+        if(instanceof<King>(piece)){
+            if(((King*)piece)->name == name){
+                return piece;
+            }
+        }else if(instanceof<Queen>(piece)){
+            if(((Queen*)piece)->name == name){
+                return piece;
+            }           
+        }else if(instanceof<Rook>(piece)){
+            if(((Rook*)piece)->name == name){
+                return piece;
+            }           
+        }else if(instanceof<Bishop>(piece)){
+            if(((Bishop*)piece)->name == name){
+                return piece;
+            }           
+        }else if(instanceof<Knight>(piece)){
+            if(((Knight*)piece)->name == name){
+                return piece;
+            }           
+        }else if(instanceof<Pawn>(piece)){
+            if(((Pawn*)piece)->name == name){
+                return piece;
+            }           
         }
     }
 
@@ -851,61 +802,10 @@ void ChessBoard::setKingCheck(int color){
     }
     
     Piece *WK = searchPieceByName(name);
-    for(const auto& piece : Kpieces){
-        if(piece.isWhite != color){
-            for(const Position& p : piece.controlledPos){
-                if(p == WK->p){
-                    ((King*)WK)->isInCheck = true;
-                    return;
-                }
-            }
-        }
-    }
-    for(const auto& piece : Qpieces){
-        if(piece.isWhite != color){
-            for(const Position& p : piece.controlledPos){
-                if(p == WK->p){
-                    ((King*)WK)->isInCheck = true;
-                    return;
-                }
-            }
-        }
-    }
-    for(const auto& piece : Rpieces){
-        if(piece.isWhite != color){
-            for(const Position& p : piece.controlledPos){
-                if(p == WK->p){
-                    ((King*)WK)->isInCheck = true;
-                    return;
-                }
-            }
-        }
-    }
-    for(const auto& piece : Bpieces){
-        if(piece.isWhite != color){
-            for(const Position& p : piece.controlledPos){
-                if(p == WK->p){
-                    ((King*)WK)->isInCheck = true;
-                    return;
-                }
-            }
-        }
-    }
-    for(const auto& piece : KNpieces){
-        cout << piece.name << endl;
-        cout << piece.controlledPos.size() << endl;
-        if(piece.isWhite != color){
-            for(const Position& p : piece.controlledPos){
-                if(p == WK->p){
-                    ((King*)WK)->isInCheck = true;
-                    return;
-                }
-            }
-        }
-    }
-    for(const auto& piece : Ppieces){
-        if(piece.isWhite != color){
-            for(const Position& p : piece.controlledPos){
+
+    for(auto& piece : Pieces){
+        if(piece->isWhite != color){
+            for(const Position& p : piece->controlledPos){
                 if(p == WK->p){
                     ((King*)WK)->isInCheck = true;
                     return;
@@ -918,30 +818,9 @@ void ChessBoard::setKingCheck(int color){
 }
 
 void ChessBoard::generateAllPos(){
-        for( auto& piece : Kpieces)
-        {
-            generatePos(&piece);
-        }
-        for( auto& piece : Qpieces)
-        {
-            generatePos(&piece);
-        }
-        for( auto& piece : Rpieces)
-        {
-            generatePos(&piece);
-        }
-        for( auto& piece : Bpieces)
-        {
-            generatePos(&piece);
-        }
-        for( auto& piece : KNpieces)
-        {
-            generatePos(&piece);
-        }
-        for( auto& piece : Ppieces)
-        {
-            generatePos(&piece);
-        }
+    for(auto& piece : Pieces){
+        generatePos(piece);
+    }
 }
 
 bool ChessBoard::canEat(Piece *piece,Position pos){
@@ -949,77 +828,8 @@ bool ChessBoard::canEat(Piece *piece,Position pos){
     if(!instanceof<King>(piece)){
         return temp != NULL && piece->isOpposite(temp);
     }else{
-        // cerco nelle posizioni controllate dei pezzi del colore opposto al re
-        for( auto p : Kpieces)
-        {
-            if(piece->isWhite != p.isWhite){
-                for(auto position : p.controlledPos){
-                    if(position == pos){
-                        return false;
-                    }
-                }
-            }
-            
-        }
-        for( auto p : Qpieces)
-        {
-            if(piece->isWhite != p.isWhite){
-                for(auto position : p.controlledPos){
-                    if(position == pos){
-                        return false;
-                    }
-                }
-            }
-            
-        }
-        for( auto p : Rpieces)
-        {
-            if(piece->isWhite != p.isWhite){
-                for(auto position : p.controlledPos){
-                    if(position == pos){
-                        return false;
-                    }
-                }
-            }
-            
-        }
-         for( auto p : Bpieces)
-        {
-            if(piece->isWhite != p.isWhite){
-                for(auto position : p.controlledPos){
-                    if(position == pos){
-                        return false;
-                    }
-                }
-            }
-            
-        }
-         for( auto p : KNpieces)
-        {
-            if(piece->isWhite != p.isWhite){
-                for(auto position : p.controlledPos){
-                    if(position == pos){
-                        return false;
-                    }
-                }
-            }
-            
-        }
-        for( auto p : Ppieces)
-        {
-            if(piece->isWhite != p.isWhite){
-                for(auto position : p.controlledPos){
-                    if(position == pos){
-                        return false;
-                    }
-                }
-            }
-            
-        }
-    // se si è arrivati qua piece è re e pos non è controllata da nessun pezzo opposto
-    return true;
+        return !willKingBeInCheck(piece->isWhite,pos);
     }
-
 
 }
 
@@ -1047,5 +857,30 @@ void ChessBoard::eat(Piece *piece,Position pos){
         }
         
     }
+
+}
+
+void ChessBoard::mergePos(Piece *piece){
+
+    for(int i=0;i<piece->controlledPos.size();i++){
+        // se la nella posizione controllata posso mangiare, allora la faccio diventare accessibile
+        if(canEat(piece,piece->controlledPos[i])){
+            piece->accessiblePos.push_back(piece->controlledPos[i]);
+        }
+    }
+}
+bool ChessBoard::willKingBeInCheck(bool color,Position pos){
+    for(auto& piece : Pieces){
+        if(piece->isWhite != color){
+            for(const Position& p : piece->controlledPos){
+                if(p == pos){
+                    return true;
+                }
+            }
+        }
+    }
+
+    // se si è arrivati qua piece è re e pos non è controllata da nessun pezzo opposto
+    return false;
 
 }

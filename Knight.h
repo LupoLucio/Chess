@@ -15,6 +15,8 @@ class Knight : public Piece{
     void printPiece();
 
 
+
+
 };
 
 #endif

@@ -14,6 +14,8 @@ class Bishop : public Piece{
 
     void printPiece();
 
+
+
 };
 
 #endif

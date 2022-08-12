@@ -14,7 +14,10 @@ class Pawn : public Piece{
     Pawn()=default;
     Pawn(string s,bool color,bool live,Position pos);
 
+    
     void printPiece();
+
+
     
 
 };

@@ -11,3 +11,4 @@ void King::printPiece(){
     cout << "Name : " << name << " Color : "<< isWhite <<" Live : " << isLive <<" Virgin : " << isVirgin <<" Check : "<< isInCheck <<" Position : (" << p.getX() << "," << p.getY() << ")"<< endl;
 }
 
+
