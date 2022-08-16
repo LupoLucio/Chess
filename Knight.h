@@ -4,19 +4,15 @@
 /*
 Classe che definisce il pezzo King
 */
-class Knight : public Piece{
+class Knight : public Piece {
 
-    public:
+public:
     string name;
 
-    Knight()=default;
-    Knight(string s,bool color,bool live,Position pos);
+    Knight() = default;
+    Knight(string s, bool color, bool live, Position pos);
 
     void printPiece();
-
-
-
-
 };
 
 #endif

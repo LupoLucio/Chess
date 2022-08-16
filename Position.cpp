@@ -2,31 +2,34 @@
 
 #include "Position.h"
 
-
-
-Position::Position(int newx,int newy){
+Position::Position(int newx, int newy)
+{
     x = newx;
     y = newy;
 }
-void Position::printPosition(){
-    cout << "Position is (" << x << "," << y << ")"<< endl;
+void Position::printPosition()
+{
+    cout << "Position is (" << x << "," << y << ")" << endl;
 }
 
-int Position::getX() const{
+int Position::getX() const
+{
     return x;
 }
-int Position::getY() const{
+int Position::getY() const
+{
     return y;
 }
-void Position::setX(int newx){
+void Position::setX(int newx)
+{
     x = newx;
 }
-void Position::setY(int newy){
+void Position::setY(int newy)
+{
     y = newy;
 }
 
-bool Position::operator==(const Position& position)const{
+bool Position::operator==(const Position& position) const
+{
     return x == position.getX() && y == position.getY();
 }
-
-

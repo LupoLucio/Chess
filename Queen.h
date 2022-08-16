@@ -4,19 +4,15 @@
 /*
 Classe che definisce il pezzo King
 */
-class Queen : public Piece{
+class Queen : public Piece {
 
-    public:
+public:
     string name;
 
-    Queen()=default;
-    Queen(string s,bool color,bool live,Position pos);
+    Queen() = default;
+    Queen(string s, bool color, bool live, Position pos);
 
     void printPiece();
-
-
-
-
 };
 
 #endif

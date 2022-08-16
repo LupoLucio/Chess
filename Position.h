@@ -3,21 +3,20 @@
 #define POSITION_H
 #include <iostream>
 
-
 using namespace std;
 
 /*
 Classe che definisce il concetto di posizione in una ChessBoard
 */
-class Position{
+class Position {
 
-    public:
+public:
     // coordinate
-    int x,y;
+    int x, y;
 
     // costruttori
-    Position()=default;
-    Position(int newx,int newy);
+    Position() = default;
+    Position(int newx, int newy);
     // stampa
     void printPosition();
     // getters
@@ -28,8 +27,6 @@ class Position{
     void setY(int newy);
 
     bool operator==(const Position& position) const;
-
-
 };
 
 #endif
