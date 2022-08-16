@@ -1,21 +1,28 @@
 #include "Piece.h"
 
-Piece::Piece(bool color, bool live, Position pos)
+Piece::Piece(Type type, Color color, bool alive, Position pos)
 {
-    isWhite = color;
-    isLive = live;
-    p = pos;
+    m_color = color;
+    m_type = type;
+    isAlive = alive;
+    m_pos = pos;
 }
 void Piece::move(Position newP)
 {
-    p = newP;
+    m_pos = newP;
 }
 Position Piece::getPosition()
 {
-    return p;
+    return m_pos;
 }
 
-void Piece::printPiece() { }
+void Piece::printPiece()
+{
+    cout << "Name : " << getTypeName(getType()) << " " << getNumber()
+         << " Color : " << getColorName(getColor()) << " Live : " << isAlive
+         << " Virgin : " << isVirgin << " Position : (" << m_pos.getX() << "," << m_pos.getY()
+         << ")" << endl;
+}
 
 void Piece::printControlledPos()
 {
@@ -41,17 +48,33 @@ void Piece::printAllPos()
     printAccessiblePos();
 }
 
-bool Piece::operator==(Piece *piece)
+bool Piece::operator==(const Piece& other) const
 {
-    return p == piece->p && isWhite == piece->isWhite;
+    return m_pos == other.m_pos && m_color == other.m_color && m_type == other.m_type;
 }
 
-bool Piece::isOpposite(Piece *piece)
+bool Piece::isOppositeColor(Piece *piece)
 {
-    return isWhite != piece->isWhite;
+    return m_color != piece->m_color;
 }
 
 void Piece::setPosition(Position pos)
 {
-    p = pos;
+    m_pos = pos;
+}
+
+string Piece::getColorName(Color c)
+{
+    return c == Color::White ? "White" : "Black";
+}
+
+string Piece::getTypeName(Type t)
+{
+    const char *arr[int(Type::NTypes) + 1] = { "Bishop", "King", "Knight", "Pawn", "Queen", "Rook", "NTypes" };
+
+    int idx = int(t);
+    if(idx < 0 || idx > int(Type::NTypes))
+        idx = int(Type::NTypes);
+
+    return arr[idx];
 }

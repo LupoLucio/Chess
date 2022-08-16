@@ -15,15 +15,17 @@ Classe che definisce la ChessBoard nella quale giocano i pezzi
 class ChessBoard
 {
 public:
-    // vector dei tipi di pezzi
-    std::vector<King> Kpieces;
-    std::vector<Queen> Qpieces;
-    std::vector<Rook> Rpieces;
-    std::vector<Bishop> Bpieces;
-    std::vector<Knight> KNpieces;
-    std::vector<Pawn> Ppieces;
 
-    std::vector<Piece *> Pieces;
+    //Represents initial configuration
+    struct ConfigurationItem
+    {
+        Piece::Type type;
+        Position pos;
+    };
+    typedef std::vector<ConfigurationItem> Configuration;
+
+    //Vector with all pieces
+    std::vector<Piece *> pieceVector;
 
     // pezzi di riserva
     std::vector<Queen> ResQpieces;
@@ -35,15 +37,21 @@ public:
     char chessBoard[8][8];
 
     ChessBoard();
+    ~ChessBoard();
+
+    void clear();
+    void initConfiguration(const Configuration& conf);
 
     // stampa i pezzi e i loro parametri
     void printPieces();
     // stampa la scacchiera (matrtice di char)
     void printChessBoard();
     // ritorna se la posizione è occupata
-    bool isOccpied(Position p);
+    bool isOccpied(Position pos);
     // ritorna un puntatore al pezzo nella posizione p
-    Piece *searchPiece(Position p);
+    Piece *getPieceAtPos(Position pos);
+    // get piece by type, color and number (invalid number means take first item found)
+    Piece *getPieceByType(Piece::Color color, Piece::Type type, int num = Piece::INVALID_NUMBER);
     // genera le posizioni controllate e accessibili di piece
     void generatePos(Piece *piece);
     // pulisce elimina le posizoini controllate e accessibili di piece
@@ -71,13 +79,11 @@ public:
     // ritorna se il pezzo puo' fare la promozione
     bool canQueen(Piece *piece);
     // prova a settare in parametro isInCheck (se la sua pos è nelle controllate dei pezzi opposti)
-    void setKingCheck(int color);
+    void setKingCheck(Piece::Color color);
     // ritorna se il pezzo re è in scacco COMPLETARE
-    bool isKingInCheck(int color);
+    bool isKingInCheck(Piece::Color color);
     // ritorna se il re nell'ipotetica posizione pos sarebbe in scacco
-    bool willKingBeInCheck(bool color, Position pos);
-    // ritorna la posizione del pezzo con lo stesso nome
-    Piece *searchPieceByName(string name);
+    bool willKingBeInCheck(Piece::Color color, Position pos);
     // ritorna se il pezzo puo' mangiare in quella posizione
     bool canEat(Piece *piece, Position pos);
     // fa le azioni neccessarie per mangiare
@@ -91,9 +97,9 @@ public:
     // ritorna se la posizione è valida nella scacchiera
     bool isPositionValid(Position p);
     // genera le ipopos di tutti i pezzi del colore color
-    void generateAllIpoPos(bool color);
+    void generateAllIpoPos(Piece::Color color);
     // ritorna se le controllate ipotetiche dei pezzi del colore opposto ce il king di color color
-    bool willKingBeIpoInCheck(bool color);
+    bool willKingBeIpoInCheck(Piece::Color color);
     // funzione interna di resuscitazione del pezzo
     void revive(Piece *piece, int index);
     // funzione esterna di resuscitazione del pezzo

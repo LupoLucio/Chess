@@ -11,23 +11,14 @@ Classe che definisce il modo generico il pezzo in una scacchiera.
 class Piece
 {
 public:
-    // oggetto Position p per la posizione nella board
-    Position p;
-    // bool isWhite per il colore e isLive per stabilire se è vivo
-    bool isWhite, isLive, isVirgin = 1, isPinned;
-    // array di posizioni controllate nella board
-    std::vector<Position> controlledPos;
-    // array di posizioni accessibili nella board
-    std::vector<Position> accessiblePos;
-    // array di posizioni controllate ipotetiche servono per controllare se il pezzo è pinnato
-    std::vector<Position> ipoControlledPos;
-    // array di posizioni accessibili ipotetiche servono per controllare se il pezzo è pinnato
-    std::vector<Position> ipoAccessiblePos;
+    enum class Color { White = 0, Black, NColors };
 
-    // costruttore di default
-    Piece() = default;
+    enum class Type { Bishop = 0, King, Knight, Pawn, Queen, Rook, NTypes };
+
+    static constexpr int INVALID_NUMBER = -1;
+
     // costruttore che crea un Piece
-    Piece(bool color, bool live, Position p);
+    Piece(Type type, Color color, bool alive, Position p);
 
     // funzione move che cambia l'oggetto p di Piece a newP spostando il pezzo
     void move(Position newP);
@@ -44,22 +35,52 @@ public:
     virtual void printPiece();
 
     // operatore ugualianza fra un Piece e un puntatore a Piece
-    bool operator==(Piece *piece);
+    bool operator==(const Piece &other) const;
     // ritorna se il piece puntato è di colore opposto al colore dell'invocante
-    bool isOpposite(Piece *piece);
+    bool isOppositeColor(Piece *piece);
 
     Position getPosition();
 
     void setPosition(Position pos);
 
-    // booleani sul tipo di pezzo
-    /*bool isKing();
-    bool isQueen();
-    bool isRook();
-    bool isBishop();
-    bool isKnight();
-    bool isPawn();
-    */
+    inline Color getColor() const { return m_color; }
+
+    static inline Color getOppositColor(Color c)
+    {
+        //Cast to int to do a NOT and then back to enum
+        return Color(!int(c));
+    }
+
+    inline Type getType() const { return m_type; }
+
+    inline int getNumber() const { return m_number; }
+
+    inline void setNumber(int n) { m_number = n; }
+
+public:
+    static string getColorName(Color c);
+
+    static string getTypeName(Type t);
+
+public:
+    // oggetto Position p per la posizione nella board
+    Position m_pos;
+    // bool isAlive per stabilire se è vivo
+    bool isAlive, isVirgin = 1, isPinned;
+    // array di posizioni controllate nella board
+    std::vector<Position> controlledPos;
+    // array di posizioni accessibili nella board
+    std::vector<Position> accessiblePos;
+    // array di posizioni controllate ipotetiche servono per controllare se il pezzo è pinnato
+    std::vector<Position> ipoControlledPos;
+    // array di posizioni accessibili ipotetiche servono per controllare se il pezzo è pinnato
+    std::vector<Position> ipoAccessiblePos;
+
+private:
+    Color m_color;
+    Type m_type;
+    //Piece number relative to its type, i.e. Pawn 1, Pawn 2...
+    int m_number = INVALID_NUMBER;
 };
 
 #endif
