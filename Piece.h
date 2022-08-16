@@ -15,7 +15,7 @@ public:
 
     enum class Type { Bishop = 0, King, Knight, Pawn, Queen, Rook, NTypes };
 
-    constexpr int INVALID_NUMBER = -1;
+    static constexpr int INVALID_NUMBER = -1;
 
     // costruttore che crea un Piece
     Piece(Type type, Color color, bool alive, Position p);
