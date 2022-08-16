@@ -172,11 +172,11 @@ void ChessBoard::initConfiguration(const Configuration &conf)
     for (auto pieceDef : conf)
     {
         // Mirror position for black piece
-        Position blackPos = pieceDef.second;
+        Position blackPos = pieceDef.pos;
         blackPos.setY(7 - blackPos.getY());
 
-        Piece *whitePiece = createPiece(pieceDef.first, Piece::Color::White, pieceDef.second);
-        Piece *blackPiece = createPiece(pieceDef.first, Piece::Color::Black, blackPos);
+        Piece *whitePiece = createPiece(pieceDef.type, Piece::Color::White, pieceDef.pos);
+        Piece *blackPiece = createPiece(pieceDef.type, Piece::Color::Black, blackPos);
         ;
 
         int &num = counters[int(whitePiece->getType())];

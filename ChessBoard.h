@@ -17,7 +17,12 @@ class ChessBoard
 public:
 
     //Represents initial configuration
-    typedef std::vector<std::pair<Piece::Type, Position>> Configuration;
+    struct ConfigurationItem
+    {
+        Piece::Type type;
+        Position pos;
+    };
+    typedef std::vector<ConfigurationItem> Configuration;
 
     //Vector with all pieces
     std::vector<Piece *> pieceVector;
