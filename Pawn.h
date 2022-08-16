@@ -11,7 +11,7 @@ public:
     string name;
 
     Pawn() = default;
-    Pawn(string s, bool color, bool live, Position pos);
+    Pawn(string s, bool color, bool alive, Position pos);
 
     void printPiece();
 };

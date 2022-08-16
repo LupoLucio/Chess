@@ -145,7 +145,7 @@ void ChessBoard::printChessBoard()
             p = searchPiece(Position(i, j));
             if (p != NULL)
             {
-                if (p->isLive)
+                if (p->isAlive)
                 {
                     if (p->isWhite)
                     {
@@ -216,7 +216,7 @@ bool ChessBoard::isOccpied(Position p)
 {
     for (auto &piece : Pieces)
     {
-        if (piece->isLive)
+        if (piece->isAlive)
         {
             if (piece->p == p)
             {
@@ -231,7 +231,7 @@ Piece *ChessBoard::searchPiece(Position p)
 {
     for (auto &piece : Pieces)
     {
-        if (piece->isLive)
+        if (piece->isAlive)
         {
             if (piece->p == p)
             {
@@ -778,7 +778,7 @@ void ChessBoard::kill(Piece *piece, int index)
         printf("INDICE NON VALIDO");
         return;
     }
-    Pieces[index]->isLive = 0;
+    Pieces[index]->isAlive = 0;
 }
 void ChessBoard::killPiece(Piece *piece)
 {

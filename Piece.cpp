@@ -1,9 +1,9 @@
 #include "Piece.h"
 
-Piece::Piece(bool color, bool live, Position pos)
+Piece::Piece(bool color, bool alive, Position pos)
 {
     isWhite = color;
-    isLive = live;
+    isAlive = alive;
     p = pos;
 }
 void Piece::move(Position newP)

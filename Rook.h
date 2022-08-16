@@ -10,7 +10,7 @@ public:
     string name;
 
     Rook() = default;
-    Rook(string s, bool color, bool live, Position pos);
+    Rook(string s, bool color, bool alive, Position pos);
 
     void printPiece();
 };

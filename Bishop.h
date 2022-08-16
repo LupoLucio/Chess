@@ -10,7 +10,7 @@ public:
     string name;
 
     Bishop() = default;
-    Bishop(string s, bool color, bool live, Position pos);
+    Bishop(string s, bool color, bool alive, Position pos);
 
     void printPiece();
 };

@@ -14,7 +14,7 @@ public:
     // oggetto Position p per la posizione nella board
     Position p;
     // bool isWhite per il colore e isLive per stabilire se è vivo
-    bool isWhite, isLive, isVirgin = 1, isPinned;
+    bool isWhite, isAlive, isVirgin = 1, isPinned;
     // array di posizioni controllate nella board
     std::vector<Position> controlledPos;
     // array di posizioni accessibili nella board
@@ -27,7 +27,7 @@ public:
     // costruttore di default
     Piece() = default;
     // costruttore che crea un Piece
-    Piece(bool color, bool live, Position p);
+    Piece(bool color, bool alive, Position p);
 
     // funzione move che cambia l'oggetto p di Piece a newP spostando il pezzo
     void move(Position newP);

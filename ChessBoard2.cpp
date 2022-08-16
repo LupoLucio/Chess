@@ -598,7 +598,7 @@ void ChessBoard::revive(Piece *piece, int index)
         printf("INDICE NON VALIDO");
         return;
     }
-    Pieces[index]->isLive = 1;
+    Pieces[index]->isAlive = 1;
 }
 
 void ChessBoard::revivePiece(Piece *piece)

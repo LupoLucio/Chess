@@ -12,7 +12,7 @@ public:
     bool isInCheck = 0;
 
     King() = default;
-    King(string s, bool color, bool live, Position pos);
+    King(string s, bool color, bool alive, Position pos);
 
     void printPiece();
 };

@@ -10,7 +10,7 @@ public:
     string name;
 
     Knight() = default;
-    Knight(string s, bool color, bool live, Position pos);
+    Knight(string s, bool color, bool alive, Position pos);
 
     void printPiece();
 };

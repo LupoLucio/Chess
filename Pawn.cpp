@@ -1,17 +1,17 @@
 #include "Pawn.h"
 #include "ChessBoard.h"
 
-Pawn::Pawn(string s, bool color, bool live, Position pos)
+Pawn::Pawn(string s, bool color, bool alive, Position pos)
 {
     name = s;
     isWhite = color;
-    isLive = live;
+    isAlive = alive;
     p = pos;
 }
 
 void Pawn::printPiece()
 {
-    cout << "Name : " << name << " Color : " << isWhite << " Live : " << isLive
+    cout << "Name : " << name << " Color : " << isWhite << " Live : " << isAlive
          << " Virgin : " << isVirgin << " Position : (" << p.getX() << "," << p.getY() << ")"
          << endl;
 }
