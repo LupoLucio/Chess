@@ -2,6 +2,10 @@
 
 #include "Position.h"
 
+#include <iostream>
+
+using namespace std;
+
 Position::Position(int newx, int newy)
 {
     x = newx;
