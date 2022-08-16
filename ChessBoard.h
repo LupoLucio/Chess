@@ -86,8 +86,6 @@ public:
     bool isKingInCheck(Piece::Color color);
     // ritorna se il re nell'ipotetica posizione pos sarebbe in scacco
     bool willKingBeInCheck(Piece::Color color, Position pos);
-    // ritorna la posizione del pezzo con lo stesso nome
-    Piece *searchPieceByName(string name);
     // ritorna se il pezzo puo' mangiare in quella posizione
     bool canEat(Piece *piece, Position pos);
     // fa le azioni neccessarie per mangiare

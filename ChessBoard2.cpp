@@ -528,18 +528,8 @@ void ChessBoard::generateAllIpoPos(Piece::Color color)
 bool ChessBoard::willKingBeIpoInCheck(Piece::Color color)
 {
     Position pos;
-    Piece *K;
-    //FIXME: get piece by type and color instead of by name
-    if (color == Piece::Color::White)
-    {
-        K = searchPieceByName("white king");
-        pos = K->m_pos;
-    }
-    else
-    {
-        K = searchPieceByName("black king");
-        pos = K->m_pos;
-    }
+    King *K = static_cast<King *>(getPieceByType(color, Piece::Type::King));
+    pos = K->m_pos;
 
     for (auto &piece : pieceVector)
     {

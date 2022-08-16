@@ -1009,66 +1009,11 @@ bool ChessBoard::canQueen(Piece *p)
     }
 }
 
-Piece *ChessBoard::searchPieceByName(string name)
-{
-    for (auto &piece : pieceVector)
-    {
-        if (instanceof <King>(piece))
-        {
-            if (((King *)piece)->name == name)
-            {
-                return piece;
-            }
-        }
-        else if (instanceof <Queen>(piece))
-        {
-            if (((Queen *)piece)->name == name)
-            {
-                return piece;
-            }
-        }
-        else if (instanceof <Rook>(piece))
-        {
-            if (((Rook *)piece)->name == name)
-            {
-                return piece;
-            }
-        }
-        else if (instanceof <Bishop>(piece))
-        {
-            if (((Bishop *)piece)->name == name)
-            {
-                return piece;
-            }
-        }
-        else if (instanceof <Knight>(piece))
-        {
-            if (((Knight *)piece)->name == name)
-            {
-                return piece;
-            }
-        }
-        else if (instanceof <Pawn>(piece))
-        {
-            if (((Pawn *)piece)->name == name)
-            {
-                return piece;
-            }
-        }
-    }
-
-    return NULL;
-}
 void ChessBoard::setKingCheck(Piece::Color color)
 {
     cout << "Try Check" << endl;
-    string name = "white king";
-    if (color == Piece::Color::Black)
-    {
-        name = "black king";
-    }
 
-    Piece *WK = searchPieceByName(name);
+    King *K = static_cast<King *>(getPieceByType(color, Piece::Type::King));
 
     for (auto &piece : pieceVector)
     {
@@ -1076,16 +1021,16 @@ void ChessBoard::setKingCheck(Piece::Color color)
         {
             for (const Position &p : piece->controlledPos)
             {
-                if (p == WK->m_pos)
+                if (p == K->m_pos)
                 {
-                    ((King *)WK)->isInCheck = true;
+                    K->isInCheck = true;
                     return;
                 }
             }
         }
     }
 
-    ((King *)WK)->isInCheck = false;
+    K->isInCheck = false;
 }
 
 void ChessBoard::generateAllPos()
