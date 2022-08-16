@@ -37,52 +37,52 @@ inline bool instanceof (const T *ptr)
 
 ChessBoard::ChessBoard()
 {
-    Kpieces.push_back(King("white king", 1, 1, Position(4, 0)));
-    Qpieces.push_back(Queen("white queen", 1, 1, Position(3, 0)));
-    Rpieces.push_back(Rook("white rook 1", 1, 1, Position(0, 0)));
-    Rpieces.push_back(Rook("white rook 2", 1, 1, Position(7, 0)));
-    Bpieces.push_back(Bishop("white bishop 1", 1, 1, Position(2, 0)));
-    Bpieces.push_back(Bishop("white bishop 2", 1, 1, Position(5, 0)));
-    KNpieces.push_back(Knight("white knight 1", 1, 1, Position(1, 0)));
-    KNpieces.push_back(Knight("white knight 2", 1, 1, Position(6, 0)));
-    Ppieces.push_back(Pawn("white pawn 1", 1, 1, Position(0, 1)));
-    Ppieces.push_back(Pawn("white pawn 2", 1, 1, Position(1, 1)));
-    Ppieces.push_back(Pawn("white pawn 3", 1, 1, Position(2, 1)));
-    Ppieces.push_back(Pawn("white pawn 4", 1, 1, Position(3, 1)));
-    Ppieces.push_back(Pawn("white pawn 5", 1, 1, Position(4, 1)));
-    Ppieces.push_back(Pawn("white pawn 6", 1, 1, Position(5, 1)));
-    Ppieces.push_back(Pawn("white pawn 7", 1, 1, Position(6, 1)));
-    Ppieces.push_back(Pawn("white pawn 8", 1, 1, Position(7, 1)));
+    Kpieces.push_back(King("white king", Piece::Color::White, true, Position(4, 0)));
+    Qpieces.push_back(Queen("white queen", Piece::Color::White, true, Position(3, 0)));
+    Rpieces.push_back(Rook("white rook 1", Piece::Color::White, true, Position(0, 0)));
+    Rpieces.push_back(Rook("white rook 2", Piece::Color::White, true, Position(7, 0)));
+    Bpieces.push_back(Bishop("white bishop 1", Piece::Color::White, true, Position(2, 0)));
+    Bpieces.push_back(Bishop("white bishop 2", Piece::Color::White, true, Position(5, 0)));
+    KNpieces.push_back(Knight("white knight 1", Piece::Color::White, true, Position(1, 0)));
+    KNpieces.push_back(Knight("white knight 2", Piece::Color::White, true, Position(6, 0)));
+    Ppieces.push_back(Pawn("white pawn 1", Piece::Color::White, true, Position(0, 1)));
+    Ppieces.push_back(Pawn("white pawn 2", Piece::Color::White, true, Position(1, 1)));
+    Ppieces.push_back(Pawn("white pawn 3", Piece::Color::White, true, Position(2, 1)));
+    Ppieces.push_back(Pawn("white pawn 4", Piece::Color::White, true, Position(3, 1)));
+    Ppieces.push_back(Pawn("white pawn 5", Piece::Color::White, true, Position(4, 1)));
+    Ppieces.push_back(Pawn("white pawn 6", Piece::Color::White, true, Position(5, 1)));
+    Ppieces.push_back(Pawn("white pawn 7", Piece::Color::White, true, Position(6, 1)));
+    Ppieces.push_back(Pawn("white pawn 8", Piece::Color::White, true, Position(7, 1)));
 
-    Kpieces.push_back(King("black king", 0, 1, Position(4, 7)));
-    Qpieces.push_back(Queen("black queen", 0, 1, Position(3, 7)));
-    Rpieces.push_back(Rook("black rook 1", 0, 1, Position(0, 7)));
-    Rpieces.push_back(Rook("black rook 2", 0, 1, Position(7, 7)));
-    Bpieces.push_back(Bishop("black bishop 1", 0, 1, Position(2, 7)));
-    Bpieces.push_back(Bishop("black bishop 2", 0, 1, Position(5, 7)));
-    KNpieces.push_back(Knight("black knight 1", 0, 1, Position(1, 7)));
-    KNpieces.push_back(Knight("black knight 2", 0, 1, Position(6, 7)));
-    Ppieces.push_back(Pawn("black pawn 1", 0, 1, Position(0, 6)));
-    Ppieces.push_back(Pawn("black pawn 2", 0, 1, Position(1, 6)));
-    Ppieces.push_back(Pawn("black pawn 3", 0, 1, Position(2, 6)));
-    Ppieces.push_back(Pawn("black pawn 4", 0, 1, Position(3, 6)));
-    Ppieces.push_back(Pawn("black pawn 5", 0, 1, Position(4, 6)));
-    Ppieces.push_back(Pawn("black pawn 6", 0, 1, Position(5, 6)));
-    Ppieces.push_back(Pawn("black pawn 7", 0, 1, Position(6, 6)));
-    Ppieces.push_back(Pawn("black pawn 8", 0, 1, Position(7, 6)));
+    Kpieces.push_back(King("black king", Piece::Color::Black, true, Position(4, 7)));
+    Qpieces.push_back(Queen("black queen", Piece::Color::Black, true, Position(3, 7)));
+    Rpieces.push_back(Rook("black rook 1", Piece::Color::Black, true, Position(0, 7)));
+    Rpieces.push_back(Rook("black rook 2", Piece::Color::Black, true, Position(7, 7)));
+    Bpieces.push_back(Bishop("black bishop 1", Piece::Color::Black, true, Position(2, 7)));
+    Bpieces.push_back(Bishop("black bishop 2", Piece::Color::Black, true, Position(5, 7)));
+    KNpieces.push_back(Knight("black knight 1", Piece::Color::Black, true, Position(1, 7)));
+    KNpieces.push_back(Knight("black knight 2", Piece::Color::Black, true, Position(6, 7)));
+    Ppieces.push_back(Pawn("black pawn 1", Piece::Color::Black, true, Position(0, 6)));
+    Ppieces.push_back(Pawn("black pawn 2", Piece::Color::Black, true, Position(1, 6)));
+    Ppieces.push_back(Pawn("black pawn 3", Piece::Color::Black, true, Position(2, 6)));
+    Ppieces.push_back(Pawn("black pawn 4", Piece::Color::Black, true, Position(3, 6)));
+    Ppieces.push_back(Pawn("black pawn 5", Piece::Color::Black, true, Position(4, 6)));
+    Ppieces.push_back(Pawn("black pawn 6", Piece::Color::Black, true, Position(5, 6)));
+    Ppieces.push_back(Pawn("black pawn 7", Piece::Color::Black, true, Position(6, 6)));
+    Ppieces.push_back(Pawn("black pawn 8", Piece::Color::Black, true, Position(7, 6)));
 
     // pezzi di riserva
-    ResQpieces.push_back(Queen("white queen 2", 1, 1, Position(5, 5)));
-    ResQpieces.push_back(Queen("black queen 2", 0, 1, Position(4, 5)));
+    ResQpieces.push_back(Queen("white queen 2", Piece::Color::White, true, Position(5, 5)));
+    ResQpieces.push_back(Queen("black queen 2", Piece::Color::Black, true, Position(4, 5)));
 
-    ResRpieces.push_back(Rook("white rook 3", 1, 1, Position(3, 7)));
-    ResRpieces.push_back(Rook("black rook 3", 0, 1, Position(3, 7)));
+    ResRpieces.push_back(Rook("white rook 3", Piece::Color::White, true, Position(3, 7)));
+    ResRpieces.push_back(Rook("black rook 3", Piece::Color::Black, true, Position(3, 7)));
 
-    ResBpieces.push_back(Bishop("white bishop 3", 1, 1, Position(3, 7)));
-    ResBpieces.push_back(Bishop("black bishop 3", 0, 1, Position(3, 7)));
+    ResBpieces.push_back(Bishop("white bishop 3", Piece::Color::White, true, Position(3, 7)));
+    ResBpieces.push_back(Bishop("black bishop 3", Piece::Color::Black, true, Position(3, 7)));
 
-    ResKNpieces.push_back(Knight("white knight 3", 1, 1, Position(3, 7)));
-    ResKNpieces.push_back(Knight("black knight 3", 0, 1, Position(3, 7)));
+    ResKNpieces.push_back(Knight("white knight 3", Piece::Color::White, true, Position(3, 7)));
+    ResKNpieces.push_back(Knight("black knight 3", Piece::Color::Black, true, Position(3, 7)));
 
     for (auto &piece : Kpieces)
     {
@@ -147,7 +147,7 @@ void ChessBoard::printChessBoard()
             {
                 if (p->isAlive)
                 {
-                    if (p->isWhite)
+                    if (p->getColor() == Piece::Color::White)
                     {
                         if (instanceof <King>(p))
                         {
@@ -682,7 +682,7 @@ void ChessBoard::generatePos(Piece *piece)
     else if (instanceof <Pawn>(piece))
     {
         // check if white
-        if (piece->isWhite)
+        if (piece->getColor() == Piece::Color::White)
         {
 
             // check posizione alto a sx
@@ -759,6 +759,7 @@ void ChessBoard::clearPos(Piece *piece)
     piece->accessiblePos.clear();
     piece->controlledPos.clear();
 }
+
 int ChessBoard::indexOfPiece(Piece *piece)
 {
     for (int i = 0; i < Pieces.size(); i++)
@@ -771,6 +772,7 @@ int ChessBoard::indexOfPiece(Piece *piece)
 
     return -1;
 }
+
 void ChessBoard::kill(Piece *piece, int index)
 {
     if (index < 0 || index > 32)
@@ -780,12 +782,14 @@ void ChessBoard::kill(Piece *piece, int index)
     }
     Pieces[index]->isAlive = 0;
 }
+
 void ChessBoard::killPiece(Piece *piece)
 {
     int index = indexOfPiece(piece);
     kill(piece, index);
     return;
 }
+
 void ChessBoard::killVerginity(Piece *piece, int index)
 {
     if (index < 0 || index > 32)
@@ -795,16 +799,20 @@ void ChessBoard::killVerginity(Piece *piece, int index)
     }
     Pieces[index]->isVirgin = 0;
 }
+
 void ChessBoard::killPieceVerginity(Piece *piece)
 {
     int index = indexOfPiece(piece);
     killVerginity(piece, index);
     return;
 }
-bool ChessBoard::isKingInCheck(int color)
+
+bool ChessBoard::isKingInCheck(Piece::Color color)
 {
-    return color ? ((King *)Pieces[0])->isInCheck : ((King *)Pieces[1])->isInCheck;
+    //FIXME: find piece by type and color instead of index
+    return color == Piece::Color::Black ? ((King *)Pieces[0])->isInCheck : ((King *)Pieces[1])->isInCheck;
 }
+
 void ChessBoard::move(Piece *piece, Position pos)
 {
     // controllo se posso puo' mangiare, se puo' ritorno la mossa è finita
@@ -831,14 +839,14 @@ void ChessBoard::move(Piece *piece, Position pos)
         // ogni pezzo)
         generateAllPos();
         // setto se il re opposto al pezzo mosso è in Scacco
-        setKingCheck(!piece->isWhite);
+        setKingCheck(Piece::getOppositColor(piece->getColor()));
         // setto se il re che ha mosso è in Scacco (nel caso in cui va a mangiare (liberandosi dallo
         // scacco), il suo isInCheck da 1 va a 0)
-        setKingCheck(piece->isWhite);
+        setKingCheck(piece->getColor());
         // se il re del colore opposto è in scacco faccio una stampa
-        if (isKingInCheck(!piece->isWhite))
+        if (isKingInCheck(Piece::getOppositColor(piece->getColor())))
         {
-            cout << "Re colore " << !piece->isWhite << "in Scacco" << endl;
+            cout << "Re colore " << Piece::getColorName(Piece::getOppositColor(piece->getColor())) << "in Scacco" << endl;
         }
         return;
     }
@@ -850,7 +858,7 @@ void ChessBoard::queenning(Piece *pawn)
 
     if (pawn != NULL)
     {
-        if (pawn->isWhite)
+        if (pawn->getColor() == Piece::Color::White)
         {
             if (pawn->p.getY() == 7)
             {
@@ -948,9 +956,10 @@ void ChessBoard::queenning(Piece *pawn)
 bool ChessBoard::canQueen(Piece *p)
 {
     if (! instanceof <Pawn>(p))
+    {
         return false;
-
-    if (p->isWhite)
+    }
+    else if (p->getColor() == Piece::Color::White)
     {
         return p->p.getY() == 7;
     }
@@ -959,6 +968,7 @@ bool ChessBoard::canQueen(Piece *p)
         return p->p.getY() == 0;
     }
 }
+
 Piece *ChessBoard::searchPieceByName(string name)
 {
     for (auto &piece : Pieces)
@@ -1009,11 +1019,11 @@ Piece *ChessBoard::searchPieceByName(string name)
 
     return NULL;
 }
-void ChessBoard::setKingCheck(int color)
+void ChessBoard::setKingCheck(Piece::Color color)
 {
     cout << "Try Check" << endl;
     string name = "white king";
-    if (!color)
+    if (color == Piece::Color::Black)
     {
         name = "black king";
     }
@@ -1022,7 +1032,7 @@ void ChessBoard::setKingCheck(int color)
 
     for (auto &piece : Pieces)
     {
-        if (piece->isWhite != color)
+        if (piece->getColor() != color)
         {
             for (const Position &p : piece->controlledPos)
             {
@@ -1051,11 +1061,11 @@ bool ChessBoard::canEat(Piece *piece, Position pos)
     Piece *temp = searchPiece(pos);
     if (! instanceof <King>(piece))
     {
-        return temp != NULL && piece->isOpposite(temp);
+        return temp != NULL && piece->isOppositeColor(temp);
     }
     else
     {
-        return !willKingBeInCheck(piece->isWhite, pos);
+        return !willKingBeInCheck(piece->getColor(), pos);
     }
 }
 
@@ -1080,11 +1090,11 @@ void ChessBoard::eat(Piece *piece, Position pos)
 
         generateAllPos();
         // controllo re colore opposto se è in check
-        setKingCheck(!piece->isWhite);
-        setKingCheck(piece->isWhite);
-        if (isKingInCheck(!piece->isWhite))
+        setKingCheck(Piece::getOppositColor(piece->getColor()));
+        setKingCheck(piece->getColor());
+        if (isKingInCheck(Piece::getOppositColor(piece->getColor())))
         {
-            cout << "Re colore " << !piece->isWhite << "in Scacco" << endl;
+            cout << "Re colore " << Piece::getColorName(Piece::getOppositColor(piece->getColor())) << "in Scacco" << endl;
         }
     }
 }
@@ -1100,11 +1110,11 @@ void ChessBoard::mergePos(Piece *piece)
         }
     }
 }
-bool ChessBoard::willKingBeInCheck(bool color, Position pos)
+bool ChessBoard::willKingBeInCheck(Piece::Color color, Position pos)
 {
     for (auto &piece : Pieces)
     {
-        if (piece->isWhite != color)
+        if (piece->getColor() != color)
         {
             for (const Position &p : piece->controlledPos)
             {

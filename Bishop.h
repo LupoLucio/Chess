@@ -9,7 +9,7 @@ class Bishop : public Piece
 public:
     string name;
 
-    Bishop(string s, bool color, bool alive, Position pos);
+    Bishop(string s, Color color, bool alive, Position pos);
 
     void printPiece();
 };

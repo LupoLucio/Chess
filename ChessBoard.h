@@ -71,11 +71,11 @@ public:
     // ritorna se il pezzo puo' fare la promozione
     bool canQueen(Piece *piece);
     // prova a settare in parametro isInCheck (se la sua pos è nelle controllate dei pezzi opposti)
-    void setKingCheck(int color);
+    void setKingCheck(Piece::Color color);
     // ritorna se il pezzo re è in scacco COMPLETARE
-    bool isKingInCheck(int color);
+    bool isKingInCheck(Piece::Color color);
     // ritorna se il re nell'ipotetica posizione pos sarebbe in scacco
-    bool willKingBeInCheck(bool color, Position pos);
+    bool willKingBeInCheck(Piece::Color color, Position pos);
     // ritorna la posizione del pezzo con lo stesso nome
     Piece *searchPieceByName(string name);
     // ritorna se il pezzo puo' mangiare in quella posizione
@@ -91,9 +91,9 @@ public:
     // ritorna se la posizione è valida nella scacchiera
     bool isPositionValid(Position p);
     // genera le ipopos di tutti i pezzi del colore color
-    void generateAllIpoPos(bool color);
+    void generateAllIpoPos(Piece::Color color);
     // ritorna se le controllate ipotetiche dei pezzi del colore opposto ce il king di color color
-    bool willKingBeIpoInCheck(bool color);
+    bool willKingBeIpoInCheck(Piece::Color color);
     // funzione interna di resuscitazione del pezzo
     void revive(Piece *piece, int index);
     // funzione esterna di resuscitazione del pezzo

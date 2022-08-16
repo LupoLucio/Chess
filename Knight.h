@@ -9,7 +9,7 @@ class Knight : public Piece
 public:
     string name;
 
-    Knight(string s, bool color, bool alive, Position pos);
+    Knight(string s, Color color, bool alive, Position pos);
 
     void printPiece();
 };

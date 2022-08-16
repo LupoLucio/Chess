@@ -446,7 +446,7 @@ void ChessBoard::generateIpoPos(Piece *piece)
     else if (instanceof <Pawn>(piece))
     {
         // check if white
-        if (piece->isWhite)
+        if (piece->getColor() == Piece::Color::White)
         {
 
             // check posizione alto a sx
@@ -515,21 +515,22 @@ void ChessBoard::generateIpoPos(Piece *piece)
         }
     }
 }
-void ChessBoard::generateAllIpoPos(bool color)
+void ChessBoard::generateAllIpoPos(Piece::Color color)
 {
     for (auto &piece : Pieces)
     {
-        if (piece->isWhite == color)
+        if (piece->getColor() == color)
         {
             generateIpoPos(piece);
         }
     }
 }
-bool ChessBoard::willKingBeIpoInCheck(bool color)
+bool ChessBoard::willKingBeIpoInCheck(Piece::Color color)
 {
     Position pos;
     Piece *K;
-    if (color)
+    //FIXME: get piece by type and color instead of by name
+    if (color == Piece::Color::White)
     {
         K = searchPieceByName("white king");
         pos = K->p;
@@ -542,7 +543,7 @@ bool ChessBoard::willKingBeIpoInCheck(bool color)
 
     for (auto &piece : Pieces)
     {
-        if (piece->isWhite != color)
+        if (piece->getColor() != color)
         {
             for (const Position &p : piece->controlledPos)
             {
@@ -577,9 +578,9 @@ bool ChessBoard::isPinned(Piece *piece)
     // uccido il pezzo
     killPiece(piece);
     // genero le posizioni ipo dei pezzi del colore opposto a piece con lui morto
-    generateAllIpoPos(!piece->isWhite);
+    generateAllIpoPos(Piece::getOppositColor(piece->getColor()));
     // se il re colore del pezzo risulta ipoteticamnete in sacco ritorno true, se no false
-    if (willKingBeIpoInCheck(piece->isWhite))
+    if (willKingBeIpoInCheck(piece->getColor()))
     {
         revivePiece(piece);
         return true;

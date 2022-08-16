@@ -9,7 +9,7 @@ class Queen : public Piece
 public:
     string name;
 
-    Queen(string s, bool color, bool alive, Position pos);
+    Queen(string s, Color color, bool alive, Position pos);
 
     void printPiece();
 };

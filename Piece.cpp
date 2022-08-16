@@ -1,8 +1,8 @@
 #include "Piece.h"
 
-Piece::Piece(bool color, bool alive, Position pos)
+Piece::Piece(Color color, bool alive, Position pos)
 {
-    isWhite = color;
+    m_color = color;
     isAlive = alive;
     p = pos;
 }
@@ -43,15 +43,20 @@ void Piece::printAllPos()
 
 bool Piece::operator==(Piece *piece)
 {
-    return p == piece->p && isWhite == piece->isWhite;
+    return p == piece->p && m_color == piece->m_color;
 }
 
-bool Piece::isOpposite(Piece *piece)
+bool Piece::isOppositeColor(Piece *piece)
 {
-    return isWhite != piece->isWhite;
+    return m_color != piece->m_color;
 }
 
 void Piece::setPosition(Position pos)
 {
     p = pos;
+}
+
+string Piece::getColorName(Color c)
+{
+    return c == Color::White ? "White" : "Black";
 }

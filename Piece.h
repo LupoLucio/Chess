@@ -11,8 +11,10 @@ Classe che definisce il modo generico il pezzo in una scacchiera.
 class Piece
 {
 public:
+    enum class Color { White = 0, Black, NColors };
+
     // costruttore che crea un Piece
-    Piece(bool color, bool alive, Position p);
+    Piece(Color color, bool alive, Position p);
 
     // funzione move che cambia l'oggetto p di Piece a newP spostando il pezzo
     void move(Position newP);
@@ -31,17 +33,28 @@ public:
     // operatore ugualianza fra un Piece e un puntatore a Piece
     bool operator==(Piece *piece);
     // ritorna se il piece puntato è di colore opposto al colore dell'invocante
-    bool isOpposite(Piece *piece);
+    bool isOppositeColor(Piece *piece);
 
     Position getPosition();
 
     void setPosition(Position pos);
 
+    inline Color getColor() const { return m_color; }
+
+    static inline Color getOppositColor(Color c)
+    {
+        //Cast to int to do a NOT and then back to enum
+        return Color(!int(c));
+    }
+
+public:
+    static string getColorName(Color c);
+
 public:
     // oggetto Position p per la posizione nella board
     Position p;
-    // bool isWhite per il colore e isLive per stabilire se è vivo
-    bool isWhite, isAlive, isVirgin = 1, isPinned;
+    // bool isAlive per stabilire se è vivo
+    bool isAlive, isVirgin = 1, isPinned;
     // array di posizioni controllate nella board
     std::vector<Position> controlledPos;
     // array di posizioni accessibili nella board
@@ -50,6 +63,9 @@ public:
     std::vector<Position> ipoControlledPos;
     // array di posizioni accessibili ipotetiche servono per controllare se il pezzo è pinnato
     std::vector<Position> ipoAccessiblePos;
+
+private:
+    Color m_color;
 };
 
 #endif

@@ -9,7 +9,7 @@ class Rook : public Piece
 public:
     string name;
 
-    Rook(string s, bool color, bool alive, Position pos);
+    Rook(string s, Color color, bool alive, Position pos);
 
     void printPiece();
 };
