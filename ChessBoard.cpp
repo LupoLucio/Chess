@@ -234,7 +234,7 @@ void ChessBoard::printChessBoard()
         cout << x << "   "; // 1 digit + 3 spaces = 4
         for (int y = 0; y < 8; y++)
         {
-            p = searchPiece(Position(x, y));
+            p = getPieceAtPos(Position(x, y));
             if (p && p->isAlive)
             {
                 const char colorLetter = p->getColor() == Piece::Color::White ? 'w' : 'b';
@@ -253,16 +253,34 @@ void ChessBoard::printChessBoard()
 
 bool ChessBoard::isOccpied(Position pos)
 {
-    return searchPiece(pos) != nullptr;
+    return getPieceAtPos(pos) != nullptr;
 }
 
-Piece *ChessBoard::searchPiece(Position pos)
+Piece *ChessBoard::getPieceAtPos(Position pos)
 {
-    for (auto &piece : pieceVector)
+    for (const auto &piece : pieceVector)
     {
         if (piece->isAlive && piece->m_pos == pos)
         {
             return piece;
+        }
+    }
+
+    return nullptr;
+}
+
+Piece *ChessBoard::getPieceByType(Piece::Color color, Piece::Type type, int num)
+{
+    for (const auto &piece : pieceVector)
+    {
+        if (piece->getColor() == color && piece->getType() == type)
+        {
+            if(num == Piece::INVALID_NUMBER)
+                return piece; //We don't care about number
+
+            //We care about number
+            if(piece->getNumber() == num)
+                return piece;
         }
     }
 
@@ -1080,7 +1098,7 @@ void ChessBoard::generateAllPos()
 
 bool ChessBoard::canEat(Piece *piece, Position pos)
 {
-    Piece *temp = searchPiece(pos);
+    Piece *temp = getPieceAtPos(pos);
     if (! instanceof <King>(piece))
     {
         return temp != NULL && piece->isOppositeColor(temp);
@@ -1093,7 +1111,7 @@ bool ChessBoard::canEat(Piece *piece, Position pos)
 
 void ChessBoard::eat(Piece *piece, Position pos)
 {
-    Piece *temp = searchPiece(pos);
+    Piece *temp = getPieceAtPos(pos);
 
     if (canEat(piece, pos))
     {

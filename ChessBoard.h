@@ -51,7 +51,9 @@ public:
     // ritorna se la posizione è occupata
     bool isOccpied(Position pos);
     // ritorna un puntatore al pezzo nella posizione p
-    Piece *searchPiece(Position pos);
+    Piece *getPieceAtPos(Position pos);
+    // get piece by type, color and number (invalid number means take first item found)
+    Piece *getPieceByType(Piece::Color color, Piece::Type type, int num = Piece::INVALID_NUMBER);
     // genera le posizioni controllate e accessibili di piece
     void generatePos(Piece *piece);
     // pulisce elimina le posizoini controllate e accessibili di piece

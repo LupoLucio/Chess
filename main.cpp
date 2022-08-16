@@ -18,7 +18,7 @@ int main()
         cout << "Inserisci y : ";
         cin >> y;
         p = Position(x, y);
-        piece = cb.searchPiece(p);
+        piece = cb.getPieceAtPos(p);
         if (piece != nullptr)
         {
             if (turn == 1)
