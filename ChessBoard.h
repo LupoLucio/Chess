@@ -15,6 +15,10 @@ Classe che definisce la ChessBoard nella quale giocano i pezzi
 class ChessBoard
 {
 public:
+
+    //Represents initial configuration
+    typedef std::vector<std::pair<Piece::Type, Position>> Configuration;
+
     // vector dei tipi di pezzi
     std::vector<King> Kpieces;
     std::vector<Queen> Qpieces;
@@ -35,6 +39,10 @@ public:
     char chessBoard[8][8];
 
     ChessBoard();
+    ~ChessBoard();
+
+    void clear();
+    void initConfiguration(const Configuration& conf);
 
     // stampa i pezzi e i loro parametri
     void printPieces();

@@ -15,6 +15,8 @@ public:
 
     enum class Type { Bishop = 0, King, Knight, Pawn, Queen, Rook, NTypes };
 
+    constexpr int INVALID_NUMBER = -1;
+
     // costruttore che crea un Piece
     Piece(Type type, Color color, bool alive, Position p);
 
@@ -78,7 +80,7 @@ private:
     Color m_color;
     Type m_type;
     //Piece number relative to its type, i.e. Pawn 1, Pawn 2...
-    int m_number = 0;
+    int m_number = INVALID_NUMBER;
 };
 
 #endif

@@ -37,6 +37,7 @@ inline bool instanceof (const T *ptr)
 
 ChessBoard::ChessBoard()
 {
+    /*
     Kpieces.push_back(King("white king", Piece::Color::White, true, Position(4, 0)));
     Qpieces.push_back(Queen("white queen", Piece::Color::White, true, Position(3, 0)));
     Rpieces.push_back(Rook("white rook 1", Piece::Color::White, true, Position(0, 0)));
@@ -112,10 +113,95 @@ ChessBoard::ChessBoard()
     for (auto &piece : Ppieces)
     {
         Pieces.push_back(&piece);
-    }
+    }*/
+
+    Configuration defaultConf = {
+        {Piece::Type::King, Position(4, 0)},
+        {Piece::Type::Queen, Position(3, 0)},
+        {Piece::Type::Rook, Position(0, 0)},
+        {Piece::Type::Rook, Position(7, 0)},
+        {Piece::Type::Bishop, Position(2, 0)},
+        {Piece::Type::Bishop, Position(5, 0)},
+        {Piece::Type::Knight, Position(1, 0)},
+        {Piece::Type::Knight, Position(6, 0)},
+        {Piece::Type::Pawn, Position(0, 1)},
+        {Piece::Type::Pawn, Position(1, 1)},
+        {Piece::Type::Pawn, Position(2, 1)},
+        {Piece::Type::Pawn, Position(3, 1)},
+        {Piece::Type::Pawn, Position(4, 1)},
+        {Piece::Type::Pawn, Position(5, 1)},
+        {Piece::Type::Pawn, Position(6, 1)},
+        {Piece::Type::Pawn, Position(7, 1)}
+    };
+
+    initConfiguration(defaultConf);
 
     generateAllPos();
 }
+
+ChessBoard::~ChessBoard()
+{
+    clear();
+}
+
+void ChessBoard::clear()
+{
+    for(Piece *piece : Pieces)
+    {
+        delete piece;
+    }
+    Pieces.clear();
+}
+
+Piece *createPiece(Piece::Type type, Piece::Color color, const Position& pos)
+{
+    switch (type)
+    {
+    case Piece::Type::Bishop:
+        return new Bishop("", color, true, pos);
+    case Piece::Type::King:
+        return new King("", color, true, pos);
+    case Piece::Type::Knight:
+        return new Knight("", color, true, pos);
+    case Piece::Type::Pawn:
+        return new Pawn("", color, true, pos);
+    case Piece::Type::Queen:
+        return new Queen("", color, true, pos);
+    case Piece::Type::Rook:
+        return new Rook("", color, true, pos);
+    default:
+        break;
+    }
+
+    return nullptr;
+}
+
+void ChessBoard::initConfiguration(const Configuration &conf)
+{
+    //Clear previous configuration
+    clear();
+
+    int counters[int(Piece::Type::NTypes)] = {0};
+
+    for(auto pieceDef : conf)
+    {
+        //Mirror position for black piece
+        Position blackPos = pieceDef.second;
+        blackPos.setY(7 - blackPos.getY());
+
+        Piece *whitePiece = createPiece(pieceDef.first, Piece::Color::White, pieceDef.second);
+        Piece *blackPiece = createPiece(pieceDef.first, Piece::Color::Black, blackPos);;
+
+        int &num = counters[int(whitePiece->getType())];
+        whitePiece->setNumber(num);
+        blackPiece->setNumber(num);
+        num++;
+
+        Pieces.push_back(whitePiece);
+        Pieces.push_back(blackPiece);
+    }
+}
+
 void ChessBoard::printPieces()
 {
     cout << "Pieces are :  " << endl;
