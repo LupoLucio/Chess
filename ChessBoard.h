@@ -19,14 +19,7 @@ public:
     //Represents initial configuration
     typedef std::vector<std::pair<Piece::Type, Position>> Configuration;
 
-    // vector dei tipi di pezzi
-    std::vector<King> Kpieces;
-    std::vector<Queen> Qpieces;
-    std::vector<Rook> Rpieces;
-    std::vector<Bishop> Bpieces;
-    std::vector<Knight> KNpieces;
-    std::vector<Pawn> Ppieces;
-
+    //Vector with all pieces
     std::vector<Piece *> pieceVector;
 
     // pezzi di riserva
