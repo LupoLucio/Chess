@@ -29,6 +29,7 @@
 
 */
 
+//FIXME: remove
 template<typename Base, typename T>
 inline bool instanceof (const T *ptr)
 {
@@ -250,35 +251,22 @@ void ChessBoard::printChessBoard()
     cout << endl;
 }
 
-bool ChessBoard::isOccpied(Position p)
+bool ChessBoard::isOccpied(Position pos)
 {
-    for (auto &piece : pieceVector)
-    {
-        if (piece->isAlive)
-        {
-            if (piece->m_pos == p)
-            {
-                return true;
-            }
-        }
-    }
-    return false;
+    return searchPiece(pos) != nullptr;
 }
 
-Piece *ChessBoard::searchPiece(Position p)
+Piece *ChessBoard::searchPiece(Position pos)
 {
     for (auto &piece : pieceVector)
     {
-        if (piece->isAlive)
+        if (piece->isAlive && piece->m_pos == pos)
         {
-            if (piece->m_pos == p)
-            {
-                return piece;
-            }
+            return piece;
         }
     }
 
-    return NULL;
+    return nullptr;
 }
 
 bool ChessBoard::isPositionValid(Position p)
@@ -291,113 +279,83 @@ void ChessBoard::generatePos(Piece *piece)
     // ogni volta che le genero le pulisco prima
     clearPos(piece);
     // check se è King
-    if (instanceof <King>(piece))
+    if (piece->getType() == Piece::Type::King)
     {
-
         // check posizione alto a sx
-        if (isPositionValid(Position((piece->m_pos).getX() - 1, (piece->m_pos).getY() + 1))
-            && !isOccpied(Position((piece->m_pos).getX() - 1, (piece->m_pos).getY() + 1)))
+        Position pos = piece->m_pos + Position(- 1, 1);
+        if (isPositionValid(pos))
         {
-            (piece->accessiblePos)
-                    .push_back(Position((piece->m_pos).getX() - 1, (piece->m_pos).getY() + 1));
-        }
-        if (isPositionValid(Position((piece->m_pos).getX() - 1, (piece->m_pos).getY() + 1)))
-        {
-            (piece->controlledPos)
-                    .push_back(Position((piece->m_pos).getX() - 1, (piece->m_pos).getY() + 1));
+            piece->controlledPos.push_back(pos);
+            if(!isOccpied(pos))
+                piece->accessiblePos.push_back(pos);
         }
 
         // check posizione in alto
-        if (isPositionValid(Position((piece->m_pos).getX(), (piece->m_pos).getY() + 1))
-            && !isOccpied(Position((piece->m_pos).getX(), (piece->m_pos).getY() + 1)))
+        pos = piece->m_pos + Position(0, 1);
+        if (isPositionValid(pos))
         {
-            (piece->accessiblePos)
-                    .push_back(Position((piece->m_pos).getX(), (piece->m_pos).getY() + 1));
-        }
-        if (isPositionValid(Position((piece->m_pos).getX(), (piece->m_pos).getY() + 1)))
-        {
-            (piece->controlledPos)
-                    .push_back(Position((piece->m_pos).getX(), (piece->m_pos).getY() + 1));
+            piece->controlledPos.push_back(pos);
+            if(!isOccpied(pos))
+                piece->accessiblePos.push_back(pos);
         }
 
         // check posizione alto a dx
-        if (isPositionValid(Position((piece->m_pos).getX() + 1, (piece->m_pos).getY() + 1))
-            && !isOccpied(Position((piece->m_pos).getX() + 1, (piece->m_pos).getY() + 1)))
+        pos = piece->m_pos + Position(1, 1);
+        if (isPositionValid(pos))
         {
-            (piece->accessiblePos)
-                    .push_back(Position((piece->m_pos).getX() + 1, (piece->m_pos).getY() + 1));
-        }
-        if (isPositionValid(Position((piece->m_pos).getX() + 1, (piece->m_pos).getY() + 1)))
-        {
-            (piece->controlledPos)
-                    .push_back(Position((piece->m_pos).getX() + 1, (piece->m_pos).getY() + 1));
+            piece->controlledPos.push_back(pos);
+            if(!isOccpied(pos))
+                piece->accessiblePos.push_back(pos);
         }
 
         // check posizione a dx
-        if (isPositionValid(Position((piece->m_pos).getX() + 1, (piece->m_pos).getY()))
-            && !isOccpied(Position((piece->m_pos).getX() + 1, (piece->m_pos).getY())))
+        pos = piece->m_pos + Position(1, 0);
+        if (isPositionValid(pos))
         {
-            (piece->accessiblePos)
-                    .push_back(Position((piece->m_pos).getX() + 1, (piece->m_pos).getY()));
+            piece->controlledPos.push_back(pos);
+            if(!isOccpied(pos))
+                piece->accessiblePos.push_back(pos);
         }
-        if (isPositionValid(Position((piece->m_pos).getX() + 1, (piece->m_pos).getY())))
-        {
-            (piece->controlledPos)
-                    .push_back(Position((piece->m_pos).getX() + 1, (piece->m_pos).getY()));
-        }
+
         // check posizione in basso a dx
-        if (isPositionValid(Position((piece->m_pos).getX() + 1, (piece->m_pos).getY() - 1))
-            && !isOccpied(Position((piece->m_pos).getX() + 1, (piece->m_pos).getY() - 1)))
+        pos = piece->m_pos + Position(1, -1);
+        if (isPositionValid(pos))
         {
-            (piece->accessiblePos)
-                    .push_back(Position((piece->m_pos).getX() + 1, (piece->m_pos).getY() - 1));
+            piece->controlledPos.push_back(pos);
+            if(!isOccpied(pos))
+                piece->accessiblePos.push_back(pos);
         }
-        if (isPositionValid(Position((piece->m_pos).getX() + 1, (piece->m_pos).getY() - 1)))
-        {
-            (piece->controlledPos)
-                    .push_back(Position((piece->m_pos).getX() + 1, (piece->m_pos).getY() - 1));
-        }
+
         // check posizione in basso
-        if (isPositionValid(Position((piece->m_pos).getX(), (piece->m_pos).getY() - 1))
-            && !isOccpied(Position((piece->m_pos).getX(), (piece->m_pos).getY() - 1)))
+        pos = piece->m_pos + Position(0, -1);
+        if (isPositionValid(pos))
         {
-            (piece->accessiblePos)
-                    .push_back(Position((piece->m_pos).getX(), (piece->m_pos).getY() - 1));
+            piece->controlledPos.push_back(pos);
+            if(!isOccpied(pos))
+                piece->accessiblePos.push_back(pos);
         }
-        if (isPositionValid(Position((piece->m_pos).getX(), (piece->m_pos).getY() - 1)))
-        {
-            (piece->controlledPos)
-                    .push_back(Position((piece->m_pos).getX(), (piece->m_pos).getY() - 1));
-        }
+
         // check posizione in basso a sx
-        if (isPositionValid(Position((piece->m_pos).getX() - 1, (piece->m_pos).getY() - 1))
-            && !isOccpied(Position((piece->m_pos).getX() - 1, (piece->m_pos).getY() - 1)))
+        pos = piece->m_pos + Position(-1, -1);
+        if (isPositionValid(pos))
         {
-            (piece->accessiblePos)
-                    .push_back(Position((piece->m_pos).getX() - 1, (piece->m_pos).getY() - 1));
+            piece->controlledPos.push_back(pos);
+            if(!isOccpied(pos))
+                piece->accessiblePos.push_back(pos);
         }
-        if (isPositionValid(Position((piece->m_pos).getX() - 1, (piece->m_pos).getY() - 1)))
-        {
-            (piece->controlledPos)
-                    .push_back(Position((piece->m_pos).getX() - 1, (piece->m_pos).getY() - 1));
-        }
+
         // check posizione a sx
-        if (isPositionValid(Position((piece->m_pos).getX() - 1, (piece->m_pos).getY()))
-            && !isOccpied(Position((piece->m_pos).getX() - 1, (piece->m_pos).getY())))
+        pos = piece->m_pos + Position(-1, 0);
+        if (isPositionValid(pos))
         {
-            (piece->accessiblePos)
-                    .push_back(Position((piece->m_pos).getX() - 1, (piece->m_pos).getY()));
-        }
-        if (isPositionValid(Position((piece->m_pos).getX() - 1, (piece->m_pos).getY())))
-        {
-            (piece->controlledPos)
-                    .push_back(Position((piece->m_pos).getX() - 1, (piece->m_pos).getY()));
+            piece->controlledPos.push_back(pos);
+            if(!isOccpied(pos))
+                piece->accessiblePos.push_back(pos);
         }
     }
     // check se è Queen
-    else if (instanceof <Queen>(piece))
+    else if (piece->getType() == Piece::Type::Queen)
     {
-
         // check posizioni in alto sx
         int i = 1;
 
