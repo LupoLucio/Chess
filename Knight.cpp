@@ -1,11 +1,8 @@
 #include "Knight.h"
 
-Knight::Knight(string s, bool color, bool alive, Position pos)
+Knight::Knight(string s, bool color, bool alive, Position pos) : Piece(color, alive, pos)
 {
     name = s;
-    isWhite = color;
-    isAlive = alive;
-    p = pos;
 }
 
 void Knight::printPiece()

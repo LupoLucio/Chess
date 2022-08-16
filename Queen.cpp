@@ -1,11 +1,8 @@
 #include "Queen.h"
 
-Queen::Queen(string s, bool color, bool alive, Position pos)
+Queen::Queen(string s, bool color, bool alive, Position pos) : Piece(color, alive, pos)
 {
     name = s;
-    isWhite = color;
-    isAlive = alive;
-    p = pos;
 }
 
 void Queen::printPiece()

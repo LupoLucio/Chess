@@ -1,11 +1,8 @@
 #include "Rook.h"
 
-Rook::Rook(string s, bool color, bool alive, Position pos)
+Rook::Rook(string s, bool color, bool alive, Position pos) : Piece(color, alive, pos)
 {
     name = s;
-    isWhite = color;
-    isAlive = alive;
-    p = pos;
 }
 
 void Rook::printPiece()

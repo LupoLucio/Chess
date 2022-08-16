@@ -9,7 +9,6 @@ class Knight : public Piece
 public:
     string name;
 
-    Knight() = default;
     Knight(string s, bool color, bool alive, Position pos);
 
     void printPiece();

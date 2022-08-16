@@ -10,7 +10,6 @@ class Pawn : public Piece
 public:
     string name;
 
-    Pawn() = default;
     Pawn(string s, bool color, bool alive, Position pos);
 
     void printPiece();

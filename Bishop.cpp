@@ -1,11 +1,8 @@
 #include "Bishop.h"
 
-Bishop::Bishop(string s, bool color, bool alive, Position pos)
+Bishop::Bishop(string s, bool color, bool alive, Position pos) : Piece(color, alive, pos)
 {
     name = s;
-    isWhite = color;
-    isAlive = alive;
-    p = pos;
 }
 
 void Bishop::printPiece()

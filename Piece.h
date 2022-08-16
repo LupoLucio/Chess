@@ -11,21 +11,6 @@ Classe che definisce il modo generico il pezzo in una scacchiera.
 class Piece
 {
 public:
-    // oggetto Position p per la posizione nella board
-    Position p;
-    // bool isWhite per il colore e isLive per stabilire se è vivo
-    bool isWhite, isAlive, isVirgin = 1, isPinned;
-    // array di posizioni controllate nella board
-    std::vector<Position> controlledPos;
-    // array di posizioni accessibili nella board
-    std::vector<Position> accessiblePos;
-    // array di posizioni controllate ipotetiche servono per controllare se il pezzo è pinnato
-    std::vector<Position> ipoControlledPos;
-    // array di posizioni accessibili ipotetiche servono per controllare se il pezzo è pinnato
-    std::vector<Position> ipoAccessiblePos;
-
-    // costruttore di default
-    Piece() = default;
     // costruttore che crea un Piece
     Piece(bool color, bool alive, Position p);
 
@@ -52,14 +37,19 @@ public:
 
     void setPosition(Position pos);
 
-    // booleani sul tipo di pezzo
-    /*bool isKing();
-    bool isQueen();
-    bool isRook();
-    bool isBishop();
-    bool isKnight();
-    bool isPawn();
-    */
+public:
+    // oggetto Position p per la posizione nella board
+    Position p;
+    // bool isWhite per il colore e isLive per stabilire se è vivo
+    bool isWhite, isAlive, isVirgin = 1, isPinned;
+    // array di posizioni controllate nella board
+    std::vector<Position> controlledPos;
+    // array di posizioni accessibili nella board
+    std::vector<Position> accessiblePos;
+    // array di posizioni controllate ipotetiche servono per controllare se il pezzo è pinnato
+    std::vector<Position> ipoControlledPos;
+    // array di posizioni accessibili ipotetiche servono per controllare se il pezzo è pinnato
+    std::vector<Position> ipoAccessiblePos;
 };
 
 #endif

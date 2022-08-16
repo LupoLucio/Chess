@@ -1,11 +1,8 @@
 #include "King.h"
 
-King::King(string s, bool color, bool alive, Position pos)
+King::King(string s, bool color, bool alive, Position pos) : Piece(color, alive, pos)
 {
     name = s;
-    isWhite = color;
-    isAlive = alive;
-    p = pos;
 }
 
 void King::printPiece()

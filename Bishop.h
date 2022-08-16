@@ -9,7 +9,6 @@ class Bishop : public Piece
 public:
     string name;
 
-    Bishop() = default;
     Bishop(string s, bool color, bool alive, Position pos);
 
     void printPiece();
