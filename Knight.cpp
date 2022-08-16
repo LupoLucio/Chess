@@ -1,6 +1,6 @@
 #include "Knight.h"
 
-Knight::Knight(string s, Color color, bool alive, Position pos) : Piece(color, alive, pos)
+Knight::Knight(string s, Color color, bool alive, Position pos) : Piece(Type::Knight, color, alive, pos)
 {
     name = s;
 }

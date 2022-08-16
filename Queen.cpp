@@ -1,6 +1,6 @@
 #include "Queen.h"
 
-Queen::Queen(string s, Color color, bool alive, Position pos) : Piece(color, alive, pos)
+Queen::Queen(string s, Color color, bool alive, Position pos) : Piece(Type::Queen, color, alive, pos)
 {
     name = s;
 }

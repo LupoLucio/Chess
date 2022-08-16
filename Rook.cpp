@@ -1,6 +1,6 @@
 #include "Rook.h"
 
-Rook::Rook(string s, Color color, bool alive, Position pos) : Piece(color, alive, pos)
+Rook::Rook(string s, Color color, bool alive, Position pos) : Piece(Type::Rook, color, alive, pos)
 {
     name = s;
 }

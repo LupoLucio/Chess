@@ -1,8 +1,9 @@
 #include "Piece.h"
 
-Piece::Piece(Color color, bool alive, Position pos)
+Piece::Piece(Type type, Color color, bool alive, Position pos)
 {
     m_color = color;
+    m_type = type;
     isAlive = alive;
     p = pos;
 }
@@ -41,9 +42,9 @@ void Piece::printAllPos()
     printAccessiblePos();
 }
 
-bool Piece::operator==(Piece *piece)
+bool Piece::operator==(const Piece& other) const
 {
-    return p == piece->p && m_color == piece->m_color;
+    return p == other.p && m_color == other.m_color && m_type == other.m_type;
 }
 
 bool Piece::isOppositeColor(Piece *piece)
@@ -59,4 +60,15 @@ void Piece::setPosition(Position pos)
 string Piece::getColorName(Color c)
 {
     return c == Color::White ? "White" : "Black";
+}
+
+string Piece::getTypeName(Type t)
+{
+    const char *arr[int(Type::NTypes) + 1] = { "Bishop", "King", "Knight", "Pawn", "Queen", "Rook", "NTypes" };
+
+    int idx = int(t);
+    if(idx < 0 || idx > int(Type::NTypes))
+        idx = int(Type::NTypes);
+
+    return arr[idx];
 }

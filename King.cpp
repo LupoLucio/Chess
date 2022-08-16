@@ -1,6 +1,6 @@
 #include "King.h"
 
-King::King(string s, Color color, bool alive, Position pos) : Piece(color, alive, pos)
+King::King(string s, Color color, bool alive, Position pos) : Piece(Type::King, color, alive, pos)
 {
     name = s;
 }

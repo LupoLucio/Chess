@@ -1,6 +1,6 @@
 #include "Bishop.h"
 
-Bishop::Bishop(string s, Color color, bool alive, Position pos) : Piece(color, alive, pos)
+Bishop::Bishop(string s, Color color, bool alive, Position pos) : Piece(Type::Bishop, color, alive, pos)
 {
     name = s;
 }

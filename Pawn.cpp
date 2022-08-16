@@ -1,7 +1,7 @@
 #include "Pawn.h"
 #include "ChessBoard.h"
 
-Pawn::Pawn(string s, Color color, bool alive, Position pos) : Piece(color, alive, pos)
+Pawn::Pawn(string s, Color color, bool alive, Position pos) : Piece(Type::Pawn, color, alive, pos)
 {
     name = s;
 }
