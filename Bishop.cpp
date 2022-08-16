@@ -8,6 +8,6 @@ Bishop::Bishop(string s, Color color, bool alive, Position pos) : Piece(Type::Bi
 void Bishop::printPiece()
 {
     cout << "Name : " << name << " Color : " << getColorName(getColor()) << " Live : " << isAlive
-         << " Virgin : " << isVirgin << " Position : (" << p.getX() << "," << p.getY() << ")"
+         << " Virgin : " << isVirgin << " Position : (" << m_pos.getX() << "," << m_pos.getY() << ")"
          << endl;
 }

@@ -8,6 +8,6 @@ King::King(string s, Color color, bool alive, Position pos) : Piece(Type::King, 
 void King::printPiece()
 {
     cout << "Name : " << name << " Color : " << getColorName(getColor()) << " Live : " << isAlive
-         << " Virgin : " << isVirgin << " Check : " << isInCheck << " Position : (" << p.getX()
-         << "," << p.getY() << ")" << endl;
+         << " Virgin : " << isVirgin << " Check : " << isInCheck << " Position : (" << m_pos.getX()
+         << "," << m_pos.getY() << ")" << endl;
 }

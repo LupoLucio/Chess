@@ -62,7 +62,7 @@ public:
 
 public:
     // oggetto Position p per la posizione nella board
-    Position p;
+    Position m_pos;
     // bool isAlive per stabilire se è vivo
     bool isAlive, isVirgin = 1, isPinned;
     // array di posizioni controllate nella board
