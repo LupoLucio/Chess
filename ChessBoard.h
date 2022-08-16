@@ -27,7 +27,7 @@ public:
     std::vector<Knight> KNpieces;
     std::vector<Pawn> Ppieces;
 
-    std::vector<Piece *> Pieces;
+    std::vector<Piece *> pieceVector;
 
     // pezzi di riserva
     std::vector<Queen> ResQpieces;

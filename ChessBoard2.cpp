@@ -517,7 +517,7 @@ void ChessBoard::generateIpoPos(Piece *piece)
 }
 void ChessBoard::generateAllIpoPos(Piece::Color color)
 {
-    for (auto &piece : Pieces)
+    for (auto &piece : pieceVector)
     {
         if (piece->getColor() == color)
         {
@@ -541,7 +541,7 @@ bool ChessBoard::willKingBeIpoInCheck(Piece::Color color)
         pos = K->m_pos;
     }
 
-    for (auto &piece : Pieces)
+    for (auto &piece : pieceVector)
     {
         if (piece->getColor() != color)
         {
@@ -599,7 +599,7 @@ void ChessBoard::revive(Piece *piece, int index)
         printf("INDICE NON VALIDO");
         return;
     }
-    Pieces[index]->isAlive = 1;
+    pieceVector[index]->isAlive = 1;
 }
 
 void ChessBoard::revivePiece(Piece *piece)

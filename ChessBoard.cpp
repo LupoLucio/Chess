@@ -146,11 +146,11 @@ ChessBoard::~ChessBoard()
 
 void ChessBoard::clear()
 {
-    for(Piece *piece : Pieces)
+    for(Piece *piece : pieceVector)
     {
         delete piece;
     }
-    Pieces.clear();
+    pieceVector.clear();
 }
 
 Piece *createPiece(Piece::Type type, Piece::Color color, const Position& pos)
@@ -197,8 +197,8 @@ void ChessBoard::initConfiguration(const Configuration &conf)
         blackPiece->setNumber(num);
         num++;
 
-        Pieces.push_back(whitePiece);
-        Pieces.push_back(blackPiece);
+        pieceVector.push_back(whitePiece);
+        pieceVector.push_back(blackPiece);
     }
 }
 
@@ -206,7 +206,7 @@ void ChessBoard::printPieces()
 {
     cout << "Pieces are :  " << endl;
 
-    for (auto &piece : Pieces)
+    for (auto &piece : pieceVector)
     {
         piece->printPiece();
     }
@@ -300,7 +300,7 @@ void ChessBoard::printChessBoard()
 
 bool ChessBoard::isOccpied(Position p)
 {
-    for (auto &piece : Pieces)
+    for (auto &piece : pieceVector)
     {
         if (piece->isAlive)
         {
@@ -315,7 +315,7 @@ bool ChessBoard::isOccpied(Position p)
 
 Piece *ChessBoard::searchPiece(Position p)
 {
-    for (auto &piece : Pieces)
+    for (auto &piece : pieceVector)
     {
         if (piece->isAlive)
         {
@@ -848,9 +848,9 @@ void ChessBoard::clearPos(Piece *piece)
 
 int ChessBoard::indexOfPiece(Piece *piece)
 {
-    for (int i = 0; i < Pieces.size(); i++)
+    for (int i = 0; i < pieceVector.size(); i++)
     {
-        if (Pieces[i] == piece)
+        if (pieceVector[i] == piece)
         {
             return i;
         }
@@ -866,7 +866,7 @@ void ChessBoard::kill(Piece *piece, int index)
         printf("INDICE NON VALIDO");
         return;
     }
-    Pieces[index]->isAlive = 0;
+    pieceVector[index]->isAlive = 0;
 }
 
 void ChessBoard::killPiece(Piece *piece)
@@ -883,7 +883,7 @@ void ChessBoard::killVerginity(Piece *piece, int index)
         printf("INDICE NON VALIDO");
         return;
     }
-    Pieces[index]->isVirgin = 0;
+    pieceVector[index]->isVirgin = 0;
 }
 
 void ChessBoard::killPieceVerginity(Piece *piece)
@@ -896,7 +896,7 @@ void ChessBoard::killPieceVerginity(Piece *piece)
 bool ChessBoard::isKingInCheck(Piece::Color color)
 {
     //FIXME: find piece by type and color instead of index
-    return color == Piece::Color::Black ? ((King *)Pieces[0])->isInCheck : ((King *)Pieces[1])->isInCheck;
+    return color == Piece::Color::Black ? ((King *)pieceVector[0])->isInCheck : ((King *)pieceVector[1])->isInCheck;
 }
 
 void ChessBoard::move(Piece *piece, Position pos)
@@ -965,22 +965,22 @@ void ChessBoard::queenning(Piece *pawn)
                     {
                     case 0:
                         ResQpieces[0].setPosition(pos);
-                        Pieces[indexOfPiece(pawn)] = &ResQpieces[0];
+                        pieceVector[indexOfPiece(pawn)] = &ResQpieces[0];
                         break;
 
                     case 1:
                         ResRpieces[0].setPosition(pos);
-                        Pieces[indexOfPiece(pawn)] = &ResRpieces[0];
+                        pieceVector[indexOfPiece(pawn)] = &ResRpieces[0];
                         break;
 
                     case 2:
                         ResBpieces[0].setPosition(pos);
-                        Pieces[indexOfPiece(pawn)] = &ResBpieces[0];
+                        pieceVector[indexOfPiece(pawn)] = &ResBpieces[0];
                         break;
 
                     case 3:
                         ResKNpieces[0].setPosition(pos);
-                        Pieces[indexOfPiece(pawn)] = &ResKNpieces[0];
+                        pieceVector[indexOfPiece(pawn)] = &ResKNpieces[0];
                         break;
 
                     default:
@@ -1011,22 +1011,22 @@ void ChessBoard::queenning(Piece *pawn)
                     {
                     case 0:
                         ResQpieces[1].m_pos = pos;
-                        Pieces[indexOfPiece(pawn)] = &ResQpieces[1];
+                        pieceVector[indexOfPiece(pawn)] = &ResQpieces[1];
                         break;
 
                     case 1:
                         ResRpieces[1].m_pos = pos;
-                        Pieces[indexOfPiece(pawn)] = &ResRpieces[1];
+                        pieceVector[indexOfPiece(pawn)] = &ResRpieces[1];
                         break;
 
                     case 2:
                         ResBpieces[1].m_pos = pos;
-                        Pieces[indexOfPiece(pawn)] = &ResBpieces[1];
+                        pieceVector[indexOfPiece(pawn)] = &ResBpieces[1];
                         break;
 
                     case 3:
                         ResKNpieces[1].m_pos = pos;
-                        Pieces[indexOfPiece(pawn)] = &ResKNpieces[1];
+                        pieceVector[indexOfPiece(pawn)] = &ResKNpieces[1];
                         break;
 
                     default:
@@ -1057,7 +1057,7 @@ bool ChessBoard::canQueen(Piece *p)
 
 Piece *ChessBoard::searchPieceByName(string name)
 {
-    for (auto &piece : Pieces)
+    for (auto &piece : pieceVector)
     {
         if (instanceof <King>(piece))
         {
@@ -1116,7 +1116,7 @@ void ChessBoard::setKingCheck(Piece::Color color)
 
     Piece *WK = searchPieceByName(name);
 
-    for (auto &piece : Pieces)
+    for (auto &piece : pieceVector)
     {
         if (piece->getColor() != color)
         {
@@ -1136,7 +1136,7 @@ void ChessBoard::setKingCheck(Piece::Color color)
 
 void ChessBoard::generateAllPos()
 {
-    for (auto &piece : Pieces)
+    for (auto &piece : pieceVector)
     {
         generatePos(piece);
     }
@@ -1198,7 +1198,7 @@ void ChessBoard::mergePos(Piece *piece)
 }
 bool ChessBoard::willKingBeInCheck(Piece::Color color, Position pos)
 {
-    for (auto &piece : Pieces)
+    for (auto &piece : pieceVector)
     {
         if (piece->getColor() != color)
         {
