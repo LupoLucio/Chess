@@ -7,11 +7,7 @@ Classe che definisce il pezzo King
 class Knight : public Piece
 {
 public:
-    string name;
-
-    Knight(string s, Color color, bool alive, Position pos);
-
-    void printPiece();
+    Knight(Color color, bool alive, Position pos);
 };
 
 #endif

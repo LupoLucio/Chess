@@ -8,11 +8,7 @@ Classe che definisce il pezzo King
 class Pawn : public Piece
 {
 public:
-    string name;
-
-    Pawn(string s, Color color, bool alive, Position pos);
-
-    void printPiece();
+    Pawn(Color color, bool alive, Position pos);
 };
 
 #endif

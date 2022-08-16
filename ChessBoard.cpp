@@ -151,17 +151,17 @@ Piece *createPiece(Piece::Type type, Piece::Color color, const Position &pos)
     switch (type)
     {
     case Piece::Type::Bishop:
-        return new Bishop("", color, true, pos);
+        return new Bishop(color, true, pos);
     case Piece::Type::King:
-        return new King("", color, true, pos);
+        return new King(color, true, pos);
     case Piece::Type::Knight:
-        return new Knight("", color, true, pos);
+        return new Knight(color, true, pos);
     case Piece::Type::Pawn:
-        return new Pawn("", color, true, pos);
+        return new Pawn(color, true, pos);
     case Piece::Type::Queen:
-        return new Queen("", color, true, pos);
+        return new Queen(color, true, pos);
     case Piece::Type::Rook:
-        return new Rook("", color, true, pos);
+        return new Rook(color, true, pos);
     default:
         break;
     }

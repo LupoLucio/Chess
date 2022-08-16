@@ -16,7 +16,13 @@ Position Piece::getPosition()
     return m_pos;
 }
 
-void Piece::printPiece() { }
+void Piece::printPiece()
+{
+    cout << "Name : " << getTypeName(getType()) << " " << getNumber()
+         << " Color : " << getColorName(getColor()) << " Live : " << isAlive
+         << " Virgin : " << isVirgin << " Position : (" << m_pos.getX() << "," << m_pos.getY()
+         << ")" << endl;
+}
 
 void Piece::printControlledPos()
 {
