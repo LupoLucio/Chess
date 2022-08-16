@@ -116,22 +116,14 @@ ChessBoard::ChessBoard()
     }*/
 
     Configuration defaultConf = {
-        {Piece::Type::King, Position(4, 0)},
-        {Piece::Type::Queen, Position(3, 0)},
-        {Piece::Type::Rook, Position(0, 0)},
-        {Piece::Type::Rook, Position(7, 0)},
-        {Piece::Type::Bishop, Position(2, 0)},
-        {Piece::Type::Bishop, Position(5, 0)},
-        {Piece::Type::Knight, Position(1, 0)},
-        {Piece::Type::Knight, Position(6, 0)},
-        {Piece::Type::Pawn, Position(0, 1)},
-        {Piece::Type::Pawn, Position(1, 1)},
-        {Piece::Type::Pawn, Position(2, 1)},
-        {Piece::Type::Pawn, Position(3, 1)},
-        {Piece::Type::Pawn, Position(4, 1)},
-        {Piece::Type::Pawn, Position(5, 1)},
-        {Piece::Type::Pawn, Position(6, 1)},
-        {Piece::Type::Pawn, Position(7, 1)}
+        { Piece::Type::King, Position(4, 0) },   { Piece::Type::Queen, Position(3, 0) },
+        { Piece::Type::Rook, Position(0, 0) },   { Piece::Type::Rook, Position(7, 0) },
+        { Piece::Type::Bishop, Position(2, 0) }, { Piece::Type::Bishop, Position(5, 0) },
+        { Piece::Type::Knight, Position(1, 0) }, { Piece::Type::Knight, Position(6, 0) },
+        { Piece::Type::Pawn, Position(0, 1) },   { Piece::Type::Pawn, Position(1, 1) },
+        { Piece::Type::Pawn, Position(2, 1) },   { Piece::Type::Pawn, Position(3, 1) },
+        { Piece::Type::Pawn, Position(4, 1) },   { Piece::Type::Pawn, Position(5, 1) },
+        { Piece::Type::Pawn, Position(6, 1) },   { Piece::Type::Pawn, Position(7, 1) }
     };
 
     initConfiguration(defaultConf);
@@ -146,14 +138,14 @@ ChessBoard::~ChessBoard()
 
 void ChessBoard::clear()
 {
-    for(Piece *piece : pieceVector)
+    for (Piece *piece : pieceVector)
     {
         delete piece;
     }
     pieceVector.clear();
 }
 
-Piece *createPiece(Piece::Type type, Piece::Color color, const Position& pos)
+Piece *createPiece(Piece::Type type, Piece::Color color, const Position &pos)
 {
     switch (type)
     {
@@ -178,19 +170,20 @@ Piece *createPiece(Piece::Type type, Piece::Color color, const Position& pos)
 
 void ChessBoard::initConfiguration(const Configuration &conf)
 {
-    //Clear previous configuration
+    // Clear previous configuration
     clear();
 
-    int counters[int(Piece::Type::NTypes)] = {0};
+    int counters[int(Piece::Type::NTypes)] = { 0 };
 
-    for(auto pieceDef : conf)
+    for (auto pieceDef : conf)
     {
-        //Mirror position for black piece
+        // Mirror position for black piece
         Position blackPos = pieceDef.second;
         blackPos.setY(7 - blackPos.getY());
 
         Piece *whitePiece = createPiece(pieceDef.first, Piece::Color::White, pieceDef.second);
-        Piece *blackPiece = createPiece(pieceDef.first, Piece::Color::Black, blackPos);;
+        Piece *blackPiece = createPiece(pieceDef.first, Piece::Color::Black, blackPos);
+        ;
 
         int &num = counters[int(whitePiece->getType())];
         whitePiece->setNumber(num);
@@ -216,82 +209,41 @@ void ChessBoard::printPieces()
 
 void ChessBoard::printChessBoard()
 {
+    const char shortName[int(Piece::Type::NTypes)] = {
+        'b', // Bishop
+        'K', // King
+        'k', // Knight
+        'p', // Pawn
+        'q', // Queen
+        'r' // Rook
+    };
+
     Piece *p;
-    cout << "    ";
+
+    //Print Chess table header
+    cout << "    "; // 4 spaces
     for (int i = 0; i < 8; i++)
     {
-        cout << i << "  ";
+        cout << i << "   "; // 1 digit + 3 spaces = 4
     }
-    for (int i = 0; i < 8; i++)
+
+    for (int x = 0; x < 8; x++)
     {
         cout << endl;
-        cout << i << "   ";
-        for (int j = 0; j < 8; j++)
+        cout << x << "   "; // 1 digit + 3 spaces = 4
+        for (int y = 0; y < 8; y++)
         {
-            p = searchPiece(Position(i, j));
-            if (p != NULL)
+            p = searchPiece(Position(x, y));
+            if (p && p->isAlive)
             {
-                if (p->isAlive)
-                {
-                    if (p->getColor() == Piece::Color::White)
-                    {
-                        if (instanceof <King>(p))
-                        {
-                            cout << "wK ";
-                        }
-                        else if (instanceof <Queen>(p))
-                        {
-                            cout << "wq ";
-                        }
-                        else if (instanceof <Rook>(p))
-                        {
-                            cout << "wr ";
-                        }
-                        else if (instanceof <Bishop>(p))
-                        {
-                            cout << "wb ";
-                        }
-                        else if (instanceof <Knight>(p))
-                        {
-                            cout << "wk ";
-                        }
-                        else if (instanceof <Pawn>(p))
-                        {
-                            cout << "wp ";
-                        }
-                    }
-                    else
-                    {
-                        if (instanceof <King>(p))
-                        {
-                            cout << "bK ";
-                        }
-                        else if (instanceof <Queen>(p))
-                        {
-                            cout << "bq ";
-                        }
-                        else if (instanceof <Rook>(p))
-                        {
-                            cout << "br ";
-                        }
-                        else if (instanceof <Bishop>(p))
-                        {
-                            cout << "bb ";
-                        }
-                        else if (instanceof <Knight>(p))
-                        {
-                            cout << "bk ";
-                        }
-                        else if (instanceof <Pawn>(p))
-                        {
-                            cout << "bp ";
-                        }
-                    }
-                }
+                const char colorLetter = p->getColor() == Piece::Color::White ? 'w' : 'b';
+                const char typeLetter = shortName[int(p->getType())];
+
+                cout << colorLetter << typeLetter << p->getNumber(); // 2 letters, 1 digit, 1 space = 4
             }
             else
             {
-                cout << "   ";
+                cout << "    "; // 4 spaces
             }
         }
     }
@@ -359,11 +311,13 @@ void ChessBoard::generatePos(Piece *piece)
         if (isPositionValid(Position((piece->m_pos).getX(), (piece->m_pos).getY() + 1))
             && !isOccpied(Position((piece->m_pos).getX(), (piece->m_pos).getY() + 1)))
         {
-            (piece->accessiblePos).push_back(Position((piece->m_pos).getX(), (piece->m_pos).getY() + 1));
+            (piece->accessiblePos)
+                    .push_back(Position((piece->m_pos).getX(), (piece->m_pos).getY() + 1));
         }
         if (isPositionValid(Position((piece->m_pos).getX(), (piece->m_pos).getY() + 1)))
         {
-            (piece->controlledPos).push_back(Position((piece->m_pos).getX(), (piece->m_pos).getY() + 1));
+            (piece->controlledPos)
+                    .push_back(Position((piece->m_pos).getX(), (piece->m_pos).getY() + 1));
         }
 
         // check posizione alto a dx
@@ -383,11 +337,13 @@ void ChessBoard::generatePos(Piece *piece)
         if (isPositionValid(Position((piece->m_pos).getX() + 1, (piece->m_pos).getY()))
             && !isOccpied(Position((piece->m_pos).getX() + 1, (piece->m_pos).getY())))
         {
-            (piece->accessiblePos).push_back(Position((piece->m_pos).getX() + 1, (piece->m_pos).getY()));
+            (piece->accessiblePos)
+                    .push_back(Position((piece->m_pos).getX() + 1, (piece->m_pos).getY()));
         }
         if (isPositionValid(Position((piece->m_pos).getX() + 1, (piece->m_pos).getY())))
         {
-            (piece->controlledPos).push_back(Position((piece->m_pos).getX() + 1, (piece->m_pos).getY()));
+            (piece->controlledPos)
+                    .push_back(Position((piece->m_pos).getX() + 1, (piece->m_pos).getY()));
         }
         // check posizione in basso a dx
         if (isPositionValid(Position((piece->m_pos).getX() + 1, (piece->m_pos).getY() - 1))
@@ -405,11 +361,13 @@ void ChessBoard::generatePos(Piece *piece)
         if (isPositionValid(Position((piece->m_pos).getX(), (piece->m_pos).getY() - 1))
             && !isOccpied(Position((piece->m_pos).getX(), (piece->m_pos).getY() - 1)))
         {
-            (piece->accessiblePos).push_back(Position((piece->m_pos).getX(), (piece->m_pos).getY() - 1));
+            (piece->accessiblePos)
+                    .push_back(Position((piece->m_pos).getX(), (piece->m_pos).getY() - 1));
         }
         if (isPositionValid(Position((piece->m_pos).getX(), (piece->m_pos).getY() - 1)))
         {
-            (piece->controlledPos).push_back(Position((piece->m_pos).getX(), (piece->m_pos).getY() - 1));
+            (piece->controlledPos)
+                    .push_back(Position((piece->m_pos).getX(), (piece->m_pos).getY() - 1));
         }
         // check posizione in basso a sx
         if (isPositionValid(Position((piece->m_pos).getX() - 1, (piece->m_pos).getY() - 1))
@@ -427,11 +385,13 @@ void ChessBoard::generatePos(Piece *piece)
         if (isPositionValid(Position((piece->m_pos).getX() - 1, (piece->m_pos).getY()))
             && !isOccpied(Position((piece->m_pos).getX() - 1, (piece->m_pos).getY())))
         {
-            (piece->accessiblePos).push_back(Position((piece->m_pos).getX() - 1, (piece->m_pos).getY()));
+            (piece->accessiblePos)
+                    .push_back(Position((piece->m_pos).getX() - 1, (piece->m_pos).getY()));
         }
         if (isPositionValid(Position((piece->m_pos).getX() - 1, (piece->m_pos).getY())))
         {
-            (piece->controlledPos).push_back(Position((piece->m_pos).getX() - 1, (piece->m_pos).getY()));
+            (piece->controlledPos)
+                    .push_back(Position((piece->m_pos).getX() - 1, (piece->m_pos).getY()));
         }
     }
     // check se è Queen
@@ -459,12 +419,14 @@ void ChessBoard::generatePos(Piece *piece)
         while (isPositionValid(Position((piece->m_pos).getX(), (piece->m_pos).getY() + i))
                && !isOccpied(Position((piece->m_pos).getX(), (piece->m_pos).getY() + i)))
         {
-            (piece->accessiblePos).push_back(Position((piece->m_pos).getX(), (piece->m_pos).getY() + i));
+            (piece->accessiblePos)
+                    .push_back(Position((piece->m_pos).getX(), (piece->m_pos).getY() + i));
             i++;
         }
         if (isPositionValid(Position((piece->m_pos).getX(), (piece->m_pos).getY() + i)))
         {
-            (piece->controlledPos).push_back(Position((piece->m_pos).getX(), (piece->m_pos).getY() + i));
+            (piece->controlledPos)
+                    .push_back(Position((piece->m_pos).getX(), (piece->m_pos).getY() + i));
         }
         // check posizioni in alto a dx
         i = 1;
@@ -487,12 +449,14 @@ void ChessBoard::generatePos(Piece *piece)
         while (isPositionValid(Position((piece->m_pos).getX() + i, (piece->m_pos).getY()))
                && !isOccpied(Position((piece->m_pos).getX() + i, (piece->m_pos).getY())))
         {
-            (piece->accessiblePos).push_back(Position((piece->m_pos).getX() + i, (piece->m_pos).getY()));
+            (piece->accessiblePos)
+                    .push_back(Position((piece->m_pos).getX() + i, (piece->m_pos).getY()));
             i++;
         }
         if (isPositionValid(Position((piece->m_pos).getX() + i, (piece->m_pos).getY())))
         {
-            (piece->controlledPos).push_back(Position((piece->m_pos).getX() + i, (piece->m_pos).getY()));
+            (piece->controlledPos)
+                    .push_back(Position((piece->m_pos).getX() + i, (piece->m_pos).getY()));
         }
         // check posizioni in basso a dx
         i = 1;
@@ -513,12 +477,14 @@ void ChessBoard::generatePos(Piece *piece)
         while (isPositionValid(Position((piece->m_pos).getX(), (piece->m_pos).getY() - i))
                && !isOccpied(Position((piece->m_pos).getX(), (piece->m_pos).getY() - i)))
         {
-            (piece->accessiblePos).push_back(Position((piece->m_pos).getX(), (piece->m_pos).getY() - i));
+            (piece->accessiblePos)
+                    .push_back(Position((piece->m_pos).getX(), (piece->m_pos).getY() - i));
             i++;
         }
         if (isPositionValid(Position((piece->m_pos).getX(), (piece->m_pos).getY() - i)))
         {
-            (piece->controlledPos).push_back(Position((piece->m_pos).getX(), (piece->m_pos).getY() - i));
+            (piece->controlledPos)
+                    .push_back(Position((piece->m_pos).getX(), (piece->m_pos).getY() - i));
         }
         // check posizioni in basso a sx
         i = 1;
@@ -539,12 +505,14 @@ void ChessBoard::generatePos(Piece *piece)
         while (isPositionValid(Position((piece->m_pos).getX() - i, (piece->m_pos).getY()))
                && !isOccpied(Position((piece->m_pos).getX() - i, (piece->m_pos).getY())))
         {
-            (piece->accessiblePos).push_back(Position((piece->m_pos).getX() - i, (piece->m_pos).getY()));
+            (piece->accessiblePos)
+                    .push_back(Position((piece->m_pos).getX() - i, (piece->m_pos).getY()));
             i++;
         }
         if (isPositionValid(Position((piece->m_pos).getX() - i, (piece->m_pos).getY())))
         {
-            (piece->controlledPos).push_back(Position((piece->m_pos).getX() - i, (piece->m_pos).getY()));
+            (piece->controlledPos)
+                    .push_back(Position((piece->m_pos).getX() - i, (piece->m_pos).getY()));
         }
     }
     // check se è Rook
@@ -556,36 +524,42 @@ void ChessBoard::generatePos(Piece *piece)
         while (isPositionValid(Position((piece->m_pos).getX(), (piece->m_pos).getY() + i))
                && !isOccpied(Position((piece->m_pos).getX(), (piece->m_pos).getY() + i)))
         {
-            (piece->accessiblePos).push_back(Position((piece->m_pos).getX(), (piece->m_pos).getY() + i));
+            (piece->accessiblePos)
+                    .push_back(Position((piece->m_pos).getX(), (piece->m_pos).getY() + i));
             i++;
         }
         if (isPositionValid(Position((piece->m_pos).getX(), (piece->m_pos).getY() + i)))
         {
-            (piece->controlledPos).push_back(Position((piece->m_pos).getX(), (piece->m_pos).getY() + i));
+            (piece->controlledPos)
+                    .push_back(Position((piece->m_pos).getX(), (piece->m_pos).getY() + i));
         }
         // check posizioni in basso
         i = 1;
         while (isPositionValid(Position((piece->m_pos).getX(), (piece->m_pos).getY() - i))
                && !isOccpied(Position((piece->m_pos).getX(), (piece->m_pos).getY() - i)))
         {
-            (piece->accessiblePos).push_back(Position((piece->m_pos).getX(), (piece->m_pos).getY() - i));
+            (piece->accessiblePos)
+                    .push_back(Position((piece->m_pos).getX(), (piece->m_pos).getY() - i));
             i++;
         }
         if (isPositionValid(Position((piece->m_pos).getX(), (piece->m_pos).getY() - i)))
         {
-            (piece->controlledPos).push_back(Position((piece->m_pos).getX(), (piece->m_pos).getY() - i));
+            (piece->controlledPos)
+                    .push_back(Position((piece->m_pos).getX(), (piece->m_pos).getY() - i));
         }
         // check posizioni a sx
         i = 1;
         while (isPositionValid(Position((piece->m_pos).getX() - i, (piece->m_pos).getY()))
                && !isOccpied(Position((piece->m_pos).getX() - i, (piece->m_pos).getY())))
         {
-            (piece->accessiblePos).push_back(Position((piece->m_pos).getX() - i, (piece->m_pos).getY()));
+            (piece->accessiblePos)
+                    .push_back(Position((piece->m_pos).getX() - i, (piece->m_pos).getY()));
             i++;
         }
         if (isPositionValid(Position((piece->m_pos).getX() - i, (piece->m_pos).getY())))
         {
-            (piece->controlledPos).push_back(Position((piece->m_pos).getX() - i, (piece->m_pos).getY()));
+            (piece->controlledPos)
+                    .push_back(Position((piece->m_pos).getX() - i, (piece->m_pos).getY()));
         }
         // check posizioni a dx
         i = 1;
@@ -593,12 +567,14 @@ void ChessBoard::generatePos(Piece *piece)
         while (isPositionValid(Position((piece->m_pos).getX() + i, (piece->m_pos).getY()))
                && !isOccpied(Position((piece->m_pos).getX() + i, (piece->m_pos).getY())))
         {
-            (piece->accessiblePos).push_back(Position((piece->m_pos).getX() + i, (piece->m_pos).getY()));
+            (piece->accessiblePos)
+                    .push_back(Position((piece->m_pos).getX() + i, (piece->m_pos).getY()));
             i++;
         }
         if (isPositionValid(Position((piece->m_pos).getX() + i, (piece->m_pos).getY())))
         {
-            (piece->controlledPos).push_back(Position((piece->m_pos).getX() + i, (piece->m_pos).getY()));
+            (piece->controlledPos)
+                    .push_back(Position((piece->m_pos).getX() + i, (piece->m_pos).getY()));
         }
     }
     // check se è Bhishop
@@ -895,8 +871,9 @@ void ChessBoard::killPieceVerginity(Piece *piece)
 
 bool ChessBoard::isKingInCheck(Piece::Color color)
 {
-    //FIXME: find piece by type and color instead of index
-    return color == Piece::Color::Black ? ((King *)pieceVector[0])->isInCheck : ((King *)pieceVector[1])->isInCheck;
+    // FIXME: find piece by type and color instead of index
+    return color == Piece::Color::Black ? ((King *)pieceVector[0])->isInCheck
+                                        : ((King *)pieceVector[1])->isInCheck;
 }
 
 void ChessBoard::move(Piece *piece, Position pos)
@@ -932,7 +909,8 @@ void ChessBoard::move(Piece *piece, Position pos)
         // se il re del colore opposto è in scacco faccio una stampa
         if (isKingInCheck(Piece::getOppositColor(piece->getColor())))
         {
-            cout << "Re colore " << Piece::getColorName(Piece::getOppositColor(piece->getColor())) << "in Scacco" << endl;
+            cout << "Re colore " << Piece::getColorName(Piece::getOppositColor(piece->getColor()))
+                 << "in Scacco" << endl;
         }
         return;
     }
@@ -1180,7 +1158,8 @@ void ChessBoard::eat(Piece *piece, Position pos)
         setKingCheck(piece->getColor());
         if (isKingInCheck(Piece::getOppositColor(piece->getColor())))
         {
-            cout << "Re colore " << Piece::getColorName(Piece::getOppositColor(piece->getColor())) << "in Scacco" << endl;
+            cout << "Re colore " << Piece::getColorName(Piece::getOppositColor(piece->getColor()))
+                 << "in Scacco" << endl;
         }
     }
 }
