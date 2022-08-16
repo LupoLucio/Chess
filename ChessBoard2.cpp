@@ -6,20 +6,13 @@
 #include "Queen.h"
 #include "Rook.h"
 
-template<typename Base, typename T>
-inline bool instanceof (const T *ptr)
-{
-    return dynamic_cast<const Base *>(ptr) != nullptr;
-}
-
 void ChessBoard::generateIpoPos(Piece *piece)
 {
     // ogni volta che le genero le pulisco prima
     clearIpoPos(piece);
     // check se è King
-    if (instanceof <King>(piece))
+    if (piece->getType() == Piece::Type::King)
     {
-
         // check posizione alto a sx
         if (isPositionValid(Position((piece->m_pos).getX() - 1, (piece->m_pos).getY() + 1))
             && !isOccpied(Position((piece->m_pos).getX() - 1, (piece->m_pos).getY() + 1)))
@@ -113,7 +106,7 @@ void ChessBoard::generateIpoPos(Piece *piece)
         }
     }
     // check se è Queen
-    else if (instanceof <Queen>(piece))
+    else if (piece->getType() == Piece::Type::Queen)
     {
 
         // check posizioni in alto sx
@@ -226,7 +219,7 @@ void ChessBoard::generateIpoPos(Piece *piece)
         }
     }
     // check se è Rook
-    else if (instanceof <Rook>(piece))
+    else if (piece->getType() == Piece::Type::Rook)
     {
         // check posizione in alto
         int i = 1;
@@ -280,7 +273,7 @@ void ChessBoard::generateIpoPos(Piece *piece)
         }
     }
     // check se è Bhishop
-    else if (instanceof <Bishop>(piece))
+    else if (piece->getType() == Piece::Type::Bishop)
     {
         // check posizioni in alto sx
         int i = 1;
@@ -342,7 +335,7 @@ void ChessBoard::generateIpoPos(Piece *piece)
         }
     }
     // check se è knight
-    else if (instanceof <Knight>(piece))
+    else if (piece->getType() == Piece::Type::Knight)
     {
 
         // check posizione medio alto sx
@@ -443,7 +436,7 @@ void ChessBoard::generateIpoPos(Piece *piece)
         }
     }
     // check se è Pawn
-    else if (instanceof <Pawn>(piece))
+    else if (piece->getType() == Piece::Type::Pawn)
     {
         // check if white
         if (piece->getColor() == Piece::Color::White)

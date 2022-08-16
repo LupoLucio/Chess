@@ -29,13 +29,6 @@
 
 */
 
-//FIXME: remove
-template<typename Base, typename T>
-inline bool instanceof (const T *ptr)
-{
-    return dynamic_cast<const Base *>(ptr) != nullptr;
-}
-
 ChessBoard::ChessBoard()
 {
     /*
@@ -492,7 +485,7 @@ void ChessBoard::generatePos(Piece *piece)
         }
     }
     // check se è Rook
-    else if (instanceof <Rook>(piece))
+    else if (piece->getType() == Piece::Type::Rook)
     {
         // check posizione in alto
         int i = 1;
@@ -554,7 +547,7 @@ void ChessBoard::generatePos(Piece *piece)
         }
     }
     // check se è Bhishop
-    else if (instanceof <Bishop>(piece))
+    else if (piece->getType() == Piece::Type::Bishop)
     {
         // check posizioni in alto sx
         int i = 1;
@@ -616,7 +609,7 @@ void ChessBoard::generatePos(Piece *piece)
         }
     }
     // check se è knight
-    else if (instanceof <Knight>(piece))
+    else if (piece->getType() == Piece::Type::Knight)
     {
 
         // check posizione medio alto sx
@@ -717,7 +710,7 @@ void ChessBoard::generatePos(Piece *piece)
         }
     }
     // check se è Pawn
-    else if (instanceof <Pawn>(piece))
+    else if (piece->getType() == Piece::Type::Pawn)
     {
         // check if white
         if (piece->getColor() == Piece::Color::White)
@@ -893,119 +886,119 @@ void ChessBoard::move(Piece *piece, Position pos)
 }
 void ChessBoard::queenning(Piece *pawn)
 {
-    if (! instanceof <Pawn>(pawn))
+    if (!pawn || pawn->getType() != Piece::Type::Pawn)
         return;
 
-    if (pawn != NULL)
+    //FIXME: avoid user interaction in ChessBorard
+    //Keep all cin/cout in main.cpp
+
+    if (pawn->getColor() == Piece::Color::White)
     {
-        if (pawn->getColor() == Piece::Color::White)
+        if (pawn->m_pos.getY() == 7)
         {
-            if (pawn->m_pos.getY() == 7)
+            int x = pawn->m_pos.getX();
+            int choice = -1;
+            Position pos = Position(x, 7);
+
+            while (choice < 0 || choice > 4)
             {
-                int x = pawn->m_pos.getX();
-                int choice = -1;
-                Position pos = Position(x, 7);
 
-                while (choice < 0 || choice > 4)
+                cout << "0 per Queen" << endl;
+                cout << "1 per Rook" << endl;
+                cout << "2 per Bishop" << endl;
+                cout << "3 per Knight" << endl;
+                cin >> choice;
+
+                switch (choice)
                 {
+                case 0:
+                    ResQpieces[0].setPosition(pos);
+                    pieceVector[indexOfPiece(pawn)] = &ResQpieces[0];
+                    break;
 
-                    cout << "0 per Queen" << endl;
-                    cout << "1 per Rook" << endl;
-                    cout << "2 per Bishop" << endl;
-                    cout << "3 per Knight" << endl;
-                    cin >> choice;
+                case 1:
+                    ResRpieces[0].setPosition(pos);
+                    pieceVector[indexOfPiece(pawn)] = &ResRpieces[0];
+                    break;
 
-                    switch (choice)
-                    {
-                    case 0:
-                        ResQpieces[0].setPosition(pos);
-                        pieceVector[indexOfPiece(pawn)] = &ResQpieces[0];
-                        break;
+                case 2:
+                    ResBpieces[0].setPosition(pos);
+                    pieceVector[indexOfPiece(pawn)] = &ResBpieces[0];
+                    break;
 
-                    case 1:
-                        ResRpieces[0].setPosition(pos);
-                        pieceVector[indexOfPiece(pawn)] = &ResRpieces[0];
-                        break;
+                case 3:
+                    ResKNpieces[0].setPosition(pos);
+                    pieceVector[indexOfPiece(pawn)] = &ResKNpieces[0];
+                    break;
 
-                    case 2:
-                        ResBpieces[0].setPosition(pos);
-                        pieceVector[indexOfPiece(pawn)] = &ResBpieces[0];
-                        break;
-
-                    case 3:
-                        ResKNpieces[0].setPosition(pos);
-                        pieceVector[indexOfPiece(pawn)] = &ResKNpieces[0];
-                        break;
-
-                    default:
-                        cout << "SCELTA INVALIDA" << endl;
-                        break;
-                    }
+                default:
+                    cout << "SCELTA INVALIDA" << endl;
+                    break;
                 }
             }
         }
-        else
+    }
+    else
+    {
+        if (pawn->m_pos.getY() == 0)
         {
-            if (pawn->m_pos.getY() == 0)
+            int x = pawn->m_pos.getX();
+            int choice = -1;
+            Position pos = Position(x, 0);
+
+            while (choice < 0 || choice > 4)
             {
-                int x = pawn->m_pos.getX();
-                int choice = -1;
-                Position pos = Position(x, 0);
 
-                while (choice < 0 || choice > 4)
+                cout << "0 per Queen" << endl;
+                cout << "1 per Rook" << endl;
+                cout << "2 per Bishop" << endl;
+                cout << "3 per Knight" << endl;
+                cin >> choice;
+
+                switch (choice)
                 {
+                case 0:
+                    ResQpieces[1].m_pos = pos;
+                    pieceVector[indexOfPiece(pawn)] = &ResQpieces[1];
+                    break;
 
-                    cout << "0 per Queen" << endl;
-                    cout << "1 per Rook" << endl;
-                    cout << "2 per Bishop" << endl;
-                    cout << "3 per Knight" << endl;
-                    cin >> choice;
+                case 1:
+                    ResRpieces[1].m_pos = pos;
+                    pieceVector[indexOfPiece(pawn)] = &ResRpieces[1];
+                    break;
 
-                    switch (choice)
-                    {
-                    case 0:
-                        ResQpieces[1].m_pos = pos;
-                        pieceVector[indexOfPiece(pawn)] = &ResQpieces[1];
-                        break;
+                case 2:
+                    ResBpieces[1].m_pos = pos;
+                    pieceVector[indexOfPiece(pawn)] = &ResBpieces[1];
+                    break;
 
-                    case 1:
-                        ResRpieces[1].m_pos = pos;
-                        pieceVector[indexOfPiece(pawn)] = &ResRpieces[1];
-                        break;
+                case 3:
+                    ResKNpieces[1].m_pos = pos;
+                    pieceVector[indexOfPiece(pawn)] = &ResKNpieces[1];
+                    break;
 
-                    case 2:
-                        ResBpieces[1].m_pos = pos;
-                        pieceVector[indexOfPiece(pawn)] = &ResBpieces[1];
-                        break;
-
-                    case 3:
-                        ResKNpieces[1].m_pos = pos;
-                        pieceVector[indexOfPiece(pawn)] = &ResKNpieces[1];
-                        break;
-
-                    default:
-                        cout << "SCELTA INVALIDA" << endl;
-                        break;
-                    }
+                default:
+                    cout << "SCELTA INVALIDA" << endl;
+                    break;
                 }
             }
         }
     }
 }
 
-bool ChessBoard::canQueen(Piece *p)
+bool ChessBoard::canQueen(Piece *piece)
 {
-    if (! instanceof <Pawn>(p))
+    if (piece->getType() != Piece::Type::Pawn)
     {
-        return false;
+        return false; //Only Pawns can became Queens
     }
-    else if (p->getColor() == Piece::Color::White)
+    else if (piece->getColor() == Piece::Color::White)
     {
-        return p->m_pos.getY() == 7;
+        return piece->m_pos.getY() == 7;
     }
     else
     {
-        return p->m_pos.getY() == 0;
+        return piece->m_pos.getY() == 0;
     }
 }
 
@@ -1044,9 +1037,9 @@ void ChessBoard::generateAllPos()
 bool ChessBoard::canEat(Piece *piece, Position pos)
 {
     Piece *temp = getPieceAtPos(pos);
-    if (! instanceof <King>(piece))
+    if (piece->getType() != Piece::Type::King)
     {
-        return temp != NULL && piece->isOppositeColor(temp);
+        return temp && piece->isOppositeColor(temp);
     }
     else
     {
