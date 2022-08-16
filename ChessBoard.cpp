@@ -7,6 +7,10 @@
 #include "Queen.h"
 #include "Rook.h"
 
+//FIXME: remove when user input and logic are fully separated
+#include <iostream>
+using namespace std;
+
 /*
 
 
@@ -845,46 +849,46 @@ bool ChessBoard::isKingInCheck(Piece::Color color)
                                         : ((King *)pieceVector[1])->isInCheck;
 }
 
-void ChessBoard::move(Piece *piece, Position pos)
+bool ChessBoard::beginMove(Piece *piece, Position pos)
 {
     // controllo se posso puo' mangiare, se puo' ritorno la mossa è finita
     if (canEat(piece, pos))
     {
         eat(piece, pos);
-        return;
+        return false;
     }
     // controllo se il pezzo puo' muovere
-    if (canMove(piece, pos))
+    if (!canMove(piece, pos))
+        return false;
+    
+    piece->move(pos);
+    // uccido la sua verginita (setto a 0 il suo isVirgin)
+    if (piece->isVirgin)
     {
-        piece->move(pos);
-        // uccido la sua verginita (setto a 0 il suo isVirgin)
-        if (piece->isVirgin)
-        {
-            killPieceVerginity(piece);
-        }
-        // controllo se dopo aver mosso posso Queenare, se puo' Queenno
-        if (canQueen(piece))
-        {
-            queenning(piece);
-        }
-        // genero le posizioni per tutti i pezzi (posizioni accessibili e controllate cambiano per
-        // ogni pezzo)
-        generateAllPos();
-        // setto se il re opposto al pezzo mosso è in Scacco
-        setKingCheck(Piece::getOppositColor(piece->getColor()));
-        // setto se il re che ha mosso è in Scacco (nel caso in cui va a mangiare (liberandosi dallo
-        // scacco), il suo isInCheck da 1 va a 0)
-        setKingCheck(piece->getColor());
-        // se il re del colore opposto è in scacco faccio una stampa
-        if (isKingInCheck(Piece::getOppositColor(piece->getColor())))
-        {
-            cout << "Re colore " << Piece::getColorName(Piece::getOppositColor(piece->getColor()))
-                 << "in Scacco" << endl;
-        }
-        return;
+        killPieceVerginity(piece);
+    }
+    
+    return true;
+}
+
+void ChessBoard::endMove(Piece *piece)
+{
+    // genero le posizioni per tutti i pezzi (posizioni accessibili e controllate cambiano per
+    // ogni pezzo)
+    generateAllPos();
+    // setto se il re opposto al pezzo mosso è in Scacco
+    setKingCheck(Piece::getOppositColor(piece->getColor()));
+    // setto se il re che ha mosso è in Scacco (nel caso in cui va a mangiare (liberandosi dallo
+    // scacco), il suo isInCheck da 1 va a 0)
+    setKingCheck(piece->getColor());
+    // se il re del colore opposto è in scacco faccio una stampa
+    if (isKingInCheck(Piece::getOppositColor(piece->getColor())))
+    {
+        cout << "Re colore " << Piece::getColorName(Piece::getOppositColor(piece->getColor()))
+            << "in Scacco" << endl;
     }
 }
-void ChessBoard::queenning(Piece *pawn)
+void ChessBoard::queenning(Piece *pawn, Piece::Type newType)
 {
     if (!pawn || pawn->getType() != Piece::Type::Pawn)
         return;
@@ -1063,7 +1067,7 @@ void ChessBoard::eat(Piece *piece, Position pos)
 
         if (canQueen(piece))
         {
-            queenning(piece);
+            queenning(piece, Piece::Type::Queen);
         }
 
         generateAllPos();

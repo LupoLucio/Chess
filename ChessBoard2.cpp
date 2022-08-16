@@ -6,6 +6,10 @@
 #include "Queen.h"
 #include "Rook.h"
 
+//FIXME: remove when user input and logic are fully separated
+#include <iostream>
+using namespace std;
+
 void ChessBoard::generateIpoPos(Piece *piece)
 {
     // ogni volta che le genero le pulisco prima

@@ -61,7 +61,10 @@ public:
     // ritorna se il pezzo puo' muovere
     bool canMove(Piece *piece, Position pos);
     // muove piece in pos mangiando se cio' accade
-    void move(Piece *piece, Position pos);
+
+    bool beginMove(Piece *piece, Position pos);
+
+    void endMove(Piece *piece);
     // genera le poisizioni di tutti i pezzi
     void generateAllPos();
     // ritorna l'indice di piece nel vector del suo tipo corrispondente
@@ -75,7 +78,7 @@ public:
     // funzione esterna (da chiamare) per uccidere la verginita' di piece
     void killPieceVerginity(Piece *piece);
     // promozione da pedone a regina
-    void queenning(Piece *pawn);
+    void queenning(Piece *pawn, Piece::Type newType);
     // ritorna se il pezzo puo' fare la promozione
     bool canQueen(Piece *piece);
     // prova a settare in parametro isInCheck (se la sua pos è nelle controllate dei pezzi opposti)
