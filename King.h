@@ -8,13 +8,11 @@ Classe che definisce il pezzo King
 class King : public Piece
 {
 public:
-    string name;
     bool isInCheck = 0;
 
-    King() = default;
-    King(string s, bool color, bool live, Position pos);
+    King(Color color, bool alive, Position pos);
 
-    void printPiece();
+    void printPiece() override;
 };
 
 #endif

@@ -33,3 +33,8 @@ bool Position::operator==(const Position &position) const
 {
     return x == position.getX() && y == position.getY();
 }
+
+Position operator+(const Position &left, const Position &right)
+{
+    return Position(left.getX() + right.getX(), left.getY() + right.getY());
+}

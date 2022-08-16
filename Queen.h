@@ -7,12 +7,7 @@ Classe che definisce il pezzo King
 class Queen : public Piece
 {
 public:
-    string name;
-
-    Queen() = default;
-    Queen(string s, bool color, bool live, Position pos);
-
-    void printPiece();
+    Queen(Color color, bool alive, Position pos);
 };
 
 #endif

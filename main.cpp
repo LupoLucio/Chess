@@ -18,13 +18,13 @@ int main()
         cout << "Inserisci y : ";
         cin >> y;
         p = Position(x, y);
-        piece = cb.searchPiece(p);
+        piece = cb.getPieceAtPos(p);
         if (piece != nullptr)
         {
             if (turn == 1)
             {
                 cout << "Turno Bianco" << endl;
-                if (!piece->isWhite)
+                if (piece->getColor() != Piece::Color::White)
                 {
                     cout << "Pezzo del colore sbagliato" << endl;
                 }
@@ -47,7 +47,7 @@ int main()
             else
             {
                 cout << "Turno nero" << endl;
-                if (piece->isWhite)
+                if (piece->getColor() != Piece::Color::Black)
                 {
                     cout << "Pezzo del colore sbagliato" << endl;
                 }

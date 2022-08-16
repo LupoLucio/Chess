@@ -1,16 +1,12 @@
 #include "King.h"
 
-King::King(string s, bool color, bool live, Position pos)
+King::King(Color color, bool alive, Position pos) : Piece(Type::King, color, alive, pos)
 {
-    name = s;
-    isWhite = color;
-    isLive = live;
-    p = pos;
+
 }
 
 void King::printPiece()
 {
-    cout << "Name : " << name << " Color : " << isWhite << " Live : " << isLive
-         << " Virgin : " << isVirgin << " Check : " << isInCheck << " Position : (" << p.getX()
-         << "," << p.getY() << ")" << endl;
+    Piece::printPiece();
+    cout << "Check : " << isInCheck << endl;
 }
