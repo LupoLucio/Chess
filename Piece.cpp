@@ -15,9 +15,7 @@ Position Piece::getPosition()
     return p;
 }
 
-void Piece::printPiece()
-{
-}
+void Piece::printPiece() { }
 
 void Piece::printControlledPos()
 {
@@ -43,12 +41,12 @@ void Piece::printAllPos()
     printAccessiblePos();
 }
 
-bool Piece::operator==(Piece* piece)
+bool Piece::operator==(Piece *piece)
 {
     return p == piece->p && isWhite == piece->isWhite;
 }
 
-bool Piece::isOpposite(Piece* piece)
+bool Piece::isOpposite(Piece *piece)
 {
     return isWhite != piece->isWhite;
 }

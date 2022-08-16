@@ -8,8 +8,8 @@ using namespace std;
 /*
 Classe che definisce il concetto di posizione in una ChessBoard
 */
-class Position {
-
+class Position
+{
 public:
     // coordinate
     int x, y;
@@ -26,7 +26,7 @@ public:
     void setX(int newx);
     void setY(int newy);
 
-    bool operator==(const Position& position) const;
+    bool operator==(const Position &position) const;
 };
 
 #endif

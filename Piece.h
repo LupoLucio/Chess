@@ -8,8 +8,8 @@
 Classe che definisce il modo generico il pezzo in una scacchiera.
 */
 
-class Piece {
-
+class Piece
+{
 public:
     // oggetto Position p per la posizione nella board
     Position p;
@@ -44,9 +44,9 @@ public:
     virtual void printPiece();
 
     // operatore ugualianza fra un Piece e un puntatore a Piece
-    bool operator==(Piece* piece);
+    bool operator==(Piece *piece);
     // ritorna se il piece puntato è di colore opposto al colore dell'invocante
-    bool isOpposite(Piece* piece);
+    bool isOpposite(Piece *piece);
 
     Position getPosition();
 

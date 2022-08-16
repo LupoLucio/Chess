@@ -4,13 +4,14 @@
 int main()
 {
     ChessBoard cb = ChessBoard();
-    Piece* piece;
+    Piece *piece;
     Position p;
     int turn = 1;
     int x, y;
     cb.printPieces();
 
-    while (turn == 1 || turn == 0) {
+    while (turn == 1 || turn == 0)
+    {
 
         cout << "Inserisci x : ";
         cin >> x;
@@ -42,7 +43,6 @@ int main()
                     cb.printPieces();
                     cb.printChessBoard();
                 }
-
             }
             else
             {

@@ -5,8 +5,8 @@
 /*
 Classe che definisce il pezzo King
 */
-class King : public Piece {
-
+class King : public Piece
+{
 public:
     string name;
     bool isInCheck = 0;

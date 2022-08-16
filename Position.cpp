@@ -29,7 +29,7 @@ void Position::setY(int newy)
     y = newy;
 }
 
-bool Position::operator==(const Position& position) const
+bool Position::operator==(const Position &position) const
 {
     return x == position.getX() && y == position.getY();
 }

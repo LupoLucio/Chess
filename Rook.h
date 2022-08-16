@@ -4,8 +4,8 @@
 /*
 Classe che definisce il pezzo King
 */
-class Rook : public Piece {
-
+class Rook : public Piece
+{
 public:
     string name;
 

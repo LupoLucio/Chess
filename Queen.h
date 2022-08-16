@@ -4,8 +4,8 @@
 /*
 Classe che definisce il pezzo King
 */
-class Queen : public Piece {
-
+class Queen : public Piece
+{
 public:
     string name;
 

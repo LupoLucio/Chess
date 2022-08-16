@@ -5,8 +5,8 @@
 /*
 Classe che definisce il pezzo King
 */
-class Pawn : public Piece {
-
+class Pawn : public Piece
+{
 public:
     string name;
 
