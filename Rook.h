@@ -4,18 +4,15 @@
 /*
 Classe che definisce il pezzo King
 */
-class Rook : public Piece{
-
-    public:
+class Rook : public Piece
+{
+public:
     string name;
 
-    Rook()=default;
-    Rook(string s,bool color,bool live,Position pos);
+    Rook() = default;
+    Rook(string s, bool color, bool live, Position pos);
 
     void printPiece();
-
-
-
 };
 
 #endif
