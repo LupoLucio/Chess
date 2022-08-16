@@ -1,5 +1,8 @@
 #include "Piece.h"
 
+#include <iostream>
+using namespace std;
+
 Piece::Piece(Type type, Color color, bool alive, Position pos)
 {
     m_color = color;

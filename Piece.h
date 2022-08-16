@@ -3,6 +3,9 @@
 
 #include "Position.h"
 #include <vector>
+#include <string>
+
+using namespace std;
 
 /*
 Classe che definisce il modo generico il pezzo in una scacchiera.
