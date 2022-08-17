@@ -1,6 +1,6 @@
 #include "ChessBoard.h"
 #include "Piece.h"
-
+#include "chessboardprinter.h"
 
 #include <iostream>
 using namespace std;
@@ -81,7 +81,10 @@ bool execTurn(ChessBoard &cb, Piece::Color color)
     }
     
     cb.printPieces();
-    cb.printChessBoard();
+
+    ChessBoardPrinter printer(cb);
+    printer.setCurPiece(piece);
+    printer.printChessBoardToStdout();
 
     return true;
 }

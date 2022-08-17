@@ -205,50 +205,6 @@ void ChessBoard::printPieces()
     cout << "End Pieces" << endl;
 }
 
-void ChessBoard::printChessBoard()
-{
-    const char shortName[int(Piece::Type::NTypes)] = {
-        'b', // Bishop
-        'K', // King
-        'k', // Knight
-        'p', // Pawn
-        'q', // Queen
-        'r' // Rook
-    };
-
-    Piece *p;
-
-    //Print Chess table header
-    cout << "     "; // 5 spaces
-    for (int i = 0; i < 8; i++)
-    {
-        cout << i << "    "; // 1 digit + 4 spaces = 5
-    }
-    cout << endl;
-
-    for (int x = 0; x < 8; x++)
-    {
-        //Make column 3 character wide, so pieces align centered to header
-        cout << x << "  "; // 1 digit + 2 spaces = 3
-        for (int y = 0; y < 8; y++)
-        {
-            p = getPieceAtPos(Position(x, y));
-            if (p && p->isAlive)
-            {
-                const char colorLetter = p->getColor() == Piece::Color::White ? 'w' : 'b';
-                const char typeLetter = shortName[int(p->getType())];
-
-                cout << " " << colorLetter << typeLetter << p->getNumber() << " "; // 2 letters, 1 digit, 2 space = 5
-            }
-            else
-            {
-                cout << "     "; // 5 spaces
-            }
-        }
-        cout << endl;
-    }
-}
-
 bool ChessBoard::isOccpied(Position pos)
 {
     return getPieceAtPos(pos) != nullptr;

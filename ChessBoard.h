@@ -46,8 +46,6 @@ public:
 
     // stampa i pezzi e i loro parametri
     void printPieces();
-    // stampa la scacchiera (matrtice di char)
-    void printChessBoard();
     // ritorna se la posizione è occupata
     bool isOccpied(Position pos);
     // ritorna un puntatore al pezzo nella posizione p
