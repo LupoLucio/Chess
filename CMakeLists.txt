@@ -10,6 +10,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CHESS_HEADERS
     Bishop.h
     ChessBoard.h
+    ChessBoardPrinter.h
     King.h
     Knight.h
     Pawn.h
@@ -22,6 +23,7 @@ set(CHESS_SOURCES
     Bishop.cpp
     ChessBoard.cpp
     ChessBoard2.cpp
+    ChessBoardPrinter.cpp
     King.cpp
     Knight.cpp
     Pawn.cpp
