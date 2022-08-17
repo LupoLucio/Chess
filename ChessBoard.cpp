@@ -219,16 +219,17 @@ void ChessBoard::printChessBoard()
     Piece *p;
 
     //Print Chess table header
-    cout << "    "; // 4 spaces
+    cout << "     "; // 5 spaces
     for (int i = 0; i < 8; i++)
     {
-        cout << i << "   "; // 1 digit + 3 spaces = 4
+        cout << i << "    "; // 1 digit + 4 spaces = 5
     }
+    cout << endl;
 
     for (int x = 0; x < 8; x++)
     {
-        cout << endl;
-        cout << x << "   "; // 1 digit + 3 spaces = 4
+        //Make column 3 character wide, so pieces align centered to header
+        cout << x << "  "; // 1 digit + 2 spaces = 3
         for (int y = 0; y < 8; y++)
         {
             p = getPieceAtPos(Position(x, y));
@@ -237,15 +238,15 @@ void ChessBoard::printChessBoard()
                 const char colorLetter = p->getColor() == Piece::Color::White ? 'w' : 'b';
                 const char typeLetter = shortName[int(p->getType())];
 
-                cout << colorLetter << typeLetter << p->getNumber(); // 2 letters, 1 digit, 1 space = 4
+                cout << " " << colorLetter << typeLetter << p->getNumber() << " "; // 2 letters, 1 digit, 2 space = 5
             }
             else
             {
-                cout << "    "; // 4 spaces
+                cout << "     "; // 5 spaces
             }
         }
+        cout << endl;
     }
-    cout << endl;
 }
 
 bool ChessBoard::isOccpied(Position pos)
