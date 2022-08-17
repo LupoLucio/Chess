@@ -846,106 +846,50 @@ void ChessBoard::endMove(Piece *piece)
              << "in Scacco" << endl;
     }
 }
-void ChessBoard::queenning(Piece *pawn, Piece::Type newType)
+
+Piece *ChessBoard::queenning(Piece *pawn, Piece::Type newType)
 {
     if (!pawn || pawn->getType() != Piece::Type::Pawn)
-        return;
+        return pawn;
 
-    // FIXME: avoid user interaction in ChessBorard
-    // Keep all cin/cout in main.cpp
+    if (pawn->getColor() == Piece::Color::White && pawn->m_pos.getY() != 7)
+        return pawn;
 
-    if (pawn->getColor() == Piece::Color::White)
+    if (pawn->getColor() == Piece::Color::Black && pawn->m_pos.getY() != 0)
+        return pawn;
+
+    Piece *replacement = createPiece(newType, pawn->getColor(), pawn->m_pos);
+
+    replacement->setNumber(pawn->getNumber() + 2); //Add 2 for knight, rook, bishop
+
+    for(int i = 0; i < pieceVector.size(); i++)
     {
-        if (pawn->m_pos.getY() == 7)
+        if(pieceVector[i] == pawn)
         {
-            int x = pawn->m_pos.getX();
-            int choice = -1;
-            Position pos = Position(x, 7);
+            //Replace
+            pieceVector[i] = replacement;
 
-            while (choice < 0 || choice > 4)
-            {
-
-                cout << "0 per Queen" << endl;
-                cout << "1 per Rook" << endl;
-                cout << "2 per Bishop" << endl;
-                cout << "3 per Knight" << endl;
-                cin >> choice;
-
-                switch (choice)
-                {
-                case 0:
-                    ResQpieces[0].setPosition(pos);
-                    pieceVector[indexOfPiece(pawn)] = &ResQpieces[0];
-                    break;
-
-                case 1:
-                    ResRpieces[0].setPosition(pos);
-                    pieceVector[indexOfPiece(pawn)] = &ResRpieces[0];
-                    break;
-
-                case 2:
-                    ResBpieces[0].setPosition(pos);
-                    pieceVector[indexOfPiece(pawn)] = &ResBpieces[0];
-                    break;
-
-                case 3:
-                    ResKNpieces[0].setPosition(pos);
-                    pieceVector[indexOfPiece(pawn)] = &ResKNpieces[0];
-                    break;
-
-                default:
-                    cout << "SCELTA INVALIDA" << endl;
-                    break;
-                }
-            }
+            //Delete old pawn
+            delete pawn;
+            pawn = nullptr;
+            break;
         }
     }
-    else
+
+    if(pawn)
     {
-        if (pawn->m_pos.getY() == 0)
-        {
-            int x = pawn->m_pos.getX();
-            int choice = -1;
-            Position pos = Position(x, 0);
+        //We did not find it in piece vector
+        cout << "Queening error: piece not found" << endl;
+        pawn->printPiece();
+        cout << "Keeping old piece" << endl;
 
-            while (choice < 0 || choice > 4)
-            {
+        delete replacement;
+        replacement = nullptr;
 
-                cout << "0 per Queen" << endl;
-                cout << "1 per Rook" << endl;
-                cout << "2 per Bishop" << endl;
-                cout << "3 per Knight" << endl;
-                cin >> choice;
-
-                switch (choice)
-                {
-                case 0:
-                    ResQpieces[1].m_pos = pos;
-                    pieceVector[indexOfPiece(pawn)] = &ResQpieces[1];
-                    break;
-
-                case 1:
-                    ResRpieces[1].m_pos = pos;
-                    pieceVector[indexOfPiece(pawn)] = &ResRpieces[1];
-                    break;
-
-                case 2:
-                    ResBpieces[1].m_pos = pos;
-                    pieceVector[indexOfPiece(pawn)] = &ResBpieces[1];
-                    break;
-
-                case 3:
-                    ResKNpieces[1].m_pos = pos;
-                    pieceVector[indexOfPiece(pawn)] = &ResKNpieces[1];
-                    break;
-
-                default:
-                    cout << "SCELTA INVALIDA" << endl;
-                    break;
-                }
-            }
-        }
+        return pawn;
     }
+
+    return replacement;
 }
 
 bool ChessBoard::canQueen(Piece *piece)

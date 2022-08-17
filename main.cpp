@@ -5,7 +5,7 @@
 #include <iostream>
 using namespace std;
 
-void execQueenning(ChessBoard &cb, Piece *piece)
+Piece *execQueenning(ChessBoard &cb, Piece *piece)
 {
     while (true)
     {
@@ -16,7 +16,7 @@ void execQueenning(ChessBoard &cb, Piece *piece)
         cout << "Devi effettuare la promozione del pedone. Scegli:" << endl;
         for (int i = 0; i < Noptions; i++)
         {
-            cout << i << " per " << Piece::getTypeName(arr[i]);
+            cout << i << " per " << Piece::getTypeName(arr[i]) << endl;
         }
 
         int choice = 0;
@@ -29,8 +29,10 @@ void execQueenning(ChessBoard &cb, Piece *piece)
         }
 
         Piece::Type newType = arr[choice];
-        cb.queenning(piece, newType);
+        return cb.queenning(piece, newType);
     }
+
+    return piece;
 }
 
 bool execTurn(ChessBoard &cb, Piece::Color color)
@@ -76,7 +78,8 @@ bool execTurn(ChessBoard &cb, Piece::Color color)
         // controllo se dopo aver mosso posso Queenare, se puo' Queenno
         if (cb.canQueen(piece))
         {
-            execQueenning(cb, piece);
+            //Replace piece
+            piece = execQueenning(cb, piece);
         }
         cb.endMove(piece);
     }

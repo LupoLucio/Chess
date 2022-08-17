@@ -75,8 +75,8 @@ public:
     void killVerginity(Piece *piece, int index);
     // funzione esterna (da chiamare) per uccidere la verginita' di piece
     void killPieceVerginity(Piece *piece);
-    // promozione da pedone a regina
-    void queenning(Piece *pawn, Piece::Type newType);
+    // promozione da pedone a regina, ritorna il nuovo pezzo
+    Piece *queenning(Piece *pawn, Piece::Type newType);
     // ritorna se il pezzo puo' fare la promozione
     bool canQueen(Piece *piece);
     // prova a settare in parametro isInCheck (se la sua pos è nelle controllate dei pezzi opposti)
