@@ -87,8 +87,6 @@ public:
     bool willKingBeInCheck(Piece::Color color, Position pos);
     // ritorna se il pezzo puo' mangiare in quella posizione
     bool canEat(Piece *piece, Position pos);
-    // fa le azioni neccessarie per mangiare
-    void eat(Piece *piece, Position pos);
     // le controllate in cui in pezzo puo' mangiare vengono anche messe nelle accessibili
     void mergePos(Piece *piece);
     // ritorna se il pezzo è pinnato da COMPLETARE

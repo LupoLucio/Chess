@@ -807,15 +807,17 @@ bool ChessBoard::isKingInCheck(Piece::Color color)
 
 bool ChessBoard::beginMove(Piece *piece, Position pos)
 {
-    // controllo se posso puo' mangiare, se puo' ritorno la mossa è finita
-    if (canEat(piece, pos))
-    {
-        eat(piece, pos);
-        return false;
-    }
     // controllo se il pezzo puo' muovere
     if (!canMove(piece, pos))
         return false;
+
+    // controllo se posso puo' mangiare, se puo' ritorno la mossa è finita
+    if (canEat(piece, pos))
+    {
+        //Eat opposite piece
+        Piece *temp = getPieceAtPos(pos);
+        killPiece(temp);
+    }
 
     piece->move(pos);
     // uccido la sua verginita (setto a 0 il suo isVirgin)
@@ -1004,37 +1006,6 @@ bool ChessBoard::canEat(Piece *piece, Position pos)
     else
     {
         return !willKingBeInCheck(piece->getColor(), pos);
-    }
-}
-
-void ChessBoard::eat(Piece *piece, Position pos)
-{
-    Piece *temp = getPieceAtPos(pos);
-
-    if (canEat(piece, pos))
-    {
-        killPiece(temp);
-
-        piece->move(pos);
-        if (piece->isVirgin)
-        {
-            killPieceVerginity(piece);
-        }
-
-        if (canQueen(piece))
-        {
-            queenning(piece, Piece::Type::Queen);
-        }
-
-        generateAllPos();
-        // controllo re colore opposto se è in check
-        setKingCheck(Piece::getOppositColor(piece->getColor()));
-        setKingCheck(piece->getColor());
-        if (isKingInCheck(Piece::getOppositColor(piece->getColor())))
-        {
-            cout << "Re colore " << Piece::getColorName(Piece::getOppositColor(piece->getColor()))
-                 << "in Scacco" << endl;
-        }
     }
 }
 
