@@ -157,36 +157,44 @@ void ChessBoardPrinter::printChessBoardToStdout()
         'r' // Rook
     };
 
-    Piece *p;
+    Piece *p = nullptr;
+    const char *emptyCell = "     "; //5 spaces
+    const char *emptyHeaderCell = "   "; //3 spaces
 
     // Print Chess horizontal table header
     if (m_mode != Chess::PrintMode::Normal)
         cout << headerFmt; // Set colors
 
-    cout << "     "; // 5 spaces
-    for (int i = 0; i < 8; i++)
+    cout << emptyHeaderCell; // 3 spaces, left header corner
+    for (int x = 0; x < 8; x++)
     {
-        cout << i << "    "; // 1 digit + 4 spaces = 5
+        cout << "  " << x << "  "; // 1 digit + 4 spaces = 5
     }
+
+    //Print axis name at end of row
+    cout << " X ";
 
     if (m_mode != Chess::PrintMode::Normal)
         cout << TextFormat{}; // Reset colors
 
+    //Go to first row AFTER color reset
     std::cout << endl;
 
-    for (int x = 0; x < 8; x++)
+    for (int y = 0; y < 8; y++)
     {
         // Make column 3 character wide, so pieces align centered to header
+
+        //Set header format
         if (m_mode != Chess::PrintMode::Normal)
             cout << headerFmt; // Set colors
 
         // Print vertical table header
-        cout << " " << x << " "; // 1 digit + 2 spaces = 3
+        cout << " " << y << " "; // 1 digit + 2 spaces = 3
 
         if (m_mode != Chess::PrintMode::Normal)
             cout << TextFormat{}; // Reset colors
 
-        for (int y = 0; y < 8; y++)
+        for (int x = 0; x < 8; x++)
         {
             p = cb.getPieceAtPos(Position(x, y));
             if (p && p->isAlive)
@@ -216,13 +224,43 @@ void ChessBoardPrinter::printChessBoardToStdout()
             else
             {
                 // Fill empty position
-                cout << "     "; // 5 spaces
+                cout << emptyCell; // 3 spaces
             }
         }
 
+        //Set header format for right header
+        if (m_mode != Chess::PrintMode::Normal)
+            cout << headerFmt; // Set colors
+
+        //Print right header
+        cout << emptyHeaderCell;
+
+        if (m_mode != Chess::PrintMode::Normal)
+            cout << TextFormat{}; // Reset colors
+
+        //Go to next row AFTER color reset
         cout << endl;
     }
 
+    //Set header format
+    if (m_mode != Chess::PrintMode::Normal)
+        cout << headerFmt; // Set colors
+
+    //Print axis name at end of column
+    cout << " Y ";
+
+    //Print whole row of bottom header, 8 cells
+    for (int x = 0; x < 8; x++)
+    {
+        cout << emptyCell;
+    }
+
+    //Print right header
+    cout << emptyHeaderCell;
+
     if (m_mode != Chess::PrintMode::Normal)
         cout << TextFormat{}; // Reset colors
+
+    //Go to new line AFTER color reset
+    cout << endl;
 }
