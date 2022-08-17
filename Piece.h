@@ -5,8 +5,6 @@
 #include <vector>
 #include <string>
 
-using namespace std;
-
 /*
 Classe che definisce il modo generico il pezzo in una scacchiera.
 */
@@ -61,9 +59,9 @@ public:
     inline void setNumber(int n) { m_number = n; }
 
 public:
-    static string getColorName(Color c);
+    static std::string getColorName(Color c);
 
-    static string getTypeName(Type t);
+    static std::string getTypeName(Type t);
 
 public:
     // oggetto Position p per la posizione nella board
