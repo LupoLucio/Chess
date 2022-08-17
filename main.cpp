@@ -37,8 +37,7 @@ Piece *execQueenning(ChessBoard &cb, Piece *piece)
 
 bool execTurn(ChessBoard &cb, Piece::Color color)
 {
-    int turn = 1;
-    int x, y;
+    int x = 0, y = 0;
     cb.printPieces();
 
     cout << "Inserisci x : ";
@@ -96,16 +95,20 @@ bool execTurn(ChessBoard &cb, Piece::Color color)
 int main()
 {
     ChessBoard cb = ChessBoard();
-    Piece *piece;
-    Position p;
-    int turn = int(Piece::Color::White);
 
-    while (turn == 1 || turn == 0)
+    Piece::Color turnColor = Piece::Color::White;
+
+    while (true)
     {
-        execTurn(cb, Piece::Color(turn));
+        execTurn(cb, turnColor);
 
+        int nextTurn = 0;
         cout << "Inserisci turno : " << endl;
-        cin >> turn;
+        cin >> nextTurn;
+        if(nextTurn != 0 && nextTurn != 1)
+            break;
+
+        turnColor = Piece::Color(nextTurn);
     }
 
     return 0;
