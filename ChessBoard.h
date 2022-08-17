@@ -1,5 +1,7 @@
 #ifndef CHESS_BOARD_H
 #define CHESS_BOARD_H
+
+//FIXME: forward declare Piece and derivates
 #include "Bishop.h"
 #include "King.h"
 #include "Knight.h"
