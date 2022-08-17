@@ -12,8 +12,6 @@ using namespace std;
 
 /*
 
-
-
     0    1    2    3    4    5    6    7
 
     1
@@ -34,84 +32,6 @@ using namespace std;
 
 ChessBoard::ChessBoard()
 {
-    /*
-    Kpieces.push_back(King("white king", Piece::Color::White, true, Position(4, 0)));
-    Qpieces.push_back(Queen("white queen", Piece::Color::White, true, Position(3, 0)));
-    Rpieces.push_back(Rook("white rook 1", Piece::Color::White, true, Position(0, 0)));
-    Rpieces.push_back(Rook("white rook 2", Piece::Color::White, true, Position(7, 0)));
-    Bpieces.push_back(Bishop("white bishop 1", Piece::Color::White, true, Position(2, 0)));
-    Bpieces.push_back(Bishop("white bishop 2", Piece::Color::White, true, Position(5, 0)));
-    KNpieces.push_back(Knight("white knight 1", Piece::Color::White, true, Position(1, 0)));
-    KNpieces.push_back(Knight("white knight 2", Piece::Color::White, true, Position(6, 0)));
-    Ppieces.push_back(Pawn("white pawn 1", Piece::Color::White, true, Position(0, 1)));
-    Ppieces.push_back(Pawn("white pawn 2", Piece::Color::White, true, Position(1, 1)));
-    Ppieces.push_back(Pawn("white pawn 3", Piece::Color::White, true, Position(2, 1)));
-    Ppieces.push_back(Pawn("white pawn 4", Piece::Color::White, true, Position(3, 1)));
-    Ppieces.push_back(Pawn("white pawn 5", Piece::Color::White, true, Position(4, 1)));
-    Ppieces.push_back(Pawn("white pawn 6", Piece::Color::White, true, Position(5, 1)));
-    Ppieces.push_back(Pawn("white pawn 7", Piece::Color::White, true, Position(6, 1)));
-    Ppieces.push_back(Pawn("white pawn 8", Piece::Color::White, true, Position(7, 1)));
-
-    Kpieces.push_back(King("black king", Piece::Color::Black, true, Position(4, 7)));
-    Qpieces.push_back(Queen("black queen", Piece::Color::Black, true, Position(3, 7)));
-    Rpieces.push_back(Rook("black rook 1", Piece::Color::Black, true, Position(0, 7)));
-    Rpieces.push_back(Rook("black rook 2", Piece::Color::Black, true, Position(7, 7)));
-    Bpieces.push_back(Bishop("black bishop 1", Piece::Color::Black, true, Position(2, 7)));
-    Bpieces.push_back(Bishop("black bishop 2", Piece::Color::Black, true, Position(5, 7)));
-    KNpieces.push_back(Knight("black knight 1", Piece::Color::Black, true, Position(1, 7)));
-    KNpieces.push_back(Knight("black knight 2", Piece::Color::Black, true, Position(6, 7)));
-    Ppieces.push_back(Pawn("black pawn 1", Piece::Color::Black, true, Position(0, 6)));
-    Ppieces.push_back(Pawn("black pawn 2", Piece::Color::Black, true, Position(1, 6)));
-    Ppieces.push_back(Pawn("black pawn 3", Piece::Color::Black, true, Position(2, 6)));
-    Ppieces.push_back(Pawn("black pawn 4", Piece::Color::Black, true, Position(3, 6)));
-    Ppieces.push_back(Pawn("black pawn 5", Piece::Color::Black, true, Position(4, 6)));
-    Ppieces.push_back(Pawn("black pawn 6", Piece::Color::Black, true, Position(5, 6)));
-    Ppieces.push_back(Pawn("black pawn 7", Piece::Color::Black, true, Position(6, 6)));
-    Ppieces.push_back(Pawn("black pawn 8", Piece::Color::Black, true, Position(7, 6)));
-
-    // pezzi di riserva
-    ResQpieces.push_back(Queen("white queen 2", Piece::Color::White, true, Position(5, 5)));
-    ResQpieces.push_back(Queen("black queen 2", Piece::Color::Black, true, Position(4, 5)));
-
-    ResRpieces.push_back(Rook("white rook 3", Piece::Color::White, true, Position(3, 7)));
-    ResRpieces.push_back(Rook("black rook 3", Piece::Color::Black, true, Position(3, 7)));
-
-    ResBpieces.push_back(Bishop("white bishop 3", Piece::Color::White, true, Position(3, 7)));
-    ResBpieces.push_back(Bishop("black bishop 3", Piece::Color::Black, true, Position(3, 7)));
-
-    ResKNpieces.push_back(Knight("white knight 3", Piece::Color::White, true, Position(3, 7)));
-    ResKNpieces.push_back(Knight("black knight 3", Piece::Color::Black, true, Position(3, 7)));
-
-    for (auto &piece : Kpieces)
-    {
-        Pieces.push_back(&piece);
-    }
-
-    for (auto &piece : Qpieces)
-    {
-        Pieces.push_back(&piece);
-    }
-
-    for (auto &piece : Rpieces)
-    {
-        Pieces.push_back(&piece);
-    }
-
-    for (auto &piece : Bpieces)
-    {
-        Pieces.push_back(&piece);
-    }
-
-    for (auto &piece : KNpieces)
-    {
-        Pieces.push_back(&piece);
-    }
-
-    for (auto &piece : Ppieces)
-    {
-        Pieces.push_back(&piece);
-    }*/
-
     Configuration defaultConf = {
         { Piece::Type::King, Position(4, 0) },   { Piece::Type::Queen, Position(3, 0) },
         { Piece::Type::Rook, Position(0, 0) },   { Piece::Type::Rook, Position(7, 0) },
@@ -751,50 +671,15 @@ void ChessBoard::clearPos(Piece *piece)
     piece->controlledPos.clear();
 }
 
-int ChessBoard::indexOfPiece(Piece *piece)
-{
-    for (int i = 0; i < pieceVector.size(); i++)
-    {
-        if (pieceVector[i] == piece)
-        {
-            return i;
-        }
-    }
-
-    return -1;
-}
-
-void ChessBoard::kill(Piece *piece, int index)
-{
-    if (index < 0 || index > 32)
-    {
-        printf("INDICE NON VALIDO");
-        return;
-    }
-    pieceVector[index]->isAlive = 0;
-}
-
 void ChessBoard::killPiece(Piece *piece)
 {
-    int index = indexOfPiece(piece);
-    kill(piece, index);
+    piece->isAlive = false;
     return;
-}
-
-void ChessBoard::killVerginity(Piece *piece, int index)
-{
-    if (index < 0 || index > 32)
-    {
-        printf("INDICE NON VALIDO");
-        return;
-    }
-    pieceVector[index]->isVirgin = 0;
 }
 
 void ChessBoard::killPieceVerginity(Piece *piece)
 {
-    int index = indexOfPiece(piece);
-    killVerginity(piece, index);
+    piece->isVirgin = false;
     return;
 }
 

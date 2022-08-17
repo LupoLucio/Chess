@@ -603,20 +603,9 @@ bool ChessBoard::isPinned(Piece *piece)
     }
 }
 
-void ChessBoard::revive(Piece *piece, int index)
-{
-    if (index < 0 || index > 32)
-    {
-        printf("INDICE NON VALIDO");
-        return;
-    }
-    pieceVector[index]->isAlive = 1;
-}
-
 void ChessBoard::revivePiece(Piece *piece)
 {
-    int index = indexOfPiece(piece);
-    revive(piece, index);
+    piece->isAlive = true;
     return;
 }
 

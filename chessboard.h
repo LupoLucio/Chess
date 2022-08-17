@@ -1,14 +1,7 @@
 #ifndef CHESS_BOARD_H
 #define CHESS_BOARD_H
 
-// FIXME: forward declare Piece and derivates
-#include "bishop.h"
-#include "king.h"
-#include "knight.h"
-#include "pawn.h"
-#include "position.h"
-#include "queen.h"
-#include "rook.h"
+#include "piece.h"
 
 /*
 Classe che definisce la ChessBoard nella quale giocano i pezzi
@@ -26,12 +19,6 @@ public:
 
     // Vector with all pieces
     std::vector<Piece *> pieceVector;
-
-    // pezzi di riserva
-    std::vector<Queen> ResQpieces;
-    std::vector<Rook> ResRpieces;
-    std::vector<Bishop> ResBpieces;
-    std::vector<Knight> ResKNpieces;
 
     // matrice di char
     char chessBoard[8][8];
@@ -65,14 +52,8 @@ public:
     void endMove(Piece *piece);
     // genera le poisizioni di tutti i pezzi
     void generateAllPos();
-    // ritorna l'indice di piece nel vector del suo tipo corrispondente
-    int indexOfPiece(Piece *piece);
-    // funzione interna di uccisione di piece
-    void kill(Piece *piece, int index);
     // funzione esterna (da chiamare) per unccidere piece
     void killPiece(Piece *piece);
-    // funzione interna di uccisione della verginita' di piece
-    void killVerginity(Piece *piece, int index);
     // funzione esterna (da chiamare) per uccidere la verginita' di piece
     void killPieceVerginity(Piece *piece);
     // promozione da pedone a regina, ritorna il nuovo pezzo
@@ -99,8 +80,6 @@ public:
     void generateAllIpoPos(Piece::Color color);
     // ritorna se le controllate ipotetiche dei pezzi del colore opposto ce il king di color color
     bool willKingBeIpoInCheck(Piece::Color color);
-    // funzione interna di resuscitazione del pezzo
-    void revive(Piece *piece, int index);
     // funzione esterna di resuscitazione del pezzo
     void revivePiece(Piece *piece);
 };
