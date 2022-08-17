@@ -1,7 +1,7 @@
 #ifndef PIECE_H
 #define PIECE_H
 
-#include "Position.h"
+#include "position.h"
 #include <vector>
 #include <string>
 
@@ -22,7 +22,7 @@ public:
     Piece(Type type, Color color, bool alive, Position p);
 
     // funzione move che cambia l'oggetto p di Piece a newP spostando il pezzo
-    void move(Position newP);
+    void move(const Position &newPos);
     // altre che muovere in newP deve anche eliminare il mangiato
     void eat(Position newP);
 
@@ -48,7 +48,7 @@ public:
 
     static inline Color getOppositColor(Color c)
     {
-        //Cast to int to do a NOT and then back to enum
+        // Cast to int to do a NOT and then back to enum
         return Color(!int(c));
     }
 
@@ -80,7 +80,7 @@ public:
 private:
     Color m_color;
     Type m_type;
-    //Piece number relative to its type, i.e. Pawn 1, Pawn 2...
+    // Piece number relative to its type, i.e. Pawn 1, Pawn 2...
     int m_number = INVALID_NUMBER;
 };
 

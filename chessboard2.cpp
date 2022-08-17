@@ -1,12 +1,12 @@
-#include "Bishop.h"
-#include "ChessBoard.h"
-#include "King.h"
-#include "Knight.h"
-#include "Pawn.h"
-#include "Queen.h"
-#include "Rook.h"
+#include "bishop.h"
+#include "chessboard.h"
+#include "king.h"
+#include "knight.h"
+#include "pawn.h"
+#include "queen.h"
+#include "rook.h"
 
-//FIXME: remove when user input and logic are fully separated
+// FIXME: remove when user input and logic are fully separated
 #include <iostream>
 using namespace std;
 
@@ -34,11 +34,13 @@ void ChessBoard::generateIpoPos(Piece *piece)
         if (isPositionValid(Position((piece->m_pos).getX(), (piece->m_pos).getY() + 1))
             && !isOccpied(Position((piece->m_pos).getX(), (piece->m_pos).getY() + 1)))
         {
-            (piece->ipoAccessiblePos).push_back(Position((piece->m_pos).getX(), (piece->m_pos).getY() + 1));
+            (piece->ipoAccessiblePos)
+                    .push_back(Position((piece->m_pos).getX(), (piece->m_pos).getY() + 1));
         }
         if (isPositionValid(Position((piece->m_pos).getX(), (piece->m_pos).getY() + 1)))
         {
-            (piece->ipoControlledPos).push_back(Position((piece->m_pos).getX(), (piece->m_pos).getY() + 1));
+            (piece->ipoControlledPos)
+                    .push_back(Position((piece->m_pos).getX(), (piece->m_pos).getY() + 1));
         }
 
         // check posizione alto a dx
@@ -58,11 +60,13 @@ void ChessBoard::generateIpoPos(Piece *piece)
         if (isPositionValid(Position((piece->m_pos).getX() + 1, (piece->m_pos).getY()))
             && !isOccpied(Position((piece->m_pos).getX() + 1, (piece->m_pos).getY())))
         {
-            (piece->ipoAccessiblePos).push_back(Position((piece->m_pos).getX() + 1, (piece->m_pos).getY()));
+            (piece->ipoAccessiblePos)
+                    .push_back(Position((piece->m_pos).getX() + 1, (piece->m_pos).getY()));
         }
         if (isPositionValid(Position((piece->m_pos).getX() + 1, (piece->m_pos).getY())))
         {
-            (piece->ipoControlledPos).push_back(Position((piece->m_pos).getX() + 1, (piece->m_pos).getY()));
+            (piece->ipoControlledPos)
+                    .push_back(Position((piece->m_pos).getX() + 1, (piece->m_pos).getY()));
         }
         // check posizione in basso a dx
         if (isPositionValid(Position((piece->m_pos).getX() + 1, (piece->m_pos).getY() - 1))
@@ -80,11 +84,13 @@ void ChessBoard::generateIpoPos(Piece *piece)
         if (isPositionValid(Position((piece->m_pos).getX(), (piece->m_pos).getY() - 1))
             && !isOccpied(Position((piece->m_pos).getX(), (piece->m_pos).getY() - 1)))
         {
-            (piece->ipoAccessiblePos).push_back(Position((piece->m_pos).getX(), (piece->m_pos).getY() - 1));
+            (piece->ipoAccessiblePos)
+                    .push_back(Position((piece->m_pos).getX(), (piece->m_pos).getY() - 1));
         }
         if (isPositionValid(Position((piece->m_pos).getX(), (piece->m_pos).getY() - 1)))
         {
-            (piece->ipoControlledPos).push_back(Position((piece->m_pos).getX(), (piece->m_pos).getY() - 1));
+            (piece->ipoControlledPos)
+                    .push_back(Position((piece->m_pos).getX(), (piece->m_pos).getY() - 1));
         }
         // check posizione in basso a sx
         if (isPositionValid(Position((piece->m_pos).getX() - 1, (piece->m_pos).getY() - 1))
@@ -102,11 +108,13 @@ void ChessBoard::generateIpoPos(Piece *piece)
         if (isPositionValid(Position((piece->m_pos).getX() - 1, (piece->m_pos).getY()))
             && !isOccpied(Position((piece->m_pos).getX() - 1, (piece->m_pos).getY())))
         {
-            (piece->ipoAccessiblePos).push_back(Position((piece->m_pos).getX() - 1, (piece->m_pos).getY()));
+            (piece->ipoAccessiblePos)
+                    .push_back(Position((piece->m_pos).getX() - 1, (piece->m_pos).getY()));
         }
         if (isPositionValid(Position((piece->m_pos).getX() - 1, (piece->m_pos).getY())))
         {
-            (piece->ipoControlledPos).push_back(Position((piece->m_pos).getX() - 1, (piece->m_pos).getY()));
+            (piece->ipoControlledPos)
+                    .push_back(Position((piece->m_pos).getX() - 1, (piece->m_pos).getY()));
         }
     }
     // check se è Queen
@@ -134,12 +142,14 @@ void ChessBoard::generateIpoPos(Piece *piece)
         while (isPositionValid(Position((piece->m_pos).getX(), (piece->m_pos).getY() + i))
                && !isOccpied(Position((piece->m_pos).getX(), (piece->m_pos).getY() + i)))
         {
-            (piece->ipoAccessiblePos).push_back(Position((piece->m_pos).getX(), (piece->m_pos).getY() + i));
+            (piece->ipoAccessiblePos)
+                    .push_back(Position((piece->m_pos).getX(), (piece->m_pos).getY() + i));
             i++;
         }
         if (isPositionValid(Position((piece->m_pos).getX(), (piece->m_pos).getY() + i)))
         {
-            (piece->ipoControlledPos).push_back(Position((piece->m_pos).getX(), (piece->m_pos).getY() + i));
+            (piece->ipoControlledPos)
+                    .push_back(Position((piece->m_pos).getX(), (piece->m_pos).getY() + i));
         }
         // check posizioni in alto a dx
         i = 1;
@@ -162,12 +172,14 @@ void ChessBoard::generateIpoPos(Piece *piece)
         while (isPositionValid(Position((piece->m_pos).getX() + i, (piece->m_pos).getY()))
                && !isOccpied(Position((piece->m_pos).getX() + i, (piece->m_pos).getY())))
         {
-            (piece->ipoAccessiblePos).push_back(Position((piece->m_pos).getX() + i, (piece->m_pos).getY()));
+            (piece->ipoAccessiblePos)
+                    .push_back(Position((piece->m_pos).getX() + i, (piece->m_pos).getY()));
             i++;
         }
         if (isPositionValid(Position((piece->m_pos).getX() + i, (piece->m_pos).getY())))
         {
-            (piece->ipoControlledPos).push_back(Position((piece->m_pos).getX() + i, (piece->m_pos).getY()));
+            (piece->ipoControlledPos)
+                    .push_back(Position((piece->m_pos).getX() + i, (piece->m_pos).getY()));
         }
         // check posizioni in basso a dx
         i = 1;
@@ -188,12 +200,14 @@ void ChessBoard::generateIpoPos(Piece *piece)
         while (isPositionValid(Position((piece->m_pos).getX(), (piece->m_pos).getY() - i))
                && !isOccpied(Position((piece->m_pos).getX(), (piece->m_pos).getY() - i)))
         {
-            (piece->ipoAccessiblePos).push_back(Position((piece->m_pos).getX(), (piece->m_pos).getY() - i));
+            (piece->ipoAccessiblePos)
+                    .push_back(Position((piece->m_pos).getX(), (piece->m_pos).getY() - i));
             i++;
         }
         if (isPositionValid(Position((piece->m_pos).getX(), (piece->m_pos).getY() - i)))
         {
-            (piece->ipoControlledPos).push_back(Position((piece->m_pos).getX(), (piece->m_pos).getY() - i));
+            (piece->ipoControlledPos)
+                    .push_back(Position((piece->m_pos).getX(), (piece->m_pos).getY() - i));
         }
         // check posizioni in basso a sx
         i = 1;
@@ -214,12 +228,14 @@ void ChessBoard::generateIpoPos(Piece *piece)
         while (isPositionValid(Position((piece->m_pos).getX() - i, (piece->m_pos).getY()))
                && !isOccpied(Position((piece->m_pos).getX() - i, (piece->m_pos).getY())))
         {
-            (piece->ipoAccessiblePos).push_back(Position((piece->m_pos).getX() - i, (piece->m_pos).getY()));
+            (piece->ipoAccessiblePos)
+                    .push_back(Position((piece->m_pos).getX() - i, (piece->m_pos).getY()));
             i++;
         }
         if (isPositionValid(Position((piece->m_pos).getX() - i, (piece->m_pos).getY())))
         {
-            (piece->ipoControlledPos).push_back(Position((piece->m_pos).getX() - i, (piece->m_pos).getY()));
+            (piece->ipoControlledPos)
+                    .push_back(Position((piece->m_pos).getX() - i, (piece->m_pos).getY()));
         }
     }
     // check se è Rook
@@ -231,36 +247,42 @@ void ChessBoard::generateIpoPos(Piece *piece)
         while (isPositionValid(Position((piece->m_pos).getX(), (piece->m_pos).getY() + i))
                && !isOccpied(Position((piece->m_pos).getX(), (piece->m_pos).getY() + i)))
         {
-            (piece->ipoAccessiblePos).push_back(Position((piece->m_pos).getX(), (piece->m_pos).getY() + i));
+            (piece->ipoAccessiblePos)
+                    .push_back(Position((piece->m_pos).getX(), (piece->m_pos).getY() + i));
             i++;
         }
         if (isPositionValid(Position((piece->m_pos).getX(), (piece->m_pos).getY() + i)))
         {
-            (piece->ipoControlledPos).push_back(Position((piece->m_pos).getX(), (piece->m_pos).getY() + i));
+            (piece->ipoControlledPos)
+                    .push_back(Position((piece->m_pos).getX(), (piece->m_pos).getY() + i));
         }
         // check posizioni in basso
         i = 1;
         while (isPositionValid(Position((piece->m_pos).getX(), (piece->m_pos).getY() - i))
                && !isOccpied(Position((piece->m_pos).getX(), (piece->m_pos).getY() - i)))
         {
-            (piece->ipoAccessiblePos).push_back(Position((piece->m_pos).getX(), (piece->m_pos).getY() - i));
+            (piece->ipoAccessiblePos)
+                    .push_back(Position((piece->m_pos).getX(), (piece->m_pos).getY() - i));
             i++;
         }
         if (isPositionValid(Position((piece->m_pos).getX(), (piece->m_pos).getY() - i)))
         {
-            (piece->ipoControlledPos).push_back(Position((piece->m_pos).getX(), (piece->m_pos).getY() - i));
+            (piece->ipoControlledPos)
+                    .push_back(Position((piece->m_pos).getX(), (piece->m_pos).getY() - i));
         }
         // check posizioni a sx
         i = 1;
         while (isPositionValid(Position((piece->m_pos).getX() - i, (piece->m_pos).getY()))
                && !isOccpied(Position((piece->m_pos).getX() - i, (piece->m_pos).getY())))
         {
-            (piece->ipoAccessiblePos).push_back(Position((piece->m_pos).getX() - i, (piece->m_pos).getY()));
+            (piece->ipoAccessiblePos)
+                    .push_back(Position((piece->m_pos).getX() - i, (piece->m_pos).getY()));
             i++;
         }
         if (isPositionValid(Position((piece->m_pos).getX() - i, (piece->m_pos).getY())))
         {
-            (piece->ipoControlledPos).push_back(Position((piece->m_pos).getX() - i, (piece->m_pos).getY()));
+            (piece->ipoControlledPos)
+                    .push_back(Position((piece->m_pos).getX() - i, (piece->m_pos).getY()));
         }
         // check posizioni a dx
         i = 1;
@@ -268,12 +290,14 @@ void ChessBoard::generateIpoPos(Piece *piece)
         while (isPositionValid(Position((piece->m_pos).getX() + i, (piece->m_pos).getY()))
                && !isOccpied(Position((piece->m_pos).getX() + i, (piece->m_pos).getY())))
         {
-            (piece->ipoAccessiblePos).push_back(Position((piece->m_pos).getX() + i, (piece->m_pos).getY()));
+            (piece->ipoAccessiblePos)
+                    .push_back(Position((piece->m_pos).getX() + i, (piece->m_pos).getY()));
             i++;
         }
         if (isPositionValid(Position((piece->m_pos).getX() + i, (piece->m_pos).getY())))
         {
-            (piece->ipoControlledPos).push_back(Position((piece->m_pos).getX() + i, (piece->m_pos).getY()));
+            (piece->ipoControlledPos)
+                    .push_back(Position((piece->m_pos).getX() + i, (piece->m_pos).getY()));
         }
     }
     // check se è Bhishop

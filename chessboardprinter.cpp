@@ -10,8 +10,8 @@
 #endif //_WIN32
 
 #include "chessboardprinter.h"
-#include "ChessBoard.h"
-#include "Piece.h"
+#include "chessboard.h"
+#include "piece.h"
 
 #include <iostream>
 using namespace std;

@@ -1,24 +1,22 @@
 #ifndef CHESS_BOARD_H
 #define CHESS_BOARD_H
 
-//FIXME: forward declare Piece and derivates
-#include "Bishop.h"
-#include "King.h"
-#include "Knight.h"
-#include "Pawn.h"
-#include "Position.h"
-#include "Queen.h"
-#include "Rook.h"
+// FIXME: forward declare Piece and derivates
+#include "bishop.h"
+#include "king.h"
+#include "knight.h"
+#include "pawn.h"
+#include "position.h"
+#include "queen.h"
+#include "rook.h"
 
 /*
 Classe che definisce la ChessBoard nella quale giocano i pezzi
 */
-
 class ChessBoard
 {
 public:
-
-    //Represents initial configuration
+    // Represents initial configuration
     struct ConfigurationItem
     {
         Piece::Type type;
@@ -26,7 +24,7 @@ public:
     };
     typedef std::vector<ConfigurationItem> Configuration;
 
-    //Vector with all pieces
+    // Vector with all pieces
     std::vector<Piece *> pieceVector;
 
     // pezzi di riserva
@@ -42,7 +40,7 @@ public:
     ~ChessBoard();
 
     void clear();
-    void initConfiguration(const Configuration& conf);
+    void initConfiguration(const Configuration &conf);
 
     // stampa i pezzi e i loro parametri
     void printPieces();

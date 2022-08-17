@@ -1,4 +1,4 @@
-#include "Piece.h"
+#include "piece.h"
 
 #include <iostream>
 using namespace std;
@@ -10,10 +10,11 @@ Piece::Piece(Type type, Color color, bool alive, Position pos)
     isAlive = alive;
     m_pos = pos;
 }
-void Piece::move(Position newP)
+void Piece::move(const Position &newPos)
 {
-    m_pos = newP;
+    m_pos = newPos;
 }
+
 Position Piece::getPosition()
 {
     return m_pos;
@@ -51,7 +52,7 @@ void Piece::printAllPos()
     printAccessiblePos();
 }
 
-bool Piece::operator==(const Piece& other) const
+bool Piece::operator==(const Piece &other) const
 {
     return m_pos == other.m_pos && m_color == other.m_color && m_type == other.m_type;
 }
@@ -73,10 +74,11 @@ string Piece::getColorName(Color c)
 
 string Piece::getTypeName(Type t)
 {
-    const char *arr[int(Type::NTypes) + 1] = { "Bishop", "King", "Knight", "Pawn", "Queen", "Rook", "NTypes" };
+    const char *arr[int(Type::NTypes) + 1] = { "Bishop", "King", "Knight", "Pawn",
+                                               "Queen",  "Rook", "NTypes" };
 
     int idx = int(t);
-    if(idx < 0 || idx > int(Type::NTypes))
+    if (idx < 0 || idx > int(Type::NTypes))
         idx = int(Type::NTypes);
 
     return arr[idx];

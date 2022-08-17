@@ -1,6 +1,7 @@
 #ifndef KING_H
 #define KING_H
-#include "Piece.h"
+
+#include "piece.h"
 
 /*
 Classe che definisce il pezzo King

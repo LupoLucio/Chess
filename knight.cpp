@@ -1,6 +1,5 @@
-#include "Knight.h"
+#include "knight.h"
 
 Knight::Knight(Color color, bool alive, Position pos) : Piece(Type::Knight, color, alive, pos)
 {
-
 }

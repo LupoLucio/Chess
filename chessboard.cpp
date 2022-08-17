@@ -1,13 +1,12 @@
+#include "chessboard.h"
+#include "bishop.h"
+#include "king.h"
+#include "knight.h"
+#include "pawn.h"
+#include "queen.h"
+#include "rook.h"
 
-#include "ChessBoard.h"
-#include "Bishop.h"
-#include "King.h"
-#include "Knight.h"
-#include "Pawn.h"
-#include "Queen.h"
-#include "Rook.h"
-
-//FIXME: remove when user input and logic are fully separated
+// FIXME: remove when user input and logic are fully separated
 #include <iostream>
 using namespace std;
 
@@ -229,11 +228,11 @@ Piece *ChessBoard::getPieceByType(Piece::Color color, Piece::Type type, int num)
     {
         if (piece->getColor() == color && piece->getType() == type)
         {
-            if(num == Piece::INVALID_NUMBER)
-                return piece; //We don't care about number
+            if (num == Piece::INVALID_NUMBER)
+                return piece; // We don't care about number
 
-            //We care about number
-            if(piece->getNumber() == num)
+            // We care about number
+            if (piece->getNumber() == num)
                 return piece;
         }
     }
@@ -254,11 +253,11 @@ void ChessBoard::generatePos(Piece *piece)
     if (piece->getType() == Piece::Type::King)
     {
         // check posizione alto a sx
-        Position pos = piece->m_pos + Position(- 1, 1);
+        Position pos = piece->m_pos + Position(-1, 1);
         if (isPositionValid(pos))
         {
             piece->controlledPos.push_back(pos);
-            if(!isOccpied(pos))
+            if (!isOccpied(pos))
                 piece->accessiblePos.push_back(pos);
         }
 
@@ -267,7 +266,7 @@ void ChessBoard::generatePos(Piece *piece)
         if (isPositionValid(pos))
         {
             piece->controlledPos.push_back(pos);
-            if(!isOccpied(pos))
+            if (!isOccpied(pos))
                 piece->accessiblePos.push_back(pos);
         }
 
@@ -276,7 +275,7 @@ void ChessBoard::generatePos(Piece *piece)
         if (isPositionValid(pos))
         {
             piece->controlledPos.push_back(pos);
-            if(!isOccpied(pos))
+            if (!isOccpied(pos))
                 piece->accessiblePos.push_back(pos);
         }
 
@@ -285,7 +284,7 @@ void ChessBoard::generatePos(Piece *piece)
         if (isPositionValid(pos))
         {
             piece->controlledPos.push_back(pos);
-            if(!isOccpied(pos))
+            if (!isOccpied(pos))
                 piece->accessiblePos.push_back(pos);
         }
 
@@ -294,7 +293,7 @@ void ChessBoard::generatePos(Piece *piece)
         if (isPositionValid(pos))
         {
             piece->controlledPos.push_back(pos);
-            if(!isOccpied(pos))
+            if (!isOccpied(pos))
                 piece->accessiblePos.push_back(pos);
         }
 
@@ -303,7 +302,7 @@ void ChessBoard::generatePos(Piece *piece)
         if (isPositionValid(pos))
         {
             piece->controlledPos.push_back(pos);
-            if(!isOccpied(pos))
+            if (!isOccpied(pos))
                 piece->accessiblePos.push_back(pos);
         }
 
@@ -312,7 +311,7 @@ void ChessBoard::generatePos(Piece *piece)
         if (isPositionValid(pos))
         {
             piece->controlledPos.push_back(pos);
-            if(!isOccpied(pos))
+            if (!isOccpied(pos))
                 piece->accessiblePos.push_back(pos);
         }
 
@@ -321,7 +320,7 @@ void ChessBoard::generatePos(Piece *piece)
         if (isPositionValid(pos))
         {
             piece->controlledPos.push_back(pos);
-            if(!isOccpied(pos))
+            if (!isOccpied(pos))
                 piece->accessiblePos.push_back(pos);
         }
     }
@@ -817,14 +816,14 @@ bool ChessBoard::beginMove(Piece *piece, Position pos)
     // controllo se il pezzo puo' muovere
     if (!canMove(piece, pos))
         return false;
-    
+
     piece->move(pos);
     // uccido la sua verginita (setto a 0 il suo isVirgin)
     if (piece->isVirgin)
     {
         killPieceVerginity(piece);
     }
-    
+
     return true;
 }
 
@@ -842,7 +841,7 @@ void ChessBoard::endMove(Piece *piece)
     if (isKingInCheck(Piece::getOppositColor(piece->getColor())))
     {
         cout << "Re colore " << Piece::getColorName(Piece::getOppositColor(piece->getColor()))
-            << "in Scacco" << endl;
+             << "in Scacco" << endl;
     }
 }
 void ChessBoard::queenning(Piece *pawn, Piece::Type newType)
@@ -850,8 +849,8 @@ void ChessBoard::queenning(Piece *pawn, Piece::Type newType)
     if (!pawn || pawn->getType() != Piece::Type::Pawn)
         return;
 
-    //FIXME: avoid user interaction in ChessBorard
-    //Keep all cin/cout in main.cpp
+    // FIXME: avoid user interaction in ChessBorard
+    // Keep all cin/cout in main.cpp
 
     if (pawn->getColor() == Piece::Color::White)
     {
@@ -951,7 +950,7 @@ bool ChessBoard::canQueen(Piece *piece)
 {
     if (piece->getType() != Piece::Type::Pawn)
     {
-        return false; //Only Pawns can became Queens
+        return false; // Only Pawns can became Queens
     }
     else if (piece->getColor() == Piece::Color::White)
     {
