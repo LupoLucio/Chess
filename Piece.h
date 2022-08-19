@@ -25,9 +25,6 @@ public:
 
     // funzione move che cambia l'oggetto p di Piece a newP spostando il pezzo
     void move(Position newP);
-    // altre che muovere in newP deve anche eliminare il mangiato
-    void eat(Position newP);
-
     // stampa posizioni controllate
     void printControlledPos();
     // stampa posizioni accessibili
