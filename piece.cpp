@@ -15,19 +15,6 @@ void Piece::move(const Position &newPos)
     m_pos = newPos;
 }
 
-Position Piece::getPosition()
-{
-    return m_pos;
-}
-
-void Piece::printPiece()
-{
-    cout << "Name : " << getTypeName(getType()) << " " << getNumber()
-         << " Color : " << getColorName(getColor()) << " Live : " << isAlive
-         << " Virgin : " << isVirgin << " Position : (" << m_pos.getX() << "," << m_pos.getY()
-         << ")" << endl;
-}
-
 void Piece::printControlledPos()
 {
     cout << "controlledPos are : " << endl;
@@ -52,7 +39,15 @@ void Piece::printAllPos()
     printAccessiblePos();
 }
 
-bool Piece::operator==(const Piece &other) const
+void Piece::printPiece()
+{
+    cout << "Name : " << getTypeName(getType()) << " " << getNumber()
+         << " Color : " << getColorName(getColor()) << " Live : " << isAlive
+         << " Virgin : " << isVirgin << " Position : (" << m_pos.getX() << "," << m_pos.getY()
+         << ")" << endl;
+}
+
+bool Piece::operator==(const Piece& other) const
 {
     return m_pos == other.m_pos && m_color == other.m_color && m_type == other.m_type;
 }
@@ -62,6 +57,10 @@ bool Piece::isOppositeColor(Piece *piece)
     return m_color != piece->m_color;
 }
 
+Position Piece::getPosition()
+{
+    return m_pos;
+}
 void Piece::setPosition(Position pos)
 {
     m_pos = pos;

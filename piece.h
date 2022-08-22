@@ -21,11 +21,8 @@ public:
     // costruttore che crea un Piece
     Piece(Type type, Color color, bool alive, Position p);
 
-    // funzione move che cambia l'oggetto p di Piece a newP spostando il pezzo
+    // funzione move che cambia l'oggetto m_pos di Piece a newP spostando il pezzo
     void move(const Position &newPos);
-    // altre che muovere in newP deve anche eliminare il mangiato
-    void eat(Position newP);
-
     // stampa posizioni controllate
     void printControlledPos();
     // stampa posizioni accessibili
