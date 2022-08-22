@@ -1,6 +1,6 @@
 // Class to describe a generic position on the Chess Board
 
-#include "Position.h"
+#include "position.h"
 
 #include <iostream>
 
@@ -20,14 +20,17 @@ int Position::getX() const
 {
     return x;
 }
+
 int Position::getY() const
 {
     return y;
 }
+
 void Position::setX(int newx)
 {
     x = newx;
 }
+
 void Position::setY(int newy)
 {
     y = newy;

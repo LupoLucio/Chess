@@ -1,22 +1,15 @@
 #ifndef CHESS_BOARD_H
 #define CHESS_BOARD_H
-#include "Bishop.h"
-#include "King.h"
-#include "Knight.h"
-#include "Pawn.h"
-#include "Position.h"
-#include "Queen.h"
-#include "Rook.h"
+
+#include "piece.h"
 
 /*
 Classe che definisce la ChessBoard nella quale giocano i pezzi
 */
-
 class ChessBoard
 {
 public:
-
-    //Represents initial configuration
+    // Represents initial configuration
     struct ConfigurationItem
     {
         Piece::Type type;
@@ -24,14 +17,8 @@ public:
     };
     typedef std::vector<ConfigurationItem> Configuration;
 
-    //Vector with all pieces
+    // Vector with all pieces
     std::vector<Piece *> pieceVector;
-
-    // pezzi di riserva
-    std::vector<Queen> ResQpieces;
-    std::vector<Rook> ResRpieces;
-    std::vector<Bishop> ResBpieces;
-    std::vector<Knight> ResKNpieces;
 
     // matrice di char
     char chessBoard[8][8];
@@ -40,12 +27,10 @@ public:
     ~ChessBoard();
 
     void clear();
-    void initConfiguration(const Configuration& conf);
+    void initConfiguration(const Configuration &conf);
 
     // stampa i pezzi e i loro parametri
     void printPieces();
-    // stampa la scacchiera (matrtice di char)
-    void printChessBoard();
     // ritorna se la posizione è occupata
     bool isOccpied(Position pos);
     // ritorna un puntatore al pezzo nella posizione p
@@ -67,18 +52,12 @@ public:
     void endMove(Piece *piece);
     // genera le poisizioni di tutti i pezzi
     void generateAllPos();
-    // ritorna l'indice di piece nel vector del suo tipo corrispondente
-    int indexOfPiece(Piece *piece);
-    // funzione interna di uccisione di piece
-    void kill(Piece *piece, int index);
     // funzione esterna (da chiamare) per unccidere piece
     void killPiece(Piece *piece);
-    // funzione interna di uccisione della verginita' di piece
-    void killVerginity(Piece *piece, int index);
     // funzione esterna (da chiamare) per uccidere la verginita' di piece
     void killPieceVerginity(Piece *piece);
-    // promozione da pedone a regina
-    void queenning(Piece *pawn, Piece::Type newType);
+    // promozione da pedone a regina, ritorna il nuovo pezzo
+    Piece *queenning(Piece *pawn, Piece::Type newType);
     // ritorna se il pezzo puo' fare la promozione
     bool canQueen(Piece *piece);
     // prova a settare in parametro isInCheck (se la sua pos è nelle controllate dei pezzi opposti)
@@ -89,8 +68,6 @@ public:
     bool willKingBeInCheck(Piece::Color color, Position pos);
     // ritorna se il pezzo puo' mangiare in quella posizione
     bool canEat(Piece *piece, Position pos);
-    // fa le azioni neccessarie per mangiare
-    void eat(Piece *piece, Position pos);
     // le controllate in cui in pezzo puo' mangiare vengono anche messe nelle accessibili
     void mergePos(Piece *piece);
     // ritorna se il pezzo è pinnato da COMPLETARE
@@ -103,8 +80,6 @@ public:
     void generateAllIpoPos(Piece::Color color);
     // ritorna se le controllate ipotetiche dei pezzi del colore opposto ce il king di color color
     bool willKingBeIpoInCheck(Piece::Color color);
-    // funzione interna di resuscitazione del pezzo
-    void revive(Piece *piece, int index);
     // funzione esterna di resuscitazione del pezzo
     void revivePiece(Piece *piece);
 };

@@ -1,11 +1,9 @@
 #ifndef PIECE_H
 #define PIECE_H
 
-#include "Position.h"
+#include "position.h"
 #include <vector>
 #include <string>
-
-using namespace std;
 
 /*
 Classe che definisce il modo generico il pezzo in una scacchiera.
@@ -23,8 +21,8 @@ public:
     // costruttore che crea un Piece
     Piece(Type type, Color color, bool alive, Position p);
 
-    // funzione move che cambia l'oggetto p di Piece a newP spostando il pezzo
-    void move(Position newP);
+    // funzione move che cambia l'oggetto m_pos di Piece a newP spostando il pezzo
+    void move(const Position &newPos);
     // stampa posizioni controllate
     void printControlledPos();
     // stampa posizioni accessibili
@@ -47,7 +45,7 @@ public:
 
     static inline Color getOppositColor(Color c)
     {
-        //Cast to int to do a NOT and then back to enum
+        // Cast to int to do a NOT and then back to enum
         return Color(!int(c));
     }
 
@@ -58,9 +56,9 @@ public:
     inline void setNumber(int n) { m_number = n; }
 
 public:
-    static string getColorName(Color c);
+    static std::string getColorName(Color c);
 
-    static string getTypeName(Type t);
+    static std::string getTypeName(Type t);
 
 public:
     // oggetto Position p per la posizione nella board
@@ -79,7 +77,7 @@ public:
 private:
     Color m_color;
     Type m_type;
-    //Piece number relative to its type, i.e. Pawn 1, Pawn 2...
+    // Piece number relative to its type, i.e. Pawn 1, Pawn 2...
     int m_number = INVALID_NUMBER;
 };
 

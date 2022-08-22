@@ -26,6 +26,6 @@ public:
     bool operator==(const Position &position) const;
 };
 
-Position operator+(const Position& left, const Position& right);
+Position operator+(const Position &left, const Position &right);
 
 #endif

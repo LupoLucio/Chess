@@ -1,6 +1,7 @@
 #ifndef ROOK_H
 #define ROOK_H
-#include "Piece.h"
+
+#include "piece.h"
 /*
 Classe che definisce il pezzo King
 */

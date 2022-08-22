@@ -1,41 +1,43 @@
-#include "ChessBoard.h"
-#include "Piece.h"
-
+#include "chessboard.h"
+#include "piece.h"
+#include "chessboardprinter.h"
 
 #include <iostream>
 using namespace std;
 
-void execQueenning(ChessBoard &cb, Piece *piece)
+Piece *execQueenning(ChessBoard &cb, Piece *piece)
 {
-    while(true)
+    while (true)
     {
         const int Noptions = 4;
-        Piece::Type arr[Noptions] = { Piece::Type::Queen, Piece::Type::Rook, Piece::Type::Bishop, Piece::Type::Knight };
-        
+        Piece::Type arr[Noptions] = { Piece::Type::Queen, Piece::Type::Rook, Piece::Type::Bishop,
+                                      Piece::Type::Knight };
+
         cout << "Devi effettuare la promozione del pedone. Scegli:" << endl;
-        for(int i = 0; i < Noptions; i++)
+        for (int i = 0; i < Noptions; i++)
         {
-            cout << i << " per " << Piece::getTypeName(arr[i]);
+            cout << i << " per " << Piece::getTypeName(arr[i]) << endl;
         }
 
         int choice = 0;
         cin >> choice;
 
-        if(choice < 0 || choice >= Noptions)
+        if (choice < 0 || choice >= Noptions)
         {
             cout << "Scelta non valida. Riprovare" << endl;
             continue;
         }
 
         Piece::Type newType = arr[choice];
-        cb.queenning(piece, newType);
+        return cb.queenning(piece, newType);
     }
+
+    return piece;
 }
 
 bool execTurn(ChessBoard &cb, Piece::Color color)
 {
-    int turn = 1;
-    int x, y;
+    int x = 0, y = 0;
     cb.printPieces();
 
     cout << "Inserisci x : ";
@@ -46,13 +48,13 @@ bool execTurn(ChessBoard &cb, Piece::Color color)
     Position pos(x, y);
 
     Piece *piece = cb.getPieceAtPos(pos);
-    if(!piece)
+    if (!piece)
     {
         cout << "Pezzo assente" << endl;
         return false;
     }
-    
-    if(piece->getColor() != color)
+
+    if (piece->getColor() != color)
     {
         cout << "Pezzo del colore sbagliato" << endl;
         return false;
@@ -70,18 +72,22 @@ bool execTurn(ChessBoard &cb, Piece::Color color)
     cout << "Inserisci y : ";
     cin >> y;
 
-    if(cb.beginMove(piece, Position(x, y)))
+    if (cb.beginMove(piece, Position(x, y)))
     {
         // controllo se dopo aver mosso posso Queenare, se puo' Queenno
-        if(cb.canQueen(piece))
+        if (cb.canQueen(piece))
         {
-            execQueenning(cb, piece);
+            //Replace piece
+            piece = execQueenning(cb, piece);
         }
         cb.endMove(piece);
     }
-    
+
     cb.printPieces();
-    cb.printChessBoard();
+
+    ChessBoardPrinter printer(cb);
+    printer.setCurPiece(piece);
+    printer.printChessBoardToStdout();
 
     return true;
 }
@@ -89,16 +95,20 @@ bool execTurn(ChessBoard &cb, Piece::Color color)
 int main()
 {
     ChessBoard cb = ChessBoard();
-    Piece *piece;
-    Position p;
-    int turn = int(Piece::Color::White);
 
-    while (turn == 1 || turn == 0)
+    Piece::Color turnColor = Piece::Color::White;
+
+    while (true)
     {
-        execTurn(cb, Piece::Color(turn));
+        execTurn(cb, turnColor);
 
+        int nextTurn = 0;
         cout << "Inserisci turno : " << endl;
-        cin >> turn;
+        cin >> nextTurn;
+        if(nextTurn != 0 && nextTurn != 1)
+            break;
+
+        turnColor = Piece::Color(nextTurn);
     }
 
     return 0;

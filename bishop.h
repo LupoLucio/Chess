@@ -1,6 +1,7 @@
 #ifndef BISHOP_H
 #define BISHOP_H
-#include "Piece.h"
+
+#include "piece.h"
 /*
 Classe che definisce il pezzo King
 */
