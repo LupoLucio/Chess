@@ -40,6 +40,7 @@ EnableConsoleVirtualSequence::EnableConsoleVirtualSequence(bool enable)
     if (!enable)
         return;
 
+    // Get console STDOUT handle
     hOut = GetStdHandle(STD_OUTPUT_HANDLE);
     if (hOut == INVALID_HANDLE_VALUE)
     {
@@ -55,6 +56,7 @@ EnableConsoleVirtualSequence::EnableConsoleVirtualSequence(bool enable)
         return;
     }
 
+    // Enable virtual sequences
     int newMode = oldMode | ENABLE_VIRTUAL_TERMINAL_PROCESSING;
     if (newMode == oldMode)
     {
@@ -63,6 +65,7 @@ EnableConsoleVirtualSequence::EnableConsoleVirtualSequence(bool enable)
         return;
     }
 
+    // Set new console mode
     if (!SetConsoleMode(hOut, newMode))
     {
         error = GetLastError();
@@ -99,9 +102,17 @@ int getColorNumber(Chess::ConsoleColor color, Chess::ConsoleFormat format)
     return colorVal + fmtVal;
 }
 
+/*!
+ * \brief operator <<
+ * \param out ostream like cout
+ * \param info color info
+ * \return same ostream as out
+ *
+ * Helper function to colorize std::cout using virtual terminal sequences
+ */
 ostream &operator<<(ostream &out, ChessBoardPrinter::TextFormat info)
 {
-    out << "\x1b["; // Special character
+    out << "\x1b["; // Special character to begin command
 
     bool addSemicolon = false;
     if (Chess::hasFlag(info.fmt, Chess::ConsoleFormat::Foreground))
@@ -178,7 +189,7 @@ void ChessBoardPrinter::printChessBoardToStdout()
         cout << TextFormat{}; // Reset colors
 
     //Go to first row AFTER color reset
-    std::cout << endl;
+    cout << endl;
 
     for (int y = 0; y < 8; y++)
     {
