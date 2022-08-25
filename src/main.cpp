@@ -5,6 +5,11 @@
 #include <iostream>
 using namespace std;
 
+void clearConsoleOutput()
+{
+    system("cls");
+}
+
 Piece *execQueenning(ChessBoard &cb, Piece *piece)
 {
     while (true)
@@ -37,9 +42,18 @@ Piece *execQueenning(ChessBoard &cb, Piece *piece)
 
 bool execTurn(ChessBoard &cb, Piece::Color color)
 {
-    int x = 0, y = 0;
-    cb.printPieces();
+    //Clear output
+    clearConsoleOutput();
 
+    //Print chess board
+    ChessBoardPrinter printer(cb);
+    printer.setCurPiece(nullptr);
+    printer.printChessBoardToStdout();
+
+    cout << "Turno " << Piece::getColorName(color) << endl;
+    cout << "Scegli il pezzo da muovere:" << endl;
+
+    int x = 0, y = 0;
     cout << "Inserisci x : ";
     cin >> x;
     cout << "Inserisci y : ";
@@ -60,13 +74,18 @@ bool execTurn(ChessBoard &cb, Piece::Color color)
         return false;
     }
 
+    //Clear console and print again with piece selected
+    clearConsoleOutput();
+    printer.setCurPiece(piece);
+    printer.printChessBoardToStdout();
+
     cout << "Turno " << Piece::getColorName(color) << endl;
     piece->printPiece();
     piece->printControlledPos();
     piece->printAccessiblePos();
 
     // muovo il pezzo
-    cout << "Inserisci posizione in cui muoverlo" << endl;
+    cout << endl << "Inserisci posizione in cui muoverlo" << endl;
     cout << "Inserisci x : ";
     cin >> x;
     cout << "Inserisci y : ";
@@ -83,9 +102,8 @@ bool execTurn(ChessBoard &cb, Piece::Color color)
         cb.endMove(piece);
     }
 
-    cb.printPieces();
-
-    ChessBoardPrinter printer(cb);
+    //Clear console and print again with piece selected
+    clearConsoleOutput();
     printer.setCurPiece(piece);
     printer.printChessBoardToStdout();
 
@@ -103,7 +121,10 @@ int main()
         execTurn(cb, turnColor);
 
         int nextTurn = 0;
-        cout << "Inserisci turno : " << endl;
+        cout << "Turno successivo:" << endl;
+        cout << int(Piece::Color::White) << " for " << Piece::getColorName(Piece::Color::White) << endl;
+        cout << int(Piece::Color::Black) << " for " << Piece::getColorName(Piece::Color::Black) << endl;
+        cout << "Turno: ";
         cin >> nextTurn;
         if(nextTurn != 0 && nextTurn != 1)
             break;
