@@ -82,6 +82,10 @@ public:
     bool willKingBeIpoInCheck(Piece::Color color);
     // funzione esterna di resuscitazione del pezzo
     void revivePiece(Piece *piece);
+    // ritorna se la posizione p è nelle posizioni accessibili di piece
+    bool isInAccessiblePos(Piece *piece, Position p);
+    // ritorna se la posizione p è nelle controllate di piece
+    bool isInControlledPos(Piece *piece, Position p);
 };
 
 #endif

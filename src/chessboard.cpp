@@ -719,6 +719,7 @@ void ChessBoard::endMove(Piece *piece)
     // genero le posizioni per tutti i pezzi (posizioni accessibili e controllate cambiano per
     // ogni pezzo)
     generateAllPos();
+    mergePos(piece);
     // setto se il re opposto al pezzo mosso è in Scacco
     setKingCheck(Piece::getOppositColor(piece->getColor()));
     // setto se il re che ha mosso è in Scacco (nel caso in cui va a mangiare (liberandosi dallo
@@ -842,8 +843,8 @@ void ChessBoard::mergePos(Piece *piece)
 {
     for (int i = 0; i < piece->controlledPos.size(); i++)
     {
-        // se la nella posizione controllata posso mangiare, allora la faccio diventare accessibile
-        if (canEat(piece, piece->controlledPos[i]))
+        // se la nella posizione controllata posso mangiare e la posizione non è gia presente, allora la faccio diventare accessibile
+        if (canEat(piece, piece->controlledPos[i]) && !isInAccessiblePos(piece,piece->controlledPos[i]))
         {
             piece->accessiblePos.push_back(piece->controlledPos[i]);
         }
@@ -867,4 +868,19 @@ bool ChessBoard::willKingBeInCheck(Piece::Color color, Position pos)
 
     // se si è arrivati qua piece è re e pos non è controllata da nessun pezzo opposto
     return false;
+}
+
+bool ChessBoard::isInAccessiblePos(Piece *piece, Position p){
+    for(int i = 0; i < piece->accessiblePos.size(); i++){
+        if(piece->accessiblePos[i] == p) return true;
+    }
+
+    return false;
+}
+bool ChessBoard::isInControlledPos(Piece *piece, Position p){
+    for(int i = 0; i < piece->controlledPos.size(); i++){
+        if(piece->controlledPos[i] == p) return true;
+    }
+
+    return false;    
 }
