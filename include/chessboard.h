@@ -1,5 +1,5 @@
-#ifndef CHESS_BOARD_H
-#define CHESS_BOARD_H
+#ifndef CHESSBOARD_H
+#define CHESSBOARD_H
 
 #include "piece.h"
 
@@ -27,7 +27,12 @@ public:
     ~ChessBoard();
 
     void clear();
+    // crea la classica configurazione di inizio partita 
     void initConfiguration(const Configuration &conf);
+    // crea una randomica configurazione di partita
+    void randomConfiguration();
+    // crea una determinata configurazione di partita
+    void setConfiguration();
 
     // stampa i pezzi e i loro parametri
     void printPieces();
