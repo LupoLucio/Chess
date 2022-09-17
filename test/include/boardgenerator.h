@@ -11,9 +11,10 @@ e riempirla
 class BoardGenerator{
 
 public:
-    std::vector<ChessBoard*> chessBoards;
+    ChessBoard chessBoard;
 
     BoardGenerator();
+    BoardGenerator(Configuration conf);
     ~BoardGenerator();
 
     void clear();

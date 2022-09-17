@@ -44,6 +44,6 @@ Position ConfigurationItem::getPos()
 
 void ConfigurationItem::print()
 {
-    cout << static_cast<int>(color) << " " << static_cast<int>(type)<< " ";
+    cout << static_cast<int>(color) << " " << static_cast<int>(type)<< " " << live << " ";
     pos.printPosition();
 }

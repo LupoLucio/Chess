@@ -14,7 +14,7 @@ class Piece
 public:
     enum class Color { White = 0, Black, NColors };
 
-    enum class Type { Bishop = 0, King, Knight, Pawn, Queen, Rook, NTypes };
+    enum class Type {King = 0, Queen, Rook, Bishop, Knight, Pawn, NTypes };
 
     static constexpr int INVALID_NUMBER = -1;
 

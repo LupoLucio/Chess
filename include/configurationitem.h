@@ -8,7 +8,9 @@ class ConfigurationItem
 public:
     Piece::Type type;
     Piece::Color color;
+    bool live;
     Position pos;
+    
 
     ConfigurationItem();
     ConfigurationItem(Piece::Type type_, Piece::Color col_, Position pos_);

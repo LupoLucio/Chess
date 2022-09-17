@@ -10,8 +10,12 @@ BoardGenerator::~BoardGenerator()
 {
     clear();
 }
-void BoardGenerator::clear(){
-    for(ChessBoard* chessBoard : chessBoards){
-        chessBoard->clear();
-    }
+BoardGenerator::BoardGenerator(Configuration conf)
+{
+    
 }
+void BoardGenerator::clear(){
+    chessBoard.clear();
+}
+
+
