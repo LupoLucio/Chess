@@ -22,8 +22,7 @@ set(CHESS_HEADERS
     include/chessboardprinter.h
     include/position.h
     include/configuration.h
-    include/configurationitem.h
-    test/include/boardgenerator.h)
+    include/configurationitem.h)
 
 set(CHESS_SOURCES
     src/pieces/bishop.cpp
@@ -36,10 +35,22 @@ set(CHESS_SOURCES
     src/chessboard.cpp
     src/chessboard2.cpp
     src/chessboardprinter.cpp
-    src/main.cpp
     src/position.cpp
     src/configurationitem.cpp
+    src/configuration.cpp)
+
+set(PROGRAM_SOURCES  
+    src/main.cpp)
+
+set(TEST_HEADERS
+    test/include/boardgenerator.h)
+
+set(TEST_SOURCES
     test/src/testposition.cpp
     test/src/boardgenerator.cpp)
 
-add_executable(Chess ${CHESS_HEADERS} ${CHESS_SOURCES})
+# Aggiungere file configurazione
+# test/src/configurations.txt
+
+add_executable(Chess ${CHESS_SOURCES} ${PROGRAM_SOURCES})
+add_executable(Test ${CHESS_SOURCES} ${TEST_SOURCES})

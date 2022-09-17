@@ -4,9 +4,10 @@
 #include "chessBoard.h"
 #include "configurationItem.h"
 
-#include <iostream>
-#include <fstream>
+
 #include <string>
+
+using namespace std;
 
 /*
 Classe che definisce l'oggetto configurazione che rappresenta
@@ -25,6 +26,7 @@ public:
     std::vector<ConfigurationItem> itemsVector;
 
     Configuration();
+    Configuration(string fileName);
     ~Configuration();
 
     void printConfiguration();

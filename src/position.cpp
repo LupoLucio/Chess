@@ -41,6 +41,11 @@ bool Position::operator==(const Position &position) const
     return x == position.getX() && y == position.getY();
 }
 
+bool Position::isInChessBoard()
+{
+    return x >= 0 && x <= 7 && y >= 0 && y <= 7;
+}
+
 Position operator+(const Position &left, const Position &right)
 {
     return Position(left.getX() + right.getX(), left.getY() + right.getY());

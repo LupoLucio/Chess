@@ -2,6 +2,8 @@
 #ifndef POSITION_H
 #define POSITION_H
 
+
+
 /*
 Classe che definisce il concetto di posizione in una ChessBoard
 */
@@ -24,6 +26,7 @@ public:
     void setY(int newy);
 
     bool operator==(const Position &position) const;
+    bool isInChessBoard();
 };
 
 Position operator+(const Position &left, const Position &right);
