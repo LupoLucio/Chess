@@ -91,6 +91,8 @@ public:
     bool isInAccessiblePos(Piece *piece, Position p);
     // ritorna se la posizione p è nelle controllate di piece
     bool isInControlledPos(Piece *piece, Position p);
+    // ritorna un pezzo in base ai parametri
+    Piece *createPiece(Piece::Type type, Piece::Color color, const Position &pos);
 };
 
 #endif

@@ -62,7 +62,7 @@ void ChessBoard::clear()
     pieceVector.clear();
 }
 
-Piece *createPiece(Piece::Type type, Piece::Color color, const Position &pos)
+Piece *ChessBoard::createPiece(Piece::Type type, Piece::Color color, const Position &pos)
 {
     switch (type)
     {
@@ -100,7 +100,6 @@ void ChessBoard::initConfiguration(const Configuration &conf)
 
         Piece *whitePiece = createPiece(pieceDef.type, Piece::Color::White, pieceDef.pos);
         Piece *blackPiece = createPiece(pieceDef.type, Piece::Color::Black, blackPos);
-        ;
 
         int &num = counters[int(whitePiece->getType())];
         whitePiece->setNumber(num);
@@ -114,6 +113,7 @@ void ChessBoard::initConfiguration(const Configuration &conf)
 
 void ChessBoard::printPieces()
 {
+    cout << "Lunghezza del pieceVector : " << pieceVector.size() << endl;
     cout << "Pieces are :  " << endl;
 
     for (auto &piece : pieceVector)

@@ -101,7 +101,6 @@ Configuration::Configuration(string fileName)
 		{
 			cout << "Errore nel file alla riga " << row << std::endl;
 		}
-		item.print();
 		itemsVector.push_back(item);
 
 		row++;

@@ -17,7 +17,12 @@ int main()
 
     Configuration conf = Configuration("C:/Users/Lucio/Desktop/Programmazione/Git/Chess/test/src/configurations.txt");
     conf.printConfiguration();
-    BoardGenerator boardGenerator;
+    BoardGenerator boardGenerator(conf);
+    boardGenerator.chessBoard.printPieces();
+
+    ChessBoardPrinter printer(boardGenerator.chessBoard);
+    printer.setCurPiece(nullptr);
+    printer.printChessBoardToStdout();
 
     return 0;
 }
