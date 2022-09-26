@@ -5,80 +5,61 @@
 
 bool parseItem(ConfigurationItem& item,string& line)
 {
-	if(line.size() != 5)
+	enum LineColumn{ Color = 0, Type, Life, X_Pos, Y_Pos, NColumns};
+	
+	if(line.size() != NColumns)
 	{
 		return false;
 	}
 
-	int n0 = (int)line[0]-48;
-	int n1 = (int)line[1]-48;
-	int n2 = (int)line[2]-48;
-	int n3 = (int)line[3]-48;
-	int n4 = (int)line[4]-48;
-
-	Piece::Color colore;
-	Piece::Type tipo;
-	Position posizione;
-	bool live;
-
-	switch(n0){
-		case 0:
-			colore = Piece::Color::White;
+	char colorName = line[Color];
+	switch(colorName)
+	{
+		case 'w':
+		{
+			item.color = Piece::Color::White;
 			break;
-		case 1:
-			colore = Piece::Color::Black;
+		}
+		case 'b':
+		{
+			item.color = Piece::Color::Black;
 			break;
+		}
 		default:
+		{
 			return false;
-			break;
+		}
 	}
 
-	switch(n1){
-    case 0:
-        tipo = Piece::Type::King;
-        break;
-    case 1:
-		tipo = Piece::Type::Queen;
-        break;
-	case 2:
-		tipo = Piece::Type::Rook;
-		break;
-	case 3:
-		tipo = Piece::Type::Bishop;
-		break;
-	case 4:
-		tipo = Piece::Type::Knight;
-		break;
-	case 5:
-		tipo = Piece::Type::Pawn;
-		break;
-    default:
+	char typeName = line[Type];
+	item.type = Piece::parseTypeShortName(typeName);
+	if(item.type == Piece::Type::NTypes)
 		return false;
-		break;
-	}
 
-	switch(n2){
-		case 0:
-			live = false;
+	char lifeName = line[Life];
+	switch(lifeName)
+	{
+		case 'l':
+		{
+			item.live = true;
 			break;
-		case 1:
-			live = true;
+		}
+		case 'd':
+		{
+			item.live = false;
 			break;
+		}
 		default:
+		{
 			return false;
-			break;
+		}
 	}
 
-	posizione = Position(n3,n4);
-
-	item.color = colore;
-	item.type = tipo;
-	item.live = live;
-	item.pos = posizione;
-
+	int x = (int)line[3] - '0';
+	int y = (int)line[4] - '0';
+	item.pos = Position(x, y);
 
 	return true;
-
 }
 
 Configuration::Configuration(string fileName)
