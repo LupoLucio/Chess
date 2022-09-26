@@ -24,5 +24,8 @@ int main()
     printer.setCurPiece(nullptr);
     printer.printChessBoardToStdout();
 
+    boardGenerator.chessBoard.generateAllPos();
+    boardGenerator.chessBoard.pieceVector[0]->printAccessiblePos();
+
     return 0;
 }
