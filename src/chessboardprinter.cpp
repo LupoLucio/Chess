@@ -160,12 +160,12 @@ void ChessBoardPrinter::printChessBoardToStdout()
 #endif // _WIN32
 
     const char shortName[int(Piece::Type::NTypes)] = {
-        'b', // Bishop
         'K', // King
-        'k', // Knight
-        'p', // Pawn
         'q', // Queen
-        'r' // Rook
+        'r', // Rook
+        'b', // Bishop
+        'k', // Knight
+        'p'  // Pawn
     };
 
     Piece *p = nullptr;
