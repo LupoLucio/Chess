@@ -50,7 +50,7 @@ set(TEST_SOURCES
     test/src/boardgenerator.cpp)
 
 # Aggiungere file configurazione
-# test/src/configurations.txt
+# test/data/configurations.txt
 
 add_executable(Chess ${CHESS_SOURCES} ${PROGRAM_SOURCES})
 add_executable(Test ${CHESS_SOURCES} ${TEST_SOURCES})
