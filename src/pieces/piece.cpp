@@ -82,3 +82,36 @@ string Piece::getTypeName(Type t)
 
     return arr[idx];
 }
+
+static const char shortName_arr[int(Piece::Type::NTypes)] = {
+    'K', // King
+    'q', // Queen
+    'r', // Rook
+    'b', // Bishop
+    'k', // Knight
+    'p'  // Pawn
+};
+
+char Piece::getTypeShortName(Type t)
+{
+    
+
+    int idx = int(t);
+    if (idx < 0 || idx > int(Type::NTypes))
+        idx = int(Type::NTypes);
+
+    return shortName_arr[idx];
+}
+
+Piece::Type Piece::parseTypeShortName(char shortName)
+{
+    for(int type = 0; type < int(Type::NTypes); type++)
+    {
+        if(shortName_arr[type] == shortName)
+        {
+            return Piece::Type(type);
+        }
+    }
+
+    return Piece::Type::NTypes;
+}

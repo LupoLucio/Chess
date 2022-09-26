@@ -60,6 +60,10 @@ public:
 
     static std::string getTypeName(Type t);
 
+    static char getTypeShortName(Type t);
+
+    static Type parseTypeShortName(char shortName);
+
 public:
     // oggetto Position p per la posizione nella board
     Position m_pos;

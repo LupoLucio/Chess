@@ -159,15 +159,6 @@ void ChessBoardPrinter::printChessBoardToStdout()
     }
 #endif // _WIN32
 
-    const char shortName[int(Piece::Type::NTypes)] = {
-        'K', // King
-        'q', // Queen
-        'r', // Rook
-        'b', // Bishop
-        'k', // Knight
-        'p'  // Pawn
-    };
-
     Piece *p = nullptr;
     const char *emptyCell = "     "; //5 spaces
     const char *emptyHeaderCell = "   "; //3 spaces
@@ -223,7 +214,7 @@ void ChessBoardPrinter::printChessBoardToStdout()
                 }
 
                 const char colorLetter = p->getColor() == Piece::Color::White ? 'w' : 'b';
-                const char typeLetter = shortName[int(p->getType())];
+                const char typeLetter = Piece::getTypeShortName(p->getType());
 
                 // Print piece
                 cout << " " << colorLetter << typeLetter << p->getNumber()
