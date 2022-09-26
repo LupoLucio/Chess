@@ -15,7 +15,7 @@ using namespace std;
 int main()
 {
 
-    Configuration conf = Configuration("C:/Users/Lucio/Desktop/Programmazione/Git/Chess/test/src/configurations.txt");
+    Configuration conf = Configuration("C:/Users/Lucio/Desktop/Programmazione/Git/Chess/test/data/configurations.txt");
     conf.printConfiguration();
     BoardGenerator boardGenerator(conf);
     boardGenerator.chessBoard.printPieces();
@@ -26,6 +26,9 @@ int main()
 
     boardGenerator.chessBoard.generateAllPos();
     boardGenerator.chessBoard.pieceVector[0]->printAccessiblePos();
+
+    char tmp;
+    std::cin >> tmp;
 
     return 0;
 }
