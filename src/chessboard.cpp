@@ -685,9 +685,13 @@ void ChessBoard::killPieceVerginity(Piece *piece)
 
 bool ChessBoard::isKingInCheck(Piece::Color color)
 {
-    if(((King*)getPieceByType(color,Piece::Type::King,0)) == NULL) return false;
+    // controllo se esiste il re e se non esiste ritorno
+    Piece *tmp = getPieceByType(color, Piece::Type::King, 0);
+    if(!tmp)
+        return;
 
-    return ((King*)getPieceByType(color,Piece::Type::King,0))->isInCheck;
+    King *K = static_cast<King *>(tmp);
+    return K->isInCheck;
 }
 
 bool ChessBoard::beginMove(Piece *piece, Position pos)
@@ -799,9 +803,11 @@ void ChessBoard::setKingCheck(Piece::Color color)
     cout << "Try Check" << endl;
 
     // controllo se esiste il re e se non esiste ritorno
-    if(getPieceByType(color, Piece::Type::King) == NULL) return;
+    Piece *tmp = getPieceByType(color, Piece::Type::King);
+    if(!tmp)
+        return;
 
-    King *K = static_cast<King *>(getPieceByType(color, Piece::Type::King));
+    King *K = static_cast<King *>(tmp);
 
     for (auto &piece : pieceVector)
     {

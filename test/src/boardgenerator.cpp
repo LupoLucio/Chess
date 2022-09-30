@@ -39,9 +39,8 @@ void BoardGenerator::clear()
     chessBoard.clear();
 }
 
-bool BoardGenerator::isChessBoardValid(){
-    if(&chessBoard == NULL) return false;
-
+bool BoardGenerator::isChessBoardValid()
+{
     if(chessBoard.isKingInCheck(Piece::Color::White)){
         return false;
     }
@@ -50,9 +49,7 @@ bool BoardGenerator::isChessBoardValid(){
         return false;
     }
 
-    
     return true;
-
 }
 
 
