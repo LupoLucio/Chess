@@ -25,7 +25,16 @@ int main()
     printer.printChessBoardToStdout();
 
     boardGenerator.chessBoard.generateAllPos();
+    boardGenerator.chessBoard.setKingCheck(Piece::Color::Black);
+    boardGenerator.chessBoard.setKingCheck(Piece::Color::White);
     boardGenerator.chessBoard.pieceVector[0]->printAccessiblePos();
+
+    if(boardGenerator.isChessBoardValid()){
+        cout << "Posizione valida" << endl;
+    }else{
+        cout << "Posizione invalida" << endl;
+    }
+    
 
     char tmp;
     std::cin >> tmp;

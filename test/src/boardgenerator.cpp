@@ -1,5 +1,6 @@
 #include "boardGenerator.h"
 
+
 #include <iostream>
 using namespace std;
 
@@ -17,7 +18,7 @@ BoardGenerator::BoardGenerator(Configuration conf)
     chessBoard.clear();
     cout << "Lunghezza della configurazione : " << conf.itemsVector.size() << endl;
     int counters[int(Piece::Type::NTypes)] = { 0 };
-
+    
     for(auto item: conf.itemsVector)
     {
         if(item.live)
@@ -36,6 +37,22 @@ BoardGenerator::BoardGenerator(Configuration conf)
 void BoardGenerator::clear()
 {
     chessBoard.clear();
+}
+
+bool BoardGenerator::isChessBoardValid(){
+    if(&chessBoard == NULL) return false;
+
+    if(chessBoard.isKingInCheck(Piece::Color::White)){
+        return false;
+    }
+
+    if(chessBoard.isKingInCheck(Piece::Color::Black)){
+        return false;
+    }
+
+    
+    return true;
+
 }
 
 

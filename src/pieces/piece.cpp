@@ -73,8 +73,8 @@ string Piece::getColorName(Color c)
 
 string Piece::getTypeName(Type t)
 {
-    const char *arr[int(Type::NTypes) + 1] = { "Bishop", "King", "Knight", "Pawn",
-                                               "Queen",  "Rook", "NTypes" };
+    const char *arr[int(Type::NTypes) + 1] = { "King", "Queen", "Rook", "Bishop",
+                                               "Knight",  "Pawn", "NTypes" };
 
     int idx = int(t);
     if (idx < 0 || idx > int(Type::NTypes))

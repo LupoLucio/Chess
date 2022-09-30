@@ -685,9 +685,9 @@ void ChessBoard::killPieceVerginity(Piece *piece)
 
 bool ChessBoard::isKingInCheck(Piece::Color color)
 {
-    // FIXME: find piece by type and color instead of index
-    return color == Piece::Color::Black ? ((King *)pieceVector[0])->isInCheck
-                                        : ((King *)pieceVector[1])->isInCheck;
+    if(((King*)getPieceByType(color,Piece::Type::King,0)) == NULL) return false;
+
+    return ((King*)getPieceByType(color,Piece::Type::King,0))->isInCheck;
 }
 
 bool ChessBoard::beginMove(Piece *piece, Position pos)
@@ -797,6 +797,9 @@ bool ChessBoard::canQueen(Piece *piece)
 void ChessBoard::setKingCheck(Piece::Color color)
 {
     cout << "Try Check" << endl;
+
+    // controllo se esiste il re e se non esiste ritorno
+    if(getPieceByType(color, Piece::Type::King) == NULL) return;
 
     King *K = static_cast<King *>(getPieceByType(color, Piece::Type::King));
 
