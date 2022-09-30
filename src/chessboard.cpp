@@ -688,7 +688,7 @@ bool ChessBoard::isKingInCheck(Piece::Color color)
     // controllo se esiste il re e se non esiste ritorno
     Piece *tmp = getPieceByType(color, Piece::Type::King, 0);
     if(!tmp)
-        return;
+        return false;
 
     King *K = static_cast<King *>(tmp);
     return K->isInCheck;
